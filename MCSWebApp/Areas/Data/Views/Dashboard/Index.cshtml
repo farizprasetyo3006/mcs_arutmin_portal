@@ -1,0 +1,142 @@
+﻿@model DashboardViewModel
+@functions {
+    public string FormatNumber(object value)
+    {
+        if (value == null)
+            return "0";
+
+        if (value is int intValue)
+            return intValue.ToString("N3");
+
+        if (value is long longValue)
+            return longValue.ToString("N3");
+
+        if (value is decimal decimalValue)
+            return decimalValue.ToString("N3");
+
+        if (value is double doubleValue)
+            return doubleValue.ToString("N3");
+
+        // If it's not a recognized numeric type, just convert to string
+        return value.ToString();
+    }
+}
+@* <div class="container swipper">
+    <div class="slider-wrapper">
+        <div class="card-list swiper-wrapper">
+            <div class="card-item swiper-slide">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="">Waste Removal</h5>
+                    <i class="fas fa-dumpster fa-2x"></i>
+                </div>
+                    <p class="">@(FormatNumber(Model.quantity_waste_removal)) BCM</p>
+                    <a class="btn btn-outline-light btn-block" href="/Mining/WasteRemoval/Index">More info →</a>
+            </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-slide-button swiper-button-prev"></div>
+        <div class="swiper-slide-button swiper-button-next"></div>
+    </div>
+</div> *@
+@* <div class="dashboard-container" id="dashboardContainer">
+    <button class="btn btn-panel" data-toggle="collapse" alt="Collapse" data-target="#dashboardContent" aria-expanded="true" aria-controls="dashboardContent">
+        <i class="fas fa-minus"></i>
+    </button>
+    <div id="dashboardContent" class="collapse show">
+        <div class="dashboard-slider" id="dashboardSlider">
+            <div class="dashboard-card">
+                <div class="card bg-secondary text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">Waste Removal</h5>
+                            <i class="fas fa-dumpster fa-2x"></i>
+                        </div>
+                        <p class="card-text">@(FormatNumber(Model.quantity_waste_removal)) BCM</p>
+                        <a class="btn btn-outline-light btn-block" href="/Mining/WasteRemoval/Index">More info →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <div class="card bg-danger text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">Coal Mined</h5>
+                            <i class="fas fa-hard-hat fa-2x"></i>
+                        </div>
+                        <p class="card-text">@(FormatNumber(Model.quantity_production)) MT</p>
+                        <a class="btn btn-outline-light btn-block" href="/Mining/Production/Index">More info →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <div class="card bg-info text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">Coal Hauling</h5>
+                            <i class="fas fa-truck fa-2x"></i>
+                        </div>
+                        <p class="card-text">@(FormatNumber(Model.quantity_hauling)) MT</p>
+                        <a class="btn btn-outline-light btn-block" href="/Mining/Hauling/Index">More info →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <div class="card bg-success text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">Coal Produce</h5>
+                            <i class="fas fa-industry fa-2x"></i>
+                        </div>
+                        <p class="card-text">@(FormatNumber(Model.quantity_processing)) MT</p>
+                        <a class="btn btn-outline-light btn-block" href="/Mining/Processing/Index">More info →</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <a href="#" class="slider-nav slider-prev" id="sliderPrev">❮</a>
+        <a href="#" class="slider-nav slider-next" id="sliderNext">❯</a>
+    </div>
+</div> *@
+@* <div class="dashboard-card">
+                <div class="card bg-success text-white shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">Coal Produce</h5>
+                            <i class="fas fa-industry fa-2x"></i>
+                        </div>
+                        <p class="card-text">@(FormatNumber(Model.quantity_processing)) MT</p>
+                        <button class="btn btn-outline-light btn-block">More info →</button>
+                    </div>
+                </div>
+            </div> *@
+<div style="margin-bottom: 20px;"></div>
+
+<div class="row">
+    <div class="col-12">
+        <div style="position: relative; overflow: hidden; padding-top: 56.25%;">
+            <iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;border: 0;"
+                    src="https://app.powerbi.com/view?r=eyJrIjoiY2JmMTVlNWEtZjZiMS00MzkyLTlmMjYtYmQzNDZlMzk5YjY2IiwidCI6IjM0MTI4YmRlLWNjYjctNDJjYy1hOTU1LWM1MDZmN2U0ZjJhNCIsImMiOjEwfQ%3D%3D"
+                    frameborder="0" allowFullScreen="true"></iframe>
+        </div>
+    </div>
+</div>
+<script>
+    settings: {
+        layoutType: models.LayoutType.Custom,
+            customLayout: {
+            displayOption: models.DisplayOption.FitToPage
+        }
+    }
+    <link rel="stylesheet" href = "~/css/fariz.css" >
+
+</script>
+
+@section ScriptsBlock
+{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="~/css/fariz.css">
+    <script defer src="~/app/areas/data/dashboard/js/index.js?_=@DateTime.Now.Ticks"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+}

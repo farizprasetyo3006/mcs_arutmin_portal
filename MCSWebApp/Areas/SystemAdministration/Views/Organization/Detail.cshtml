@@ -1,0 +1,74 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Organization
+                </h2>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Save" name="Save" class="btn btn-sm btn-primary">Save</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Delete" name="Delete" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <form id="form-main">
+                                <input type="hidden" id="id" name="id" value="@ViewBag.Id" />
+                                <input type="hidden" id="parent_organization_name" />
+
+                                <div class="form-group">
+                                    <label class="form-label" for="parent_organization_id">
+                                        Parent Organization
+                                    </label>
+                                    <input type="hidden" id="parent_organization_id" name="parent_organization_id" />
+                                    <select data-placeholder="Parent organization ..." class="form-control" id="ParentOrganization"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="organization_name">Organization Name</label>
+                                    <input type="text" id="organization_name" name="organization_name" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="organization_code">Organization Code</label>
+                                    <input type="text" id="organization_code" name="organization_code" class="form-control" required>
+                                </div>
+
+                                @if (ViewBag.Id == null || ViewBag.Id == string.Empty)
+                                {
+                                    <div class="form-group sysadmin">
+                                        <label class="form-label" for="sysadmin_username">Administrator Username</label>
+                                        <input type="text" id="sysadmin_username" name="sysadmin_username" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group sysadmin">
+                                        <label class="form-label" for="sysadmin_password">Administrator Password</label>
+                                        <input type="password" id="sysadmin_password" name="sysadmin_password" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group sysadmin">
+                                        <label class="form-label" for="confirm_password">Confirm Password</label>
+                                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                                    </div>
+                                }
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script defer src="~/app/areas/system_administration/organization/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

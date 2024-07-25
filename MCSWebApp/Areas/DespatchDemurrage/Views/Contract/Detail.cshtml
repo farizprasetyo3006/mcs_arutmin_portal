@@ -1,0 +1,68 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div class="state">
+            <input name="desdem_contract_id" type="hidden" value="@(ViewBag.DesDemContract!= null ? ViewBag.DesDemContract.id : null)" />
+            <input name="despatch_order_id" type="hidden" value="@(ViewBag.DesDemContract!= null ? ViewBag.DesDemContract.despatch_order_id : null)" />
+            <input name="sof_id" type="hidden" value="@(ViewBag.DesDemDetail!= null ? ViewBag.DesDemDetail.sof_id : null)" />
+            <input name="despatch_demurrage_detail_id" type="hidden" value="@(ViewBag.DesDemDetail!= null ? ViewBag.DesDemDetail.id : null)" />
+        </div>
+
+        <div class="row align-items-center mb-3">
+            <div class="col-md-6">
+                <p class="mb-1">DesDem Term</p>
+                <h3 class="font-weight-bold">Despatch/Demurrage Term</h3>
+            </div>
+            <div class="col-md-6">
+                <a href="/despatchdemurrage/contract/index" class="btn btn-secondary float-right">Back to List</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="contract-product-panel" class="panel">
+                    <div class="panel-hdr">
+                        <h2>Despatch/Demurrage</h2>
+                    </div>
+
+                    <div class="panel-container">
+                        <div class="panel-content">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div id="despatch-demurrage-term-form"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-hdr">
+                        <h2>Despatch/Demurrage Delay Definitions</h2>
+                    </div>
+
+                    <div class="panel-container">
+                        <div class="panel-content">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div id="despatch-demurrage-delay-grid"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/despatch_demurrage/contract/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

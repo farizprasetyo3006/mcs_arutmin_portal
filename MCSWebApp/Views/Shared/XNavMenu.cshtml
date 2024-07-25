@@ -1,0 +1,481 @@
+﻿<ul id="js-nav-menu" class="nav-menu">
+    <li class="@(ViewBag.AreaBreadcrumb == "Data" && ViewBag.Breadcrumb == "Dashboard" ? "active open" : "")">
+        <a href="/Data/Dashboard/Index" title="Dashboard" data-filter-tags="data dashboard">
+            <i class="fal fa-chart-area"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Dashboard</span>
+        </a>
+    </li>
+
+    <li class="nav-title">PLANNING</li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Planning" ? "active open" : "")">
+        <a href="#" title="Planning" data-filter-tags="supply chain planning">
+            <i class="fal fa-clipboard-list"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Planning</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Sales Plan" ? "active" : "")">
+                <a href="/Planning/SalesPlan/Index" title="Sales Plan" data-filter-tags="supply chain planning sales plan">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_planning_sales_plan">Sales Plan</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Production Plan" ? "active" : "")">
+                <a href="/Planning/ProductionPlan/Index" title="Production Plan" data-filter-tags="supply chain planning production plan">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_planning_production_plan">Production Plan</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Standard Cost Mining" ? "active" : "")">
+                <a href="/Planning/StandardCostMining/Index" title="Standard Cost Mining" data-filter-tags="supply chain planning standard cost mining">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_planning_standard_cost_mining">Standard Cost Mining</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-title">PRODUCTION &amp; LOGISTICS</li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Location" ? "active open" : "")">
+        <a href="#" title="Location" data-filter-tags="supply chain location">
+            <i class="fal fa-ball-pile"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Location</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Business Area" ? "active" : "")">
+                <a href="/Location/BusinessArea/Index" title="Business Area" data-filter-tags="supply chain location business area">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_location_business_area">Business Area</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Mine Location" ? "active" : "")">
+                <a href="/Location/MineLocation/Index" title="Mine Location" data-filter-tags="supply chain mine location">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_mine_location">Mine Location</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Stock Location" ? "active" : "")">
+                <a href="/Location/StockpileLocation/Index" title="Stockpile Location" data-filter-tags="supply chain stockpile location">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_stockpile_location">Stockpile Location</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Waste Location" ? "active" : "")">
+                <a href="/Location/WasteLocation/Index" title="Waste Location" data-filter-tags="supply chain waste location">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_waste_location">Waste Location</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Process Flow" ? "active open" : "")">
+        <a href="#" title="Location" data-filter-tags="supply chain location">
+            <i class="fal fa-ball-pile"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Process Flow</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Processing Category" ? "active" : "")">
+                <a href="/Transaction/ProcessingCategory/Index" title="Processing Category" data-filter-tags="supply chain transaction processing category">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_processing_category">Processing Category</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Process Flow" ? "active" : "")">
+                <a href="/Transaction/ProcessFlow/Index" title="Process Flow" data-filter-tags="supply chain transaction process flow analyte">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_process_flow">Process Flow</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Mining Transaction" ? "active open" : "")">
+        <a href="#" title="Transaction" data-filter-tags="supply chain transaction">
+            <i class="fal fa-ballot-check"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Mining Transaction</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Production Transaction" ? "active" : "")">
+                <a href="/Transaction/ProductionTransaction/Index" title="Production Transaction" data-filter-tags="supply chain production transaction">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_production">Production</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Waste Removal" ? "active" : "")">
+                <a href="/Transaction/WasteRemoval/Index" title="Waste Removal" data-filter-tags="supply chain transaction waste removal">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_waste_removal">Waste Removal</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Processing" ? "active" : "")">
+                <a href="/Transaction/ProcessingTransaction/Index" title="Processing" data-filter-tags="supply chain transaction processing">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_processing">Processing</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Hauling" ? "active" : "")">
+                <a href="/Transaction/HaulingTransaction/Index" title="Hauling" data-filter-tags="supply chain transaction hauling">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_hauling">Hauling</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Railing" ? "active" : "")">
+                <a href="/Transaction/RailingTransaction/Index" title="Railing" data-filter-tags="supply chain transaction railing">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_railing">Railing</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Port Transaction" ? "active open" : "")">
+        <a href="#" title="Transaction" data-filter-tags="supply chain transaction">
+            <i class="fal fa-ballot-check"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Port Transaction</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Barging" ? "active" : "")">
+                <a href="#" title="Barging" data-filter-tags="barging">
+                    <i class="fal fa-tools"></i>
+                    <span class="nav-link-text" data-i18n="nav.pages">Barging</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="/Transaction/BargingTransaction/Loading" title="Loading" data-filter-tags="supply chain transaction barging loading">
+                            <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_barging_loading">Loading</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Transaction/BargingTransaction/Unloading" title="Unloading" data-filter-tags="supply chain transaction barging unloading">
+                            <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_barging_unloading">Unloading</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Shipping" ? "active" : "")">
+                <a href="/Transaction/ShippingTransaction/Index" title="Shipping" data-filter-tags="supply chain transaction shipping">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_shipping">Shipping</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Stockpile Management" ? "active open" : "")">
+        <a href="#" title="Transaction" data-filter-tags="supply chain transaction">
+            <i class="fal fa-ballot-check"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Stockpile Management</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Stockpile Survey" ? "active" : "")">
+                <a href="/Transaction/Survey/Index" title="Survey" data-filter-tags="supply chain transaction survey">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_survey">Stockpile Survey</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Quality Sampling" ? "active open" : "")">
+        <a href="#" title="Transaction" data-filter-tags="supply chain transaction">
+            <i class="fal fa-ballot-check"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Quality Sampling</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Assay Transaction" ? "active" : "")">
+                <a href="#" title="Survey" data-filter-tags="supply chain transaction survey">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_survey">Assay Transaction</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Equipment Activity" ? "active open" : "")">
+        <a href="#" title="Transaction" data-filter-tags="supply chain transaction">
+            <i class="fal fa-ballot-check"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Equipment Activity</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Equipment Record" ? "active" : "")">
+                <a href="/Transaction/EquipmentUsageTransaction/Index" title="Equipment Usage" data-filter-tags="supply chain transaction equipment usage">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Equipment Record</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Daily Record" ? "active open" : "")">
+        <a href="#" title="Transaction" data-filter-tags="supply chain transaction">
+            <i class="fal fa-ballot-check"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Daily Record</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Rainfall" ? "active" : "")">
+                <a href="#" title="Rainfall" data-filter-tags="supply chain transaction equipment usage">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Rainfall</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Tide and Wave" ? "active" : "")">
+                <a href="#" title="Tide and Wave" data-filter-tags="supply chain transaction equipment usage">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Tide and Wave</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-title">SALES &amp; MARKETING</li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Sales and Marketing" ? "active open" : "")">
+        <a href="#" title="Transaction" data-filter-tags="supply chain transaction">
+            <i class="fal fa-ballot-check"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Sales &amp; Marketing</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Sales Order" ? "active" : "")">
+                <a href="/Transaction/SalesOrder/Index" title="Sales Order" data-filter-tags="supply chain sales order">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_sales_order">Sales Order</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Despatch Order" ? "active" : "")">
+                <a href="/Sales/DespatchOrder/Index" title="Shipping Order" data-filter-tags="supply chain Shipping order">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_despatch_order">Shipping Order</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Sales Invoice" ? "active" : "")">
+                <a href="/Sales/SalesInvoice/Index" title="Sales Invoice" data-filter-tags="supply chain sales invoice">
+                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_sales_invoice">Sales Invoice</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-title">ACCOUNTING MANAGEMENT</li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Accounting Management" ? "active open" : "")">
+        <a href="#" title="Transaction" data-filter-tags="supply chain transaction">
+            <i class="fal fa-ballot-check"></i>
+            <span class="nav-link-text" data-i18n="nav.index">Accounting Management</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb.Contains("Account") ? "active" : "")">
+                <a href="javascript:void(0);" title="Accounts" data-filter-tags="general account subaccount">
+                    <span class="nav-link-text" data-i18n="nav.general_account_subaccount">Accounts</span>
+                </a>
+                <ul>
+                    <li class="@(ViewBag.Breadcrumb == "Chart of Accounts" ? "active" : "")">
+                        <a href="/General/Account/Index" title="Account" data-filter-tags="general account">
+                            <span class="nav-link-text" data-i18n="nav.general_account">Chart of Accounts</span>
+                        </a>
+                    </li>
+
+                    <li class="@(ViewBag.Breadcrumb == "Sub Accounts" ? "active" : "")">
+                        <a href="/General/SubAccount/Index" title="Sub Account" data-filter-tags="general subaccount">
+                            <span class="nav-link-text" data-i18n="nav.general_subaccount">Sub Accounts</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Bank" ? "active" : "")">
+                <a href="/General/Bank/Index" title="Bank" data-filter-tags="general bank">
+                    <span class="nav-link-text" data-i18n="nav.general_bank">Bank</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Currency" ? "active" : "")">
+                <a href="/General/Currency/Index" title="Currency" data-filter-tags="general currency">
+                    <span class="nav-link-text" data-i18n="nav.general_currency">Currency</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "City" ? "active" : "")">
+                <a href="/General/City/Index" title="City" data-filter-tags="general city">
+                    <span class="nav-link-text" data-i18n="nav.general_city">City</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Province" ? "active" : "")">
+                <a href="/General/Province/Index" title="Province" data-filter-tags="general province">
+                    <span class="nav-link-text" data-i18n="nav.general_province">Province</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Country" ? "active" : "")">
+                <a href="/General/Country/Index" title="Country" data-filter-tags="general country">
+                    <span class="nav-link-text" data-i18n="nav.general_country">Country</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Accounting Period" ? "active" : "")">
+                <a href="/Organisation/AccountingPeriod/Index" title="Accounting Period" data-filter-tags="organization accounting period">
+                    <span class="nav-link-text" data-i18n="nav.organization_accounting_period">Accounting Period</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-title">MASTER DATA</li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Material" ? "active open" : "")">
+        <a href="#" title="Material" data-filter-tags="material">
+            <i class="fal fa-chart-network"></i>
+            <span class="nav-link-text" data-i18n="nav.pages">Material</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Product Category" ? "active" : "")">
+                <a href="/Material/ProductCategory/Index" title="Product Category" data-filter-tags="material product category">
+                    <span class="nav-link-text" data-i18n="nav.material_product_category">Product Category</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Product" ? "active" : "")">
+                <a href="/Material/Product/Index" title="Product" data-filter-tags="material product">
+                    <span class="nav-link-text" data-i18n="nav.material_product">Product</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Waste Category" ? "active" : "")">
+                <a href="/Material/WasteCategory/Index" title="Waste Category" data-filter-tags="material waste category">
+                    <span class="nav-link-text" data-i18n="nav.material_waste_category">Waste Category</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Waste" ? "active" : "")">
+                <a href="/Material/Waste/Index" title="Waste" data-filter-tags="material waste">
+                    <span class="nav-link-text" data-i18n="nav.material_waste">Waste</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Other" ? "active" : "")">
+                <a href="/Material/Other/Index" title="Waste" data-filter-tags="material other">
+                    <span class="nav-link-text" data-i18n="nav.material_other">Other Material</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Quality" ? "active open" : "")">
+        <a href="#" title="Quality" data-filter-tags="material">
+            <i class="fal fa-flask-potion"></i>
+            <span class="nav-link-text" data-i18n="nav.pages">Quality</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Analyte" ? "active" : "")">
+                <a href="/Quality/Analyte/Index" title="Analyte" data-filter-tags="quality analyte definition">
+                    <span class="nav-link-text" data-i18n="nav.quality_analyte">Analyte Definitions</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Sampling Template" ? "active" : "")">
+                <a href="/Quality/SamplingTemplate/Index" title="Sampling Template" data-filter-tags="quality sampling template">
+                    <span class="nav-link-text" data-i18n="nav.sampling_template">Sampling Template</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Equipment" ? "active open" : "")">
+        <a href="#" title="Equipment" data-filter-tags="material">
+            <i class="fal fa-tools"></i>
+            <span class="nav-link-text" data-i18n="nav.pages">Equipment</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Equipment" ? "active" : "")">
+                <a href="/Equipment/Equipment/Index" title="Equipment" data-filter-tags="equipment">
+                    <span class="nav-link-text" data-i18n="nav.equipment_type">Equipment List</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Equipment Type" ? "active" : "")">
+                <a href="/Equipment/EquipmentType/Index" title="Equipment Type" data-filter-tags="equipment type">
+                    <span class="nav-link-text" data-i18n="nav.equipment_type">Equipment Type</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Equipment Rate" ? "active" : "")">
+                <a href="/Equipment/EquipmentCostRate/Index" title="Equipment Rate" data-filter-tags="equipment rate">
+                    <span class="nav-link-text" data-i18n="nav.equipment_rate">Equipment Rate</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Incident" ? "active open" : "")">
+        <a href="#" title="Equipment" data-filter-tags="material">
+            <i class="fal fa-tools"></i>
+            <span class="nav-link-text" data-i18n="nav.pages">Incident</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Incident" ? "active" : "")">
+                <a href="javascript:void(0);" title="Equipment" data-filter-tags="equipment">
+                    <span class="nav-link-text" data-i18n="nav.equipment_type">Incident</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="/Equipment/IncidentCategory/Index" title="Incident Definition" data-filter-tags="equipment incident definition">
+                            <span class="nav-link-text" data-i18n="nav.equipment_incident_definition">Incident Definition</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Transport" ? "active open" : "")">
+        <a href="#" title="Transport" data-filter-tags="material">
+            <i class="fal fa-truck-monster"></i>
+            <span class="nav-link-text" data-i18n="nav.pages">Transport</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Truck" ? "active" : "")">
+                <a href="/Transport/Truck/Index" title="Truck" data-filter-tags="transport truck">
+                    <span class="nav-link-text" data-i18n="nav.transport_truck">Truck</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Train" ? "active" : "")">
+                <a href="/Transport/Train/Index" title="Truck" data-filter-tags="transport train">
+                    <span class="nav-link-text" data-i18n="nav.transport_train">Train</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Tug" ? "active" : "")">
+                <a href="/Transport/Tug/Index" title="Tug" data-filter-tags="transport tug">
+                    <span class="nav-link-text" data-i18n="nav.transport_tug">Tug</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Barge" ? "active" : "")">
+                <a href="/Transport/Barge/Index" title="Barge" data-filter-tags="transport barge">
+                    <span class="nav-link-text" data-i18n="nav.transport_barge">Barge</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Vessel" ? "active" : "")">
+                <a href="/Transport/Vessel/Index" title="Vessel" data-filter-tags="transport vessel">
+                    <span class="nav-link-text" data-i18n="nav.transport_vessel">Vessel</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "Organisation" ? "active open" : "")">
+        <a href="#" title="Organization" data-filter-tags="Organization">
+            <i class="fal fa-user-cog"></i>
+            <span class="nav-link-text" data-i18n="nav.pages">Organization</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Shift" ? "active" : "")">
+                <a href="/Organisation/Shift/Index" title="Shift" data-filter-tags="organization shift">
+                    <span class="nav-link-text" data-i18n="nav.organization_shift">Shift</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Shift Category" ? "active" : "")">
+                <a href="/Organisation/ShiftCategory/Index" title="Shift Category" data-filter-tags="organization shift category">
+                    <span class="nav-link-text" data-i18n="nav.organization_shift_category">Shift Category</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Company" ? "active" : "")">
+                <a href="/Organisation/BusinessPartner/Index" title="Company" data-filter-tags="organization business partner">
+                    <span class="nav-link-text" data-i18n="nav.organization_business_partner">Company</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="@(ViewBag.AreaBreadcrumb == "UOM" ? "active open" : "")">
+        <a href="#" title="General" data-filter-tags="general">
+            <i class="fal fa-book"></i>
+            <span class="nav-link-text" data-i18n="nav.pages">UOM</span>
+        </a>
+        <ul>
+
+            <li class="@(ViewBag.Breadcrumb == "UOM" ? "active" : "")">
+                <a href="/General/UOM/Index" title="UOM" data-filter-tags="general uom">
+                    <span class="nav-link-text" data-i18n="nav.general_uom">UOM</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "UOM Category" ? "active" : "")">
+                <a href="/General/UOMCategory/Index" title="UOM Category" data-filter-tags="general uom category">
+                    <span class="nav-link-text" data-i18n="nav.general_uom_category">UOM Category</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-title">SYSTEM &amp; SETTINGS</li>
+    <li class="@(ViewBag.AreaBreadcrumb == "System Administration" ? "active open" : "")">
+        <a href="#" title="System Administration" data-filter-tags="System Administration">
+            <i class="fal fa-cogs"></i>
+            <span class="nav-link-text" data-i18n="nav.pages">System Administration</span>
+        </a>
+        <ul>
+            <li class="@(ViewBag.Breadcrumb == "Application User" ? "active" : "")">
+                <a href="/Organisation/ApplicationUser/Index" title="Application User" data-filter-tags="organization application user">
+                    <span class="nav-link-text" data-i18n="nav.organization_application_user">Application User</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Team" ? "active" : "")">
+                <a href="/Organisation/Team/Index" title="Team" data-filter-tags="organization team">
+                    <span class="nav-link-text" data-i18n="nav.organization_team">Team</span>
+                </a>
+            </li>
+            <li class="@(ViewBag.Breadcrumb == "Organization" ? "active" : "")">
+                <a href="/SystemAdministration/Organization/Index" title="Organization" data-filter-tags="system administration organization">
+                    <span class="nav-link-text" data-i18n="nav.system_administration_organization">Organization</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>

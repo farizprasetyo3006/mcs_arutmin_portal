@@ -1,0 +1,11 @@
+SORTED FROM NEWEST TO OLDEST
+
+                    2023-07-21
++ Add contractor_id di mine_location
++ Add field business_unit_id, bnt.business_unit_name di vw_accounting_period
+============================================================================
+
+					2023-07-26
++Add Table Equipment_Group & Equipment_Group_Item
++Add View Equipment_Group & Equipment_Group_Item
+============================================================================

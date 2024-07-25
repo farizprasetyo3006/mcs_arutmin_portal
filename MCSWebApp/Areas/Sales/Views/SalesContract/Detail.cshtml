@@ -1,0 +1,340 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+
+        <div class="state">
+            <input name="sales_contract_id" type="hidden" value="@ViewBag.SalesContract.id" />
+            <input name="sales_contract_term_name" type="hidden" value="@ViewBag.SalesContract.sales_contract_name" />
+            <input name="sales_contract_start_date" type="hidden" value="@ViewBag.SalesContract.start_date" />
+            <input name="sales_contract_end_date" type="hidden" value="@ViewBag.SalesContract.end_date" />
+        </div>
+
+        <div class="row align-items-center mb-3">
+            <div class="col-md-6">
+                <p class="mb-1">Sales Contract</p>
+                <h3 class="font-weight-bold">@ViewBag.SalesContract.sales_contract_name</h3>
+            </div>
+            <div class="col-md-6">
+                <a href="/Sales/SalesContract/Index" class="btn btn-secondary float-right">Back to Sales Contract List</a>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <div class="master-detail-caption mb-2">Overview</div>
+                <div class="card card-mcs card-headline">
+                    <div class="row">
+                        <div class="col-md-6 pr-0">
+                            <div class="headline-title-container">
+                                <small class="font-weight-normal d-block mb-1">Contract Name</small>
+                                <h4 class="headline-title font-weight-bold">@(ViewBag.SalesContract.sales_contract_name != null ? ViewBag.SalesContract.sales_contract_name : "-")</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-0">
+                            <div class="headline-detail-container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-check-circle fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Contract Status</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.contract_status_name != null ? ViewBag.SalesContract.contract_status_name : "-")</h6>
+                                            </div>
+                                        </div>
+                                        @*<div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-file fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Invoice Target</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.invoice_target_name != null ? ViewBag.SalesContract.invoice_target_name : "-")</h6>
+                                            </div>
+                                        </div>*@
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-user fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Seller</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.seller_name != null ? ViewBag.SalesContract.seller_name : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-file-certificate fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Document Reference</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.document_reference != null ? ViewBag.SalesContract.document_reference : "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="master-detail-caption mb-2">Contract Information</div>
+                <div class="card card-mcs card-headline">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="headline-detail-container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-calendar-alt fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Start Date</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.start_date != null ? ViewBag.SalesContract.start_date.ToString("dd MMM yyyy") : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-user fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Buyer</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.customer_name != null ? ViewBag.SalesContract.customer_name : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-file-alt fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Contract Basis</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.contract_basis_name != null ? ViewBag.SalesContract.contract_basis_name : "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-calendar-alt fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">End Date</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.end_date != null ? ViewBag.SalesContract.end_date.ToString("dd MMM yyyy") : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            @*<div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-box fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">End User</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.end_user_name != null ? ViewBag.SalesContract.end_user_name : "-")</h6>
+                                            </div>*@
+
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-check-circle fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Commitment</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.commitment_name != null ? ViewBag.SalesContract.commitment_name : "-")</h6>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex align-items-start">
+                                            @*<div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-check-circle fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Commitment</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.SalesContract.commitment_name != null ? ViewBag.SalesContract.commitment_name : "-")</h6>
+                                            </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <div class="master-detail-caption mb-2">Other</div>
+                <div class="card card-mcs card-headline">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="headline-detail-container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div>
+                                            <small class="font-weight-normal text-muted d-block mb-1">Description</small>
+                                            <h6 class="font-weight-bold m-0">@(ViewBag.SalesContract.description != null ? ViewBag.SalesContract.description : "-")</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <small class="font-weight-normal text-muted d-block mb-1">Credit Limit Activation</small>
+                                            <h6 class="font-weight-bold m-0">@(ViewBag.SalesContract.credit_limit_activation != null ? (ViewBag.SalesContract.credit_limit_activation ? "Yes" : "No") : "No")</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <ul class="nav nav-mcs nav-pills pills-blue my-3" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#end-user-container"><i class="fas fa-list mr-2"></i>End Buyer</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#invoice-target-container"><i class="fas fa-list mr-2"></i>Invoice Target</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#contract-term-container"><i class="fas fa-list mr-2"></i>Contract Terms</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#attachment-container"><i class="fas fa-file mr-2"></i>Attachments</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="tab-content">
+
+                    <!-- End Buyer -->
+                    <div class="tab-pane show active" id="end-user-container" role="tabpanel">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>End Buyer</h2>
+
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                </div>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="end-user-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Invoice Target -->
+                    <div class="tab-pane fade inactive" id="invoice-target-container" role="tabpanel">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Invoice Target</h2>
+
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                </div>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="invoice-target-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contract Terms -->
+                    <div class="tab-pane fade inactive" id="contract-term-container" role="tabpanel">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Contract Terms</h2>
+
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                </div>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="contract-term-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attachments -->
+                    <div class="tab-pane fade inactive" id="attachment-container" role="tabpanel">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Attachments</h2>
+
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                </div>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="attachment-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Attachments -->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/sales/sales_contract/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

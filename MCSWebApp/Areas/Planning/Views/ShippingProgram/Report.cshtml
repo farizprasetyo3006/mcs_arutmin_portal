@@ -1,0 +1,64 @@
+﻿<div class="state">
+    @*<input name="sales_plan_snapshot_id" type="hidden" value="@ViewBag.ContractTerm.id" />*@
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div id="quotation-pricing-panel" class="panel">
+                    <div class="panel-hdr">
+                        <h2>Select Sales Plan</h2>
+                    </div>
+
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div id="sales-plan-report-form"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="report-container">
+            <h4 class="text-center">Please select a sales plan first</h4>
+        </div>
+
+
+    </div>
+</div>
+<!-- Upload file -->
+<div class="modal fade" id="modal-upload-file" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload file</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="fUpload" name="files" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnUpload">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/planning/sales_plan/js/report.js?_=@DateTime.Now.Ticks"></script>
+}

@@ -1,0 +1,206 @@
+﻿<div class="flex-1" style="background: url(/img/backgrounds/Shiploader.jpg) no-repeat center bottom fixed; background-size: cover;">
+    <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
+        <div class="row">
+            <div class="col col-md-6 col-lg-7 hidden-sm-down">
+                <div style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 2);">
+                    <h2 class="fs-xxl fw-500 mt-4 text-white">AIMS</h2>
+                    <h3 class="fs-xxl fw-500 mt-4 text-white">Arutmin Integrated Management System</h3>
+            </div>
+               @* <h2 class="fs-xxl fw-500 mt-4 text-white">
+                    AIMS
+                    <h3 class="fs-xxl fw-500 mt-4 text-white">
+                        Arutmin Integrated Management System
+                    </h3>
+                </h2>*@
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 ml-auto">
+                <h1 class="text-white fw-300 mb-3 d-sm-block d-md-none">
+                    Secure login
+                </h1>
+                <div class="card p-4 rounded-plus bg-faded">
+                    <form id="frm-login" novalidate="">
+                        <input type="hidden" id="return-url" name="ReturnUrl" value="@ViewBag.ReturnUrl">
+                        <div class="form-group">
+                            <label class="form-label" for="username">Username</label>
+                            <input type="text" id="username" name="Username" class="form-control form-control" placeholder="your id or email" required>
+                            <div class="invalid-feedback">No, you missed this one.</div>
+                            <div class="help-block">Your unique username to app</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="password">Password</label>
+                            <input type="password" id="password" name="Password" class="form-control form-control" placeholder="password" required>
+                            <div class="invalid-feedback">Sorry, you missed this one.</div>
+                            <div class="help-block">Your password</div>
+
+                            <div class="mt-3 text-warning">@ViewBag.LoginStatus</div>
+                        </div>
+                        @* <div class="form-group">
+                        <input type="hidden" id="roleId" name="roleId" />
+                        <label class="form-label" for="ddl-user-role">Role</label> *@
+
+                        @*@Html.DropDownList("ddl-user-role", new SelectList(ViewBag.ListRole, "id", "role_name"), "-user role-", new { @class = "form-control" })*@
+
+                        @*@Html.DropDownList("ddl-user-role", new SelectList("", "id", "role_name"), "-user role-", new { @class = "form-control", required = String.Empty })*@
+
+                        @* @Html.DropDownList("ddl-user-role", new SelectList("", "id", "role_name"), "-user role-", new { @class = "form-control" })
+
+                        <div class="help-block">Your user role</div>
+                        </div> *@
+
+                        <!-- <div class="form-group text-left">
+                            <div class="custom-control custom-checkbox">
+                                <input type="hidden" name="SystemAdministration" value="false">
+                                <input type="checkbox" class="custom-control-input" id="is_sysadmin">
+                                <label class="custom-control-label" for="is_sysadmin"> System Administration </label>
+                            </div>
+                        </div> -->
+                        <div class="row no-gutters">
+                            <div class="col-12 pr-lg-1 my-2">
+                                <button id="btn-login" type="submit" class="btn btn-info btn-block">Login</button>
+
+                                @*<input type="button" value="Submit" class="btn btn-info btn-block" onclick="AjaxFormSubmit()" />*@
+                            </div>
+
+                            <!--
+                            <div class="col-lg-6 pl-lg-1 my-2">
+                                <button id="btn-forgot-password" type="button" class="btn btn-outline-danger btn-block">Forgot Password</button>
+                            </div>
+                                -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center text-white">
+            @* @DateTime.Now.Year © Smart Mining by&nbsp;<a href='https://www.adiraja-integrasi.com' class='text-white fw-500' title='www.adiraja-integrasi.com' target='_blank'>Adiraja Integrasi</a>. *@
+        </div>
+    </div>
+</div>
+
+<!-- Business Unit  -->
+@* <div class="modal fade" id="modal-business_unit" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Business Unit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group"> *@
+@*<input type="hidden" id="business_unit_id" name="business_unit_id" />
+                            <select data-placeholder="business unit..." class="form-control" id="BusinessUnit"></select>*@
+@* </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"> *@
+@*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="btnSubmit">Submit</button>*@
+@* </div>
+        </div>
+    </div>
+</div>
+ *@
+@section ScriptsBlock
+{
+    <script>
+        
+        // $("#is_sysadmin").change(function (event) {
+        //     if ($("#is_sysadmin").is(':checked')) {
+        //         $('input[name="SystemAdministration"]').val(true);
+        //     }
+        //     else {
+        //         $('input[name="SystemAdministration"]').val(false);
+        //     }
+        // });
+
+        // $("#username").blur(function () {
+        //     var userLength = $("#username").val().length;
+        //     var userName = $("#username").val();
+
+        //     if (userLength > 0) {
+        //         $.ajax({
+        //             //url: '/Authentication/Login/RoleByUserName',
+        //             url: '/api/Authentication/Login/RoleByUserName/' + encodeURIComponent(userName),
+        //             method: 'GET',
+        //             contentType: 'application/json',
+        //             success: function (response) {
+        //                 $('#ddl-user-role').empty();
+        //                 $.each(response.data, function (i, item) {
+        //                     $('#ddl-user-role').append($('<option>', {
+        //                         value: item.id,
+        //                         text: item.role_name
+        //                     }));
+        //                 });
+        //             },
+        //             error: function (jqXHR) {
+        //                 $('#ddl-user-role').empty();
+        //             }
+        //         });
+        //     }
+        //     else {
+        //         $('#ddl-user-role').empty();
+        //     }
+        // });
+
+        // $("#ddl-user-role").click(function (event) {
+        //     $("#roleId").val($("#ddl-user-role").val());
+        // });
+
+        $("#btn-login").click(function (event) {
+            // Fetch form to apply custom Bootstrap validation
+            var form = $("#frm-login");
+            form.attr("method", "post");
+            form.attr("action", "/Authentication/Login/Submit");
+
+            if (form[0].checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            form.addClass('was-validated');
+            // Perform ajax submit here...
+        });
+
+        //function AjaxFormSubmit() {
+        //    //Set the URL.
+        //    //var url = $("#myForm").attr("action");
+
+        //    var form = $("#frm-login");
+        //    form.attr("action", "/Authentication/Login/Proses");
+        //    var url = "/Authentication/Login/Proses";
+
+        //    //Add the Field values to FormData object.
+        //    var formData = new FormData();
+        //    formData.append("username", $("#username").val());
+        //    formData.append("password", $("#password").val());
+        //    formData.append("roleId", $("#roleId").val());
+
+        //    $.ajax({
+        //        type: 'POST',
+        //        url: url,
+        //        data: formData,
+        //        processData: false,
+        //        contentType: false
+        //    }).done(function (response) {
+        //        if (response.Status === "success") {
+        //            //$("#lblName").html(response.Name);
+        //            alert('Sukses');
+        //        }
+        //    });
+        //}
+
+        /* $("#btn-forgot-password").on("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            var url = "/Authentication/Login/ForgotPassword";
+            window.location = url;
+        }); */
+
+    </script>
+}

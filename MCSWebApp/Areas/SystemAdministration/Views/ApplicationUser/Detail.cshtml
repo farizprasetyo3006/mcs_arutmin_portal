@@ -1,0 +1,212 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Application User
+                </h2>
+                @if (ViewBag.Id == ViewBag.CurrentUserId || (ViewBag.IsSysAdmin ?? false))
+                {
+                    <div class="panel-toolbar ml-2">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reset-password-modal">Reset Password</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#disable-user-modal">Disable User</a>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#enable-user-modal">Enable User</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
+                    <div class="panel-toolbar ml-2">
+                        <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#reset-password-modal">Reset Password</button>
+                    </div>
+                    -->
+                }
+                @*
+
+                    else if (ViewBag.IsSysAdmin ?? false)
+                    {
+                        <div class="panel-toolbar ml-2">
+                            <button type="button" id="ResetPasswordUsingEmail" class="btn btn-sm btn-outline-warning">Reset Password</button>
+                        </div>
+                    }
+                *@
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Save" name="Save" class="btn btn-sm btn-primary">Save</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Delete" name="Delete" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <form id="form-main">
+                                <input type="hidden" id="id" name="id" value="@ViewBag.Id" />
+                                <input type="hidden" id="primary_team_name" />
+
+                                <div class="form-group">
+                                    <label class="form-label" for="application_username">User Name</label>
+                                    <input type="text" id="application_username" class="form-control" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="fullname">Full Name</label>
+                                    <input type="text" id="fullname" name="fullname" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input type="text" id="email" name="email" class="form-control">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group text-left">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="hidden" id="is_active" name="is_active" value="true">
+                                                <input type="checkbox" class="custom-control-input" id="cbIsActive">
+                                                <label class="custom-control-label" for="cbIsActive"> Is Active </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group text-left">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="hidden" id="is_sysadmin" name="is_sysadmin">
+                                                <input type="checkbox" class="custom-control-input" id="cbIsSysAdmin">
+                                                <label class="custom-control-label" for="cbIsSysAdmin"> System Administration </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group text-left">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="hidden" id="use_ldap" name="use_ldap">
+                                                <input type="checkbox" class="custom-control-input" id="cbUseLDAP">
+                                                <label class="custom-control-label" for="cbUseLDAP"> Use LDAP </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                @*<div class="form-group">
+            <label class="form-label" for="primary_team_id">
+                Business Unit
+            </label>
+            <input type="hidden" id="primary_team_id" name="primary_team_id" />
+            <select data-placeholder="Business unit ..." class="form-control" id="BusinessUnit"></select>
+        </div>*@
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (ViewBag.Id == ViewBag.CurrentUserId || (ViewBag.IsSysAdmin ?? false))
+{
+    <!-- Reset password -->
+    <div class="modal fade" id="reset-password-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Reset Password
+                        <small class="m-0 text-muted">
+                            Make sure to keep your password safe
+                        </small>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-reset-password">
+                        <div class="form-group">
+                            <label class="form-label" for="new_password">New Password</label>
+                            <input type="password" id="new_password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="confirm_password">Confirm Password</label>
+                            <input type="password" id="confirm_password" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="ResetPassword" class="btn btn-danger">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (ViewBag.IsSysAdmin ?? false)
+{
+    <!-- Disable user -->
+    <div class="modal fade" id="disable-user-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Disable User
+                        <small class="m-0 text-muted">
+                            User's data is not deleted
+                        </small>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to disable this user ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="DisableUser" class="btn btn-danger">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enable user -->
+    <div class="modal fade" id="enable-user-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Enable User
+                        <small class="m-0 text-muted">
+                            User's login will be restored
+                        </small>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to enable this user ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="EnableUser" class="btn btn-danger">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section ScriptsBlock
+{
+    <script defer src="~/app/areas/system_administration/application_user/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

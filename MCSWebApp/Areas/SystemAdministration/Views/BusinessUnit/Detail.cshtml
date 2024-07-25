@@ -1,0 +1,52 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    @ViewBag.Breadcrumb
+                </h2>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Save" name="Save" class="btn btn-sm btn-primary">Save</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Delete" name="Delete" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <form id="form-main">
+                                <input type="hidden" id="id" name="id" value="@ViewBag.Id" />
+                                <input type="hidden" id="parent_business_unit_id" name="parent_business_unit_id" />
+                                <input type="hidden" id="parent_business_unit_name" name="parent_business_unit_name" />
+
+                                <div class="form-group">
+                                    <label class="form-label" for="ParentBusinessUnit">
+                                        Parent Business Unit
+                                    </label>
+                                    <select data-placeholder="Parent business unit ..." class="form-control" id="ParentBusinessUnit"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="business_unit_name">Business Unit Name</label>
+                                    <input type="text" id="business_unit_name" name="business_unit_name" class="form-control">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script defer src="~/app/areas/organisation/business_unit/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

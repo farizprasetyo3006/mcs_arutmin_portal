@@ -1,0 +1,37 @@
+﻿.card.card-mcs {
+    border-radius: 8px;
+    overflow: hidden;
+    white-space: normal !important;
+    
+    font-family: "Helvetica Neue","Segoe UI",helvetica,verdana,sans-serif;
+    color: #333;
+}
+
+    .card.card-mcs [class*='col'] {
+        /*padding: 0;*/
+    }
+
+    .card.card-mcs.card-headline {
+        font-size: 16px;
+    }
+
+    .card.card-mcs.card-headline .headline-title-container {
+        background: rgb(117,113,113);
+        background: -moz-linear-gradient(33deg, rgba(117,113,113,1) 0%, rgba(109,150,159,1) 100%);
+        background: -webkit-linear-gradient(33deg, rgba(117,113,113,1) 0%, rgba(109,150,159,1) 100%);
+        background: linear-gradient(33deg, rgba(117,113,113,1) 0%, rgba(109,150,159,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#757171",endColorstr="#6d969f",GradientType=1);
+        height: 100%;
+        padding: 1rem;
+        color: white !important;
+    }
+        .card.card-mcs.card-headline .headline-title-container {
+            
+        }
+
+    .card.card-mcs.card-headline .headline-detail-container {
+        padding: 1rem; }
+
+        .card.card-mcs.card-headline .headline-detail-container .icon-circle {
+            
+        }

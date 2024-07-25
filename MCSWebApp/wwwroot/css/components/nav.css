@@ -1,0 +1,34 @@
+﻿.nav.nav-pills.pills-blue .nav-link.active {
+    background-color: #337ab7;
+}
+
+.nav-mcs.nav-pills {
+
+}
+    .nav-mcs.nav-pills .nav-link {
+        border-radius: 20px;
+        color: #afafaf;
+    }
+        .nav-mcs.nav-pills .nav-link:hover,
+        .nav-mcs.nav-pills .nav-link:focus,
+        .nav-mcs.nav-pills .nav-link:active {
+            background-color: white;
+            color: rgba(117,113,113,1);
+        }
+
+        .nav-mcs.nav-pills .nav-link.active {
+            background: rgb(117,113,113);
+            background: -moz-linear-gradient(33deg, rgba(117,113,113,1) 0%, rgba(109,150,159,1) 100%);
+            background: -webkit-linear-gradient(33deg, rgba(117,113,113,1) 0%, rgba(109,150,159,1) 100%);
+            background: linear-gradient(33deg, rgba(117,113,113,1) 0%, rgba(109,150,159,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#757171",endColorstr="#6d969f",GradientType=1);
+            color: white;
+        }
+
+    .nav-mcs.nav-pills.nav-vertical {
+        flex-direction: column;
+    }
+        .nav-mcs.nav-pills.nav-vertical .nav-item {
+            flex-grow: 1;
+            margin: 5px 0;
+        }

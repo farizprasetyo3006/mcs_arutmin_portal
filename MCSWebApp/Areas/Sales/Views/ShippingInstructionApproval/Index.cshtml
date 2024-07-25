@@ -1,0 +1,72 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    @ViewBag.Breadcrumb
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="dx-viewport">
+                                <div class="demo-container">
+                                    <div id="grid"></div>
+                                    <div id="invoice-popup"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal print-out -->
+<div class="modal fade" id="print-out-modal" data-focus="false" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Print Out Templates
+                    <small class="m-0 text-muted">
+                        List of available templates
+                    </small>
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label" for="parent_organization_id">
+                        Select a template
+                    </label>
+                    <input type="hidden" id="report_template_id" />
+                    <select data-placeholder="Report template ..." class="form-control" id="print-out-list"></select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="print-out-btn">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/sales/shipping_instruction_approval/js/index.js?_=@DateTime.Now.Ticks"></script>
+}

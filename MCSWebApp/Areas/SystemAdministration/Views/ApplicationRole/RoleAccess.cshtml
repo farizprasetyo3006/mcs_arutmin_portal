@@ -1,0 +1,59 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2 class="panel-title text-main text-bold" id="role_name">Role :: &nbsp;</h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div id="page-loading-content" class="panel-body" style="min-height:300px" data-toggle="panel-overlay" data-target="#dt_team">
+                        <div class="table-responsive">
+                            <input hidden id="ApplicationRoleId" value="@ViewBag.ApplicationRoleId" />
+
+                            <div class="col-sm-12">
+                                <div class="table-responsive" style="overflow-x: hidden;">
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <tr style="background-color: transparent">
+                                                <th class="pt-4 pb-0"><pie class="ten" /></th>
+                                                <th class="pt-4 pb-4"><a href="javacript:void(0)" class="add-tooltip set-role-all" data-toggle="tooltip" data-access="ACCESS_NOACCESS" data-container="body" data-placement="top" data-original-title="Click to apply role access to all entities" style="margin-top:3px">No Access</a></th>
+                                                <th class="pt-4 pb-4"><pie class="twentyfive" /></th>
+                                                <th class="pt-4 pb-0"><a href="javacript:void(0)" class="add-tooltip set-role-all" data-toggle="tooltip" data-access="ACCESS_OWNRECORD" data-container="body" data-placement="top" data-original-title="Click to apply role access to all entities" style="margin-top:3px">Own Record</a></th>
+                                                <th class="pt-4 pb-0"><pie class="fifty" /></th>
+                                                <th class="pt-4 pb-0"><a href="javacript:void(0)" class="add-tooltip set-role-all" data-access="ACCESS_BUSINESSUNIT" data-toggle="tooltip" data-container="body" data-placement="top" data-original-title="Click to apply role access to all entities" style="margin-top:3px">Business Unit</a></th>
+                                                <th class="pt-4 pb-0"><pie class="seventyfive" /></th>
+                                                <th class="pt-4 pb-0"><a href="javacript:void(0)" class="add-tooltip set-role-all" data-access="ACCESS_PARENTCHILD" data-toggle="tooltip" data-container="body" data-placement="top" data-original-title="Click to apply role access to all entities" style="margin-top:3px">Parent:Child Business Unit</a></th>
+                                                <th class="pt-4 pb-0"><pie class="onehundred" /></th>
+                                                <th class="pt-4 pb-0"><a href="javacript:void(0)" class="add-tooltip set-role-all" data-access="ACCESS_ORGANIZATION" data-toggle="tooltip" data-container="body" data-placement="top" data-original-title="Click to apply role access to all entities" style="margin-top:3px">Full Access</a></th>
+                                                @*
+                                                <th class="pt-4 pb-0"><pie class="ten" /></th>
+                                                <th class="pt-4 pb-4"><a href="javacript:void(0)" class="add-tooltip set-role-all" data-toggle="tooltip" data-access="ACCESS_NOACCESS" data-container="body" data-placement="top" data-original-title="Click to apply role access to all entities" style="margin-top:3px">No Access</a></th>
+                                                <th class="pt-4 pb-0"><pie class="onehundred" /></th>
+                                                <th class="pt-4 pb-0"><a href="javacript:void(0)" class="add-tooltip set-role-all" data-access="ACCESS_ORGANIZATION" data-toggle="tooltip" data-container="body" data-placement="top" data-original-title="Click to apply role access to all entities" style="margin-top:3px">Full Access</a></th>
+
+                                                <th class="pt-4 pb-4">&nbsp;</th>
+                                                <th class="pt-4 pb-0">&nbsp;</th>
+                                                <th class="pt-4 pb-0">&nbsp;</th>
+                                                <th class="pt-4 pb-0">&nbsp;</th>
+                                                <th class="pt-4 pb-0">&nbsp;</th>
+                                                <th class="pt-4 pb-0">&nbsp;</th>
+                                                *@
+                                            </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <table id="dt-main" class="table" cellspacing="0">
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @section ScriptsBlock
+        {
+            <script defer src="~/app/areas/system_administration/application_role/js/role_access.js"></script>
+        }

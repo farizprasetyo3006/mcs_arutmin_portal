@@ -1,0 +1,90 @@
+﻿@model ReportViewerModel
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Report Parameters :: @Model.ReportName
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="dx-viewport">
+                                <div class="demo-container">
+                                    <div id="grid">
+                                        <form id="form-main">
+                                            <input type="hidden" id="id" name="__id" value="@ViewBag.Id" />
+
+                                            @foreach (var p in Model.Parameters)
+                                            {
+                                        <div class="form-group">
+                                            <label class="form-label" for="@p.Name">@p.Name</label>
+                                            @switch (p.DataType)
+                                            {
+                                                            case "System.Date":
+                                                            case "System.DateTime":
+                                                            //<input type="datetime-local" name="@p.Name" class="form-control">
+                                                            //bobbby 20220914 update control
+                                                            <input type="date" name="@p.Name" class="form-control"> 
+                                                                break;
+                                                            case "System.TimeSpan":
+                                                                <input type="time" name="@p.Name" class="form-control">
+                                                                break;
+                                                            case "System.Int32":
+                                                            case "System.Int64":
+                                                                <input type="number" name="@p.Name" class="form-control">
+                                                                break;
+                                                            case "System.String":
+                                                                if (p.LookupValues.Count > 0)
+                                                                {
+                                                                    <select name="@p.Name" class="form-control">
+                                                                        @foreach (var kv in p.LookupValues)
+                                                                        {
+                                                                            <option value="@kv.Key">@kv</option>
+                                                                        }
+                                                                    </select>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="text" name="@p.Name" class="form-control">
+                                                                }
+                                                                break;
+                                                            default:
+                                                                <input type="text" name="@p.Name" class="form-control">
+                                                                break;
+                                                        }
+                                        </div>
+                                            }
+
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-info" id="btnGenerateReport">Generate Report</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+                                                    {
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/report/report_template/js/viewer.js?_=@DateTime.Now.Ticks"></script>
+}

@@ -1,0 +1,3 @@
+﻿.dx-popup-content.dx-popup-content-with-footer .dx-scrollable {
+    height: calc(100% - 38px)
+}

@@ -1,0 +1,24 @@
+﻿.dx-texteditor-input-container.input-alert:before {
+    content: '';
+    border-radius: 20px;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    position: absolute;
+    display: block;
+}
+    .dx-texteditor-input-container.input-alert.alert-red:before {
+        background-color: rgba(217,83,79,.4);
+    }
+    .dx-texteditor-input-container.input-alert.alert-yellow:before {
+        background-color: rgba(216, 151, 32, 1);
+    }
+    .dx-texteditor-input-container.input-alert.alert-green:before {
+        background-color: rgba(67,184,53,1);
+    }
+
+    .dx-texteditor-input-container.input-alert input {
+        width: 90%;
+    }

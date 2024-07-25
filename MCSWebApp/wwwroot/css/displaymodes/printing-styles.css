@@ -1,0 +1,197 @@
+.prt-d-flex {
+    display: flex;
+}
+
+.prt-sans {
+    font-family: sans-serif;
+}
+
+.prt-papersheet {
+    height: 29.7cm;
+    width: 24cm;
+    box-shadow: 1px 1px 5px #000;
+    font-size: 4mm;
+    page-break-after: always;
+}
+.prt-right {
+    text-align: right;
+}
+
+.prt-center {
+    text-align: center;
+}
+
+.prt-pad-1 {
+    padding-right: 5cm;
+}
+
+.prt-vpad {
+    padding: 1cm 0;
+}
+
+.prt-bold {
+    font-weight: bold;
+}
+
+.prt-uline {
+    text-decoration: underline;
+}
+
+.prt-fsz-large {
+    font-size: 1cm;
+}
+
+.prt-fsz-small {
+    font-size: 3.5mm;
+    font-weight: 600;
+}
+
+.prt-full-w {
+    width: 100%;
+}
+
+.prt-bd-blue {
+    border: solid 2px #00F;
+}
+
+.prt-t-blue {
+    color: #00F;
+}
+
+.prt-table-border {
+    border: solid 1px #000;
+    border-collapse: collapse;
+}
+
+.prt-key-1 {
+}
+
+.prt-dot-1 {
+}
+
+.prt-value-1 {
+    max-width: 6cm;
+}
+
+.prt-head-2 {
+    border: solid 1px #000;
+}
+
+.prt-value-2 {
+    border: solid 1px #000;
+}
+
+.prt-colb-1, .prt-colb-2 {
+}
+
+.prt-colc-1, prt-colc-2, prt-colc-3 {
+}
+
+.logo-adjust {
+    height: 100px;
+}
+
+.prt-note-styling {
+    width: 50%;
+    min-height: 3.5cm;
+}
+
+.prt-fx-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.prt-api {
+    color: red;
+}
+
+.prt-v-pad {
+    padding-top: 3mm;
+    padding-bottom: 3mm;
+}
+
+.prt-h-margin {
+    padding-top: 3mm;
+    padding-bottom: 3mm;
+}
+
+.prt-paper-pad {
+    padding: 25mm 10mm 25mm 40mm;
+}
+
+.prt-m-r {
+    margin-right: 3mm;
+}
+
+.prt-m-l {
+    margin-left: 3mm;
+}
+
+.prt-mark-layout-1 {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.prt-mark-layout-2 {
+    height: 100%;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.tombol-cetak-sales-invoice {
+    height: 35px;
+    background: none;
+    border: solid 1px #939393;
+    border-radius: 6px;
+    background-color: #FFF;
+    transition: background-color 0.3s;
+}
+
+.tombol-cetak-sales-invoice:hover {
+    background-color: #CCC;
+}
+
+.prt-svg-spinner {
+    --color: #012353;
+    --stroke-width: 7;
+}
+
+/* EDGE BROWSER ROTATING SVG ANIMATION FIX */
+@supports (-ms-ime-align: auto) {
+    .loader-svg {
+        -webkit-animation: rotation 0.6s infinite linear;
+        animation: rotation 0.6s infinite linear;
+        -webkit-transform-origin: center;
+        -ms-transform-origin: center;
+        transform-origin: center;
+    }
+
+    @-webkit-keyframes rotation {
+        from {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        to {
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+        }
+    }
+
+    @keyframes rotation {
+        from {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        to {
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+        }
+    }
+}

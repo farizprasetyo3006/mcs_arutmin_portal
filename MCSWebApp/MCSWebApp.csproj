@@ -1,0 +1,378 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>3be6b997-d524-4499-adbc-3cd1ff31c194</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Areas\Authentication\Data\**" />
+    <Compile Remove="Areas\Authentication\Models\**" />
+    <Compile Remove="Areas\ContractManagement\Data\**" />
+    <Compile Remove="Areas\ContractManagement\Models\**" />
+    <Compile Remove="Areas\DespatchDemurrage\Data\**" />
+    <Compile Remove="Areas\DespatchDemurrage\Models\**" />
+    <Compile Remove="Areas\Equipment\Data\**" />
+    <Compile Remove="Areas\Equipment\Models\**" />
+    <Compile Remove="Areas\General\Data\**" />
+    <Compile Remove="Areas\General\Models\**" />
+    <Compile Remove="Areas\Location\Data\**" />
+    <Compile Remove="Areas\Location\Models\**" />
+    <Compile Remove="Areas\Material\Data\**" />
+    <Compile Remove="Areas\Material\Models\**" />
+    <Compile Remove="Areas\Organisation\Data\**" />
+    <Compile Remove="Areas\Organisation\Models\**" />
+    <Compile Remove="Areas\Planning\Data\**" />
+    <Compile Remove="Areas\Planning\Models\**" />
+    <Compile Remove="Areas\Quality\Data\**" />
+    <Compile Remove="Areas\Quality\Models\**" />
+    <Compile Remove="Areas\Sales\Data\**" />
+    <Compile Remove="Areas\Sales\Models\**" />
+    <Compile Remove="Areas\SystemAdministration\Data\**" />
+    <Compile Remove="Areas\SystemAdministration\Models\**" />
+    <Compile Remove="Areas\Transaction\Data\**" />
+    <Compile Remove="Areas\Transaction\Models\**" />
+    <Compile Remove="wwwroot\upload\**" />
+    <Content Remove="Areas\Authentication\Data\**" />
+    <Content Remove="Areas\Authentication\Models\**" />
+    <Content Remove="Areas\ContractManagement\Data\**" />
+    <Content Remove="Areas\ContractManagement\Models\**" />
+    <Content Remove="Areas\DespatchDemurrage\Data\**" />
+    <Content Remove="Areas\DespatchDemurrage\Models\**" />
+    <Content Remove="Areas\Equipment\Data\**" />
+    <Content Remove="Areas\Equipment\Models\**" />
+    <Content Remove="Areas\General\Data\**" />
+    <Content Remove="Areas\General\Models\**" />
+    <Content Remove="Areas\Location\Data\**" />
+    <Content Remove="Areas\Location\Models\**" />
+    <Content Remove="Areas\Material\Data\**" />
+    <Content Remove="Areas\Material\Models\**" />
+    <Content Remove="Areas\Organisation\Data\**" />
+    <Content Remove="Areas\Organisation\Models\**" />
+    <Content Remove="Areas\Planning\Data\**" />
+    <Content Remove="Areas\Planning\Models\**" />
+    <Content Remove="Areas\Quality\Data\**" />
+    <Content Remove="Areas\Quality\Models\**" />
+    <Content Remove="Areas\Sales\Data\**" />
+    <Content Remove="Areas\Sales\Models\**" />
+    <Content Remove="Areas\SystemAdministration\Data\**" />
+    <Content Remove="Areas\SystemAdministration\Models\**" />
+    <Content Remove="Areas\Transaction\Data\**" />
+    <Content Remove="Areas\Transaction\Models\**" />
+    <Content Remove="wwwroot\upload\**" />
+    <Content Remove="wwwroot\files\**" />
+    <EmbeddedResource Remove="Areas\Authentication\Data\**" />
+    <EmbeddedResource Remove="Areas\Authentication\Models\**" />
+    <EmbeddedResource Remove="Areas\ContractManagement\Data\**" />
+    <EmbeddedResource Remove="Areas\ContractManagement\Models\**" />
+    <EmbeddedResource Remove="Areas\DespatchDemurrage\Data\**" />
+    <EmbeddedResource Remove="Areas\DespatchDemurrage\Models\**" />
+    <EmbeddedResource Remove="Areas\Equipment\Data\**" />
+    <EmbeddedResource Remove="Areas\Equipment\Models\**" />
+    <EmbeddedResource Remove="Areas\General\Data\**" />
+    <EmbeddedResource Remove="Areas\General\Models\**" />
+    <EmbeddedResource Remove="Areas\Location\Data\**" />
+    <EmbeddedResource Remove="Areas\Location\Models\**" />
+    <EmbeddedResource Remove="Areas\Material\Data\**" />
+    <EmbeddedResource Remove="Areas\Material\Models\**" />
+    <EmbeddedResource Remove="Areas\Organisation\Data\**" />
+    <EmbeddedResource Remove="Areas\Organisation\Models\**" />
+    <EmbeddedResource Remove="Areas\Planning\Data\**" />
+    <EmbeddedResource Remove="Areas\Planning\Models\**" />
+    <EmbeddedResource Remove="Areas\Quality\Data\**" />
+    <EmbeddedResource Remove="Areas\Quality\Models\**" />
+    <EmbeddedResource Remove="Areas\Sales\Data\**" />
+    <EmbeddedResource Remove="Areas\Sales\Models\**" />
+    <EmbeddedResource Remove="Areas\SystemAdministration\Data\**" />
+    <EmbeddedResource Remove="Areas\SystemAdministration\Models\**" />
+    <EmbeddedResource Remove="Areas\Transaction\Data\**" />
+    <EmbeddedResource Remove="Areas\Transaction\Models\**" />
+    <EmbeddedResource Remove="wwwroot\upload\**" />
+    <EmbeddedResource Remove="wwwroot\files\**" />
+    <None Remove="Areas\Authentication\Data\**" />
+    <None Remove="Areas\Authentication\Models\**" />
+    <None Remove="Areas\ContractManagement\Data\**" />
+    <None Remove="Areas\ContractManagement\Models\**" />
+    <None Remove="Areas\DespatchDemurrage\Data\**" />
+    <None Remove="Areas\DespatchDemurrage\Models\**" />
+    <None Remove="Areas\Equipment\Data\**" />
+    <None Remove="Areas\Equipment\Models\**" />
+    <None Remove="Areas\General\Data\**" />
+    <None Remove="Areas\General\Models\**" />
+    <None Remove="Areas\Location\Data\**" />
+    <None Remove="Areas\Location\Models\**" />
+    <None Remove="Areas\Material\Data\**" />
+    <None Remove="Areas\Material\Models\**" />
+    <None Remove="Areas\Organisation\Data\**" />
+    <None Remove="Areas\Organisation\Models\**" />
+    <None Remove="Areas\Planning\Data\**" />
+    <None Remove="Areas\Planning\Models\**" />
+    <None Remove="Areas\Quality\Data\**" />
+    <None Remove="Areas\Quality\Models\**" />
+    <None Remove="Areas\Sales\Data\**" />
+    <None Remove="Areas\Sales\Models\**" />
+    <None Remove="Areas\SystemAdministration\Data\**" />
+    <None Remove="Areas\SystemAdministration\Models\**" />
+    <None Remove="Areas\Transaction\Data\**" />
+    <None Remove="Areas\Transaction\Models\**" />
+    <None Remove="wwwroot\upload\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Areas\Planning\Controllers\ProductionPlanBackupController.cs" />
+    <Compile Remove="Controllers\API\ContractManagement\AdvanceContractDetailController.cs" />
+    <Compile Remove="Controllers\API\Planning\ProductionPlanBackupController.cs" />
+    <Compile Remove="Controllers\API\Planning\ProductionPlanDetailBackupController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="appsettings.json" />
+    <Content Remove="wwwroot\hangfire.db" />
+    <Content Remove="wwwroot\hangfire.db-journal" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings.json" />
+    <None Include="Areas\Mining\Views\ArutminWasteRemoval\Index.cshtml" />
+    <None Include="Areas\Sales\Views\Royalty\Detail.cshtml" />
+    <None Include="Areas\Sales\Views\Royalty\Index.cshtml" />
+    <None Include="wwwroot\app\areas\mining\arutmin_waste_removal\js\index.js" />
+    <None Include="wwwroot\app\areas\sales\royalty\js\cost.js" />
+    <None Include="wwwroot\app\areas\sales\royalty\js\index.js" />
+    <None Include="wwwroot\app\areas\sales\royalty\js\payment.js" />
+    <None Include="wwwroot\app\areas\sales\royalty\js\pricing.js" />
+    <None Include="wwwroot\app\areas\sales\royalty\js\quantity_quality.js" />
+    <None Include="wwwroot\app\areas\sales\royalty\js\valuation.js" />
+    <None Include="wwwroot\css\app.bundle.css.map" />
+    <None Include="wwwroot\css\datagrid\datatables\datatables.bundle.css.map" />
+    <None Include="wwwroot\css\fa-brands.css.map" />
+    <None Include="wwwroot\css\fa-duotone.css.map" />
+    <None Include="wwwroot\css\fa-light.css.map" />
+    <None Include="wwwroot\css\fa-regular.css.map" />
+    <None Include="wwwroot\css\fa-solid.css.map" />
+    <None Include="wwwroot\css\formplugins\bootstrap-colorpicker\bootstrap-colorpicker.css.map" />
+    <None Include="wwwroot\css\formplugins\bootstrap-datepicker\bootstrap-datepicker.css.map" />
+    <None Include="wwwroot\css\formplugins\bootstrap-daterangepicker\bootstrap-daterangepicker.css.map" />
+    <None Include="wwwroot\css\formplugins\bootstrap-markdown\bootstrap-markdown.css.map" />
+    <None Include="wwwroot\css\formplugins\cropperjs\cropper.css.map" />
+    <None Include="wwwroot\css\formplugins\dropzone\dropzone.css.map" />
+    <None Include="wwwroot\css\formplugins\ion-rangeslider\ion-rangeslider.css.map" />
+    <None Include="wwwroot\css\formplugins\nouislider\nouislider.css.map" />
+    <None Include="wwwroot\css\formplugins\select2\select2.bundle.css.map" />
+    <None Include="wwwroot\css\formplugins\smartwizard\smartwizard.css.map" />
+    <None Include="wwwroot\css\formplugins\summernote\summernote.css.map" />
+    <None Include="wwwroot\css\json-path-picker\json-path-picker.css.map" />
+    <None Include="wwwroot\css\miscellaneous\fullcalendar\fullcalendar.bundle.css.map" />
+    <None Include="wwwroot\css\miscellaneous\jqvmap\jqvmap.bundle.css.map" />
+    <None Include="wwwroot\css\miscellaneous\lightgallery\lightgallery.bundle.css.map" />
+    <None Include="wwwroot\css\miscellaneous\nestable\nestable.css.map" />
+    <None Include="wwwroot\css\miscellaneous\reactions\reactions.css.map" />
+    <None Include="wwwroot\css\miscellaneous\treeview\treeview.css.map" />
+    <None Include="wwwroot\css\notifications\sweetalert2\sweetalert2.bundle.css.map" />
+    <None Include="wwwroot\css\notifications\toastr\toastr.css.map" />
+    <None Include="wwwroot\css\page-invoice.css.map" />
+    <None Include="wwwroot\css\page-login-alt.css.map" />
+    <None Include="wwwroot\css\skins\skin-master.css.map" />
+    <None Include="wwwroot\css\statistics\c3\c3.css.map" />
+    <None Include="wwwroot\css\statistics\chartist\chartist.css.map" />
+    <None Include="wwwroot\css\statistics\chartjs\chartjs.css.map" />
+    <None Include="wwwroot\css\statistics\dygraph\dygraph.css.map" />
+    <None Include="wwwroot\css\theme-demo.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-1.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-10.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-11.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-12.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-13.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-14.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-15.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-2.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-3.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-4.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-5.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-6.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-7.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-8.css.map" />
+    <None Include="wwwroot\css\themes\cust-theme-9.css.map" />
+    <None Include="wwwroot\css\vendors.bundle.css.map" />
+    <None Include="wwwroot\img\favicon\safari-pinned-tab.svg" />
+    <None Include="wwwroot\img\favicon\site.webmanifest" />
+    <None Include="wwwroot\img\logo-flat.svg" />
+    <None Include="wwwroot\img\logo-gradient.svg" />
+    <None Include="wwwroot\img\logo.svg" />
+    <None Include="wwwroot\img\svg\pattern-1.svg" />
+    <None Include="wwwroot\img\svg\pattern-2.svg" />
+    <None Include="wwwroot\img\svg\pattern-3.svg" />
+    <None Include="wwwroot\img\svg\pattern-4.svg" />
+    <None Include="wwwroot\js\app.bundle.js" />
+    <None Include="wwwroot\js\datagrid\datatables\datatables.bundle.js" />
+    <None Include="wwwroot\js\datagrid\datatables\datatables.export.js" />
+    <None Include="wwwroot\js\dependency\moment\moment.js" />
+    <None Include="wwwroot\js\formplugins\bootstrap-colorpicker\bootstrap-colorpicker.js" />
+    <None Include="wwwroot\js\formplugins\bootstrap-datepicker\bootstrap-datepicker.js" />
+    <None Include="wwwroot\js\formplugins\bootstrap-daterangepicker\bootstrap-daterangepicker.js" />
+    <None Include="wwwroot\js\formplugins\bootstrap-markdown\bootstrap-markdown.js" />
+    <None Include="wwwroot\js\formplugins\cropperjs\cropper.js" />
+    <None Include="wwwroot\js\formplugins\dropzone\dropzone.js" />
+    <None Include="wwwroot\js\formplugins\inputmask\inputmask.bundle.js" />
+    <None Include="wwwroot\js\formplugins\ion-rangeslider\ion-rangeslider.js" />
+    <None Include="wwwroot\js\formplugins\nouislider\nouislider.js" />
+    <None Include="wwwroot\js\formplugins\select2\select2.bundle.js" />
+    <None Include="wwwroot\js\formplugins\smartwizard\smartwizard.js" />
+    <None Include="wwwroot\js\formplugins\summernote\summernote.js" />
+    <None Include="wwwroot\js\i18n\i18n.js" />
+    <None Include="wwwroot\js\json-path-picker\json-path-picker.js" />
+    <None Include="wwwroot\js\miscellaneous\cookie\jquery.cookie.js" />
+    <None Include="wwwroot\js\miscellaneous\fullcalendar\fullcalendar.bundle.js" />
+    <None Include="wwwroot\js\miscellaneous\html5-camera\jslib-html5-camera-photo.min.js" />
+    <None Include="wwwroot\js\miscellaneous\html5-qrcode\html5-qrcode.min.js" />
+    <None Include="wwwroot\js\miscellaneous\jquery-qrcode\jquery-qrcode.min.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\jqvmap.bundle.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.algeria.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.argentina.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.brazil.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.canada.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.europe.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.france.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.germany.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.greece.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.iran.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.iraq.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.russia.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.tunisia.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.turkey.js" />
+    <None Include="wwwroot\js\miscellaneous\jqvmap\maps\jquery.vmap.usa.js" />
+    <None Include="wwwroot\js\miscellaneous\lightgallery\lightgallery.bundle.js" />
+    <None Include="wwwroot\js\miscellaneous\lightgallery\smartvoice.bundle.js" />
+    <None Include="wwwroot\js\miscellaneous\moment\moment-with-locales.min.js" />
+    <None Include="wwwroot\js\miscellaneous\moment\moment.min.js" />
+    <None Include="wwwroot\js\miscellaneous\nestable\nestable.js" />
+    <None Include="wwwroot\js\miscellaneous\serializeToJSON\jquery.serializeToJSON.min.js" />
+    <None Include="wwwroot\js\miscellaneous\treeview\treeview.js" />
+    <None Include="wwwroot\js\notifications\sweetalert2\sweetalert2.bundle.js" />
+    <None Include="wwwroot\js\notifications\toastr\toastr.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\statistics\c3\c3.js" />
+    <None Include="wwwroot\js\statistics\chartist\chartist.js" />
+    <None Include="wwwroot\js\statistics\chartjs\chartjs.bundle.js" />
+    <None Include="wwwroot\js\statistics\d3\d3.js" />
+    <None Include="wwwroot\js\statistics\demo-data\demo-c3.js" />
+    <None Include="wwwroot\js\statistics\demo-data\demo-data-dygraph.js" />
+    <None Include="wwwroot\js\statistics\dygraph\dygraph.js" />
+    <None Include="wwwroot\js\statistics\easypiechart\easypiechart.bundle.js" />
+    <None Include="wwwroot\js\statistics\flot\flot.bundle.js" />
+    <None Include="wwwroot\js\statistics\peity\peity.bundle.js" />
+    <None Include="wwwroot\js\statistics\sparkline\sparkline.bundle.js" />
+    <None Include="wwwroot\js\vendors.bundle.js" />
+    <None Include="wwwroot\media\sound\bigbox.ogg" />
+    <None Include="wwwroot\media\sound\messagebox.ogg" />
+    <None Include="wwwroot\media\sound\smallbox.ogg" />
+    <None Include="wwwroot\media\sound\voice_alert.ogg" />
+    <None Include="wwwroot\media\sound\voice_off.ogg" />
+    <None Include="wwwroot\media\sound\voice_on.ogg" />
+    <None Include="wwwroot\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-duotone-900.svg" />
+    <None Include="wwwroot\webfonts\fa-duotone-900.woff2" />
+    <None Include="wwwroot\webfonts\fa-light-300.svg" />
+    <None Include="wwwroot\webfonts\fa-light-300.woff2" />
+    <None Include="wwwroot\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\webfonts\nextgen-icons.svg" />
+    <None Include="wwwroot\webfonts\nextgen-icons.woff2" />
+    <None Include="wwwroot\webfonts\summernote.woff2" />
+    <None Include="wwwroot\WebReportDesigner\fonts\fontawesome-webfont.af7ae505a9eed503f8b8e6982036873e.woff2" />
+    <None Include="wwwroot\WebReportDesigner\svg\fontawesome-webfont.912ec66d7572ff821749319396470bde.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DevExtreme.AspNet.Core" Version="22.1.4" />
+    <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.6" />
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.3" />
+    <PackageReference Include="FastReport.Core" Version="2022.2.11" />
+    <PackageReference Include="FastReport.Data.Excel" Version="2022.2.0" />
+    <PackageReference Include="FastReport.Data.Json" Version="2022.2.0" />
+    <PackageReference Include="FastReport.Data.MsSql" Version="2022.2.0" />
+    <PackageReference Include="FastReport.Data.MySql" Version="2022.2.0" />
+    <PackageReference Include="FastReport.Data.OracleODPCore" Version="2022.2.0" />
+    <PackageReference Include="FastReport.Data.Postgres" Version="2022.2.0" />
+    <PackageReference Include="FastReport.Data.SQLite" Version="2022.2.0" />
+    <PackageReference Include="FastReport.Web" Version="2022.2.11" />
+    <PackageReference Include="Hangfire" Version="1.7.14" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.14" />
+    <PackageReference Include="Hangfire.Storage.SQLite" Version="0.3.0" />
+    <PackageReference Include="Jace" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.32" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.30" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="3.1.30" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="3.1.30" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="MimeTypeMapOfficial" Version="1.0.15" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NLog" Version="4.7.5" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.6.5" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.3" />
+    <PackageReference Include="Npgsql" Version="4.1.13" />
+    <PackageReference Include="Npoi.Mapper" Version="3.5.1" />
+    <PackageReference Include="PetaPoco.Compiled" Version="6.0.459" />
+    <PackageReference Include="Select.HtmlToPdf.NetCore" Version="21.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="6.5.0" />
+    <PackageReference Include="ValueInjecter" Version="3.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\DataAccess.EFCore\DataAccess.EFCore.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="HiSystems.Interpreter">
+      <HintPath>..\Interpreter\HiSystems.Interpreter.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Areas\DailyRecord\Views\EquipmentGroup\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\DespatchDemurrage\Views\Contract\Detail.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\DespatchDemurrage\Views\Contract\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\DespatchDemurrage\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\DespatchDemurrage\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app\areas\daily_record\equipment_group\js\index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\SurveyManagement\Views\ShippingDocs\" />
+    <Folder Include="wwwroot\lib\microsoft\signalr\" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties DismissedDevExtremeVersion="20.2.5" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

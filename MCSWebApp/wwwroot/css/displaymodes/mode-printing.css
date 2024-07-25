@@ -1,0 +1,24 @@
+@media print{
+  body > * {
+    display: none !important;
+  }
+
+  body .d-sm-block {
+      display: none !important;
+      visibility: hidden;
+   }
+
+  body .elemen-cetak{
+    display: block !important;
+  }
+  /*table th,table td{*/
+  /*  width:200pt;*/
+  /*}*/
+}
+
+@page {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+}

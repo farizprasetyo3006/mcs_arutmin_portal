@@ -1,0 +1,201 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div class="panel">
+            <div class="panel-hdr">
+                <div class="panel-toolbar mr-2">
+                    <div class="btn-group">
+                        <div class="col-sm-2" style="margin-top: 10px">From:</div>
+                        <div class="col-sm-4" id="date-box1"></div>
+
+                        <div class="col-sm-2" style="margin-top: 10px">To:</div>
+                        <div class="col-sm-4" id="date-box2"></div>
+
+                        <div class="col-sm-2" style="margin-top: 10px">
+                            <button id="btnView" type="button" class="btn btn-info">OK</button>
+                        </div>
+                    </div>
+                    <!--  <div class="btn-group">
+                        <div class="col-sm-2" style="margin-top: 10px">From:</div>
+                        <input type="hidden" id="hidtanggal1" />
+                        <div id="date-box1"></div>
+
+                        <div class="col-sm-2" style="margin-top: 10px">To:</div>
+                        <input type="hidden" id="hidtanggal2" />
+                        <div id="date-box2"></div>
+
+                        <div class="col-sm-2" style="margin-top: 10px">
+                            <button id="btnView" type="button" class="btn btn-info">OK</button>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    @ViewBag.Breadcrumb
+                </h2>
+
+                <div class="panel-toolbar mr-2">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="dropdown-menu">
+                            @*<a class="dropdown-item" href="/Port/SILS/ExcelExport">Download Template</a>*@
+
+                            <a id="dropdown-download-template" class="dropdown-item">
+                                <div id="text-download-template">Download Template</div>
+                                <input type="hidden" id="url-download-template" name="teks" value="/Port/SILS/ExcelExport">
+                            </a>
+
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-upload-file">Upload Data</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item disabled" href="#" data-toggle="modal" data-target="#modal-accounting-period"
+                               id="dropdown-item-accounting-period">
+                                Apply Accounting Period
+                            </a>
+                            <a class="dropdown-item disabled" href="#" data-toggle="modal" data-target="#modal-quality-sampling"
+                               id="dropdown-item-quality-sampling">
+                                Apply Quality Sampling
+                            </a>
+
+                            <a class="dropdown-item disabled" href="#" data-toggle="modal" data-target="#modal-delete-selected"
+                               id="dropdown-delete-selected">
+                                Delete Selected Rows
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="dx-viewport">
+                                <div class="demo-container">
+                                    <div id="grid"></div>
+                                    <div id="approval-popup"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Upload file -->
+<div class="modal fade" id="modal-upload-file" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload file</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="fUpload" name="files" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="btnUpload">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Accounting period -->
+<div class="modal fade" id="modal-accounting-period" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Apply Accounting Period</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="hidden" id="accounting_period_id" name="accounting_period_id" />
+                            <select data-placeholder="Accounting period ..." class="form-control" id="AccountingPeriod"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="btnApplyAccountingPeriod">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quality sampling -->
+<div class="modal fade" id="modal-quality-sampling" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Apply Quality Sampling</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="hidden" id="quality_sampling_id" name="quality_sampling_id" />
+                            <select data-placeholder="Quality sampling ..." class="form-control" id="QualitySampling"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="btnApplyQualitySampling">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Selected Row -->
+<div class="modal fade" id="modal-delete-selected" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Are you sure to delete all selected rows ?</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-warning" id="btnDeleteSelectedRow">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/port/sils/js/index.js?_=@DateTime.Now.Ticks"></script>
+}

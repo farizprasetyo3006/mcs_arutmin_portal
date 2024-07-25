@@ -1,0 +1,367 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+
+        <div class="state">
+            <input name="sales_contract_term_id" type="hidden" value="@ViewBag.ContractTerm.id" />
+            <input name="sales_contract_term_uom_id" type="hidden" value="@ViewBag.ContractTerm.uom_id" />
+            <input name="sales_contract_product_id" type="hidden" value="@(ViewBag.ContractProduct != null ? ViewBag.ContractProduct.id : null)" />
+            <input name="sales_contract_despatch_demurrage_term_id" type="hidden" value="@(ViewBag.ContractDespatchDemurrageTerm != null ? ViewBag.ContractDespatchDemurrageTerm.id : null)" />
+        </div>
+
+        <div class="row align-items-center mb-3">
+            <div class="col-md-6">
+                <p class="mb-1">Contract Term</p>
+                <h3 class="font-weight-bold">@ViewBag.ContractTerm.contract_term_name</h3>
+            </div>
+            <div class="col-md-6">
+                <a href="/Sales/SalesContract/Detail/@ViewBag.ContractTerm.sales_contract_id" class="btn btn-secondary float-right">Back to @ViewBag.ContractTerm.contract_name</a>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <div class="master-detail-caption mb-2">Overview</div>
+                <div class="card card-mcs card-headline">
+                    <div class="row">
+                        <div class="col-md-6 pr-0">
+                            <div class="headline-title-container">
+                                <small class="font-weight-normal d-block mb-1">Contract Term Name</small>
+                                <h4 class="headline-title font-weight-bold">@(ViewBag.ContractTerm.contract_term_name != null ? ViewBag.ContractTerm.contract_term_name : "-")</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-0">
+                            <div class="headline-detail-container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-file fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Sales Contract</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.ContractTerm.contract_name != null ? ViewBag.ContractTerm.contract_name : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-money-bill fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Currency</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.ContractTerm.currency_name != null ? ViewBag.ContractTerm.currency_name : "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="master-detail-caption mb-2">Term Information</div>
+                <div class="card card-mcs card-headline">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="headline-detail-container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-calendar-alt fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Start Date</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.ContractTerm.start_date != null ? ViewBag.ContractTerm.start_date.ToString("dd MMM yyyy") : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-calculator fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Mass Required</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.ContractTerm.quantity != null ? Convert.ToDecimal(ViewBag.ContractTerm.quantity).ToString("#,##0") : "-")</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-calculator fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Minimum Order</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.ContractTerm.minimum_order != null ? Convert.ToDecimal(ViewBag.ContractTerm.minimum_order).ToString("#,##0") : "-")</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex align-items-start">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-list fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Notes</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.ContractTerm.notes != null ? ViewBag.ContractTerm.notes : "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-calendar-alt fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">End Date</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.ContractTerm.end_date != null ? ViewBag.ContractTerm.end_date.ToString("dd MMM yyyy") : "-")</h6>
+                                            </div>
+                                        </div>
+                                        @*<div class="d-flex align-items-start">
+            <div class="d-inline-block mr-3">
+                <div class="icon-circle">
+                    <i class="fas fa-box fa-sm"></i>
+                </div>
+            </div>
+            <div class="d-inline-block">
+                <small class="font-weight-normal text-muted d-block mb-1">Unit</small>
+                <h6 class="font-weight-bold">@(ViewBag.ContractTerm.uom_name != null ? ViewBag.ContractTerm.uom_name : "-")</h6>
+            </div>
+        </div>*@
+
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-box fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Unit</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.ContractTerm.uom_name != null ? ViewBag.ContractTerm.uom_name : "-")</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex align-items-start">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-calculator fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Maximum Order</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.ContractTerm.maximum_order != null ? Convert.ToDecimal(ViewBag.ContractTerm.maximum_order).ToString("#,##0") : "-")</h6>
+                                             </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col-md-2">
+                <ul class="nav nav-mcs nav-pills nav-vertical pills-blue my-3" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#quotation-pricing-container">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#payment-term-container">Payment Term</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#taxes-container">Taxes</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#contract-product-container">Contract Product</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#contract-charges-container">Price Adjustment</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#despatch-demurrage-term-container">Despatch/Demurrage Term</a></li>
+                    @*<li class="nav-item"><a class="nav-link" data-toggle="pill" href="#despatch-plan-container">Shipping Plan</a></li>*@
+                </ul>
+            </div>
+            <div class="col-md-10">
+                <div class="tab-content py-3">
+                    <div class="tab-pane fade show active" id="quotation-pricing-container" role="tabpanel">
+                        <!-- Quotation Pricing Container -->
+                        <div id="quotation-pricing-panel" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Pricing</h2>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="quotation-pricing-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Payment Term -->
+                    <div class="tab-pane fade" id="payment-term-container" role="tabpanel">
+                        <div id="payment-term-panel" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Payment Term</h2>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="payment-term-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Taxes -->
+                    <div class="tab-pane fade" id="taxes-container" role="tabpanel">
+                        <div id="taxes-panel" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Taxes</h2>
+                            </div>
+
+                            <div class="panel-container">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="taxes-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contract Product -->
+                    <div class="tab-pane fade" id="contract-product-container" role="tabpanel">
+                        <div id="contract-product-panel" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Contract Product</h2>
+                            </div>
+
+                            <div class="panel-container">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="contract-product-header-form"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-hdr">
+                                <h2>Contract Product Specification</h2>
+                            </div>
+
+                            <div class="panel-container">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="contract-product-specification-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Price Adjustment -->
+                    <div class="tab-pane fade" id="contract-charges-container" role="tabpanel">
+                        <div id="taxes-panel" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Price Adjustment</h2>
+                            </div>
+
+                            <div class="panel-container">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="contract-charges-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Despatch/Demurrage -->
+                    <div class="tab-pane fade" id="despatch-demurrage-term-container" role="tabpanel">
+                        <div id="contract-product-panel" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Despatch/Demurrage</h2>
+                            </div>
+
+                            <div class="panel-container">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="despatch-demurrage-term-form"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<div class="panel-hdr">
+                                <h2>Despatch/Demurrage Delay Definitions</h2>
+                            </div>
+
+                            <div class="panel-container">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="despatch-demurrage-term-delay-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                    <!-- Despatch Plan -->
+                    <div class="tab-pane fade" id="despatch-plan-container" role="tabpanel">
+                        <div id="contract-product-panel" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Despatch Term</h2>
+                            </div>
+
+                            <div class="panel-container">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="despatch-plan-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/sales/sales_charge/js/formula-creator.js"></script>
+    <script defer src="~/app/areas/sales/sales_contract_term/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

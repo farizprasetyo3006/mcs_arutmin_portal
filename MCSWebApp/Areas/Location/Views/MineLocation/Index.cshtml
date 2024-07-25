@@ -1,0 +1,104 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    @ViewBag.Breadcrumb
+                </h2>
+
+                <div class="panel-toolbar mr-2">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-divider-text">
+                                <hr class="dropdown-divider-line">
+                                <span class="dropdown-divider-text-label">Mine Location</span>
+                                <hr class="dropdown-divider-line">
+                            </div>
+                            <a class="dropdown-item" href="/Location/MineLocation/ExcelExport">Download Template</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-upload-file">Upload Data</a>
+                            <div class="dropdown-divider-text">
+                                <hr class="dropdown-divider-line">
+                                <span class="dropdown-divider-text-label">Exposed Coal</span>
+                                <hr class="dropdown-divider-line">
+                            </div>
+                            <a class="dropdown-item" href="/Location/MineLocation/ExcelExportExposedCoal">Download Template</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-upload-exposed-coal">Upload Exposed<br>Coal</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="dx-viewport">
+                                <div class="demo-container">
+                                    <div id="grid"></div>
+                                    <div id="popup"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Upload file -->
+<div class="modal fade" id="modal-upload-file" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload file</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="fUpload" name="files" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnUpload">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Upload exposed coal -->
+<div class="modal fade" id="modal-upload-exposed-coal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload file</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="fUploadx" name="files" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnUploadExposedCoal">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/location/mine_location/js/index.js?_=@DateTime.Now.Ticks"></script>
+    <link rel="stylesheet" href="~/css/fariz.css">
+}

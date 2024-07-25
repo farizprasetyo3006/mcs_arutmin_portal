@@ -1,0 +1,428 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+
+        <div class="state">
+            <input name="royalty_id" type="hidden" value="@ViewBag.Royalty.id" />
+            <input name="royalty_date" type="hidden" value="@ViewBag.Royalty.royalty_date" />
+        </div>
+
+        <div class="row align-items-center mb-3">
+            <div class="col-md-6">
+                <p class="mb-1">Royalty</p>
+                <h3 class="font-weight-bold">@ViewBag.Royalty.royalty_reference</h3>
+            </div>
+            <div class="col-md-6">
+                <a href="/Sales/Royalty/Index" class="btn btn-secondary float-right">Back to Royalty List</a>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <div class="master-detail-caption mb-2">Overview</div>
+                <div class="card card-mcs card-headline">
+                    <div class="row">
+                        <div class="col-md-6 pr-0">
+                            <div class="headline-title-container">
+                                <small class="font-weight-normal d-block mb-1">Royalty Reff</small>
+                                <h4 class="headline-title font-weight-bold">@(ViewBag.Royalty.royalty_reference ?? "-")</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-0">
+                            <div class="headline-detail-container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-check-circle fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Royalty Status</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.status_name ?? "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-user fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Perusahaan Asal</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.nama_pemegang_et ?? "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-file-certificate fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">No. ET Batubara & Produk</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.nomor_et ?? "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-file-certificate fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">No. SK IUPK</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.nomor_sk_iupk ?? "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="master-detail-caption mb-2">Delivery Information</div>
+                <div class="card card-mcs card-headline">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="headline-detail-container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-user fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Status Buyer</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.status_buyer ?? "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-user fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Buyer Name</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.buyer ?? "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-file-alt fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Loading Port</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.stock_location_name ?? "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-file-alt fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Discharge Port</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.discharge_port ?? "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-calendar-alt fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Bill of Lading Date</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.bl_date != null ? ViewBag.Royalty.bl_date.ToString("dd MMM yyyy") : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-check-circle fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Destination</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.destination_name ?? "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-check-circle fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Destination Country</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.destination_country ?? "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-check-circle fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Vessel</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.Royalty.vessel ?? "-")</h6>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <ul class="nav nav-mcs nav-pills pills-blue my-3" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#quantity-quality-container"><i class="fas fa-list mr-2"></i>Quantity & Quality</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#cost-container"><i class="fas fa-list mr-2"></i>Cost</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#pricing-container"><i class="fas fa-list mr-2"></i>Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#valuation-container"><i class="fas fa-file mr-2"></i>Valuation</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#royalty-payment-container"><i class="fas fa-file mr-2"></i>Royalty Payment</a></li>
+                </ul>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col">
+                <div class="tab-content">
+
+                    <!-- Quantity & Quality -->
+                    <div class="tab-pane show active" id="quantity-quality-container" role="tabpanel">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Quantity & Quality</h2>
+
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                </div>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="quantity-quality-header-form"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-hdr">
+                                <h2>Analyte</h2>
+                            </div>
+                            <div class="panel-container">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="quantity-quality-analyte-grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Cost -->
+                    <div class="tab-pane fade inactive" id="cost-container" role="tabpanel">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Cost</h2>
+
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                </div>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="cost-form"></div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div id="cost-bottom-form" class="py-3 px-3 mt-5 border"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-toolbar">
+                                <button type="button" class="btn btn-danger ml-3 mb-2 px-5" id="btnSaveCost">Save</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pricing -->
+                    <div class="tab-pane fade inactive" id="pricing-container" role="tabpanel">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Pricing</h2>
+
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                </div>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+
+                                        <div class="col-xl-12">
+                                            <div id="pricing-form"></div>
+                                        </div>
+                                        @* <div class="col-md-12">
+                                            <button type="button" class="btn btn-primary mt-5 px-5" id="btnRecalcPricing">Recalculate</button>
+                                        </div> *@
+                                        <div class="col-xl-6">
+                                            <div class="py-3 px-3 mt-5 mb-4 border">
+                                                <h3>Selling Price</h3>
+                                                <div id="selling-price"></div>
+                                            </div>
+
+                                            <div class="panel-toolbar">
+                                                @* <button type="button" class="btn btn-warning ml-1 mb-2 px-5" id="btnDeletePricing">Delete</button> *@
+                                                <button type="button" class="btn btn-danger ml-1 mb-2 px-5" id="btnSavePricing">Save</button>
+ 
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="py-3 px-3 mt-5 border">
+                                                <h3>H B A</h3>
+                                                <div id="hba-form"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Valuation -->
+                    <div class="tab-pane fade inactive" id="valuation-container" role="tabpanel">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Valuation</h2>
+
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                </div>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="valuation-header-form"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary mt-5 px-3" id="btnRecalcValuation">Recalculate</button>
+                                    </div>
+
+                                    <div class="row border mt-4 mx-1 pt-3 px-3">
+                                        <div class="col-xl-12">
+                                            <div id="valuation-middle-form"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row border mt-2 mx-1 pt-3 px-3">
+                                        <div class="col-xl-12">
+                                            <div id="valuation-bottom-form"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-toolbar">
+                                <button type="button" class="btn btn-danger ml-3 mb-2 px-5" id="btnSaveValuation">Save</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Royalty Payment -->
+                    <div class="tab-pane fade inactive" id="royalty-payment-container" role="tabpanel">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>Royalty Payment</h2>
+
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                </div>
+                            </div>
+
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div id="payment-header-form"></div>
+                                            <br>
+                                            <p style="color:red;">*Perhitungan ini merupakan simulasi, perhitungan aktual Royalti berdasarkan sistem ePNBP MINERBA yang diinput oleh finance<p/>
+                                        </div>
+
+                                        <div class="col-xl-12 border mt-5 pt-3 px-4 pb-3">
+                                            <div id="payment-bottom-form"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-toolbar">
+                                    <button type="button" class="btn btn-danger ml-2 mb-2 px-5" id="btnSavePayment">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Royalty Payment -->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/sales/royalty/js/quantity_quality.js?_=@DateTime.Now.Ticks"></script>
+    <script defer src="~/app/areas/sales/royalty/js/cost.js"></script>
+    <script defer src="~/app/areas/sales/royalty/js/pricing.js"></script>
+    <script defer src="~/app/areas/sales/royalty/js/valuation.js"></script>
+    <script defer src="~/app/areas/sales/royalty/js/payment.js"></script>
+}

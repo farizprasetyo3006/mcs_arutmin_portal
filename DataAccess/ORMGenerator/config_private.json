@@ -1,0 +1,14 @@
+{
+  "ProviderName": "Npgsql",
+  "ConnectionString": "Host=localhost;Port=5432;Database=mcs;Username=postgres;Password=P@ssw0rd123#;Timeout=15;Pooling=True;MinPoolSize=1;MaxPoolSize=20;CommandTimeout=20;",
+  "SchemaName": "private",
+  "IgnoreSchema": false,
+  "ClassPrefix": null,
+  "ClassSuffix": null,
+  "IncludeViews": true,
+  "ExcludePrefix": [],
+  "Namespace": "DataAccess.Repository.Private",
+  "ExplicitColumns": true,
+  "TrackModifiedColumns": true,
+  "GenerateDTOs": false
+}

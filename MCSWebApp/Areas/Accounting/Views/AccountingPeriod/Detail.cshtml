@@ -1,0 +1,58 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    @ViewBag.Breadcrumb
+                </h2>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Save" name="Save" class="btn btn-sm btn-primary">Save</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Delete" name="Delete" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <form id="form-main">
+                                <input type="hidden" id="id" name="id" value="@ViewBag.Id" />
+
+                                <div class="form-group">
+                                    <label class="form-label" for="accounting_period_name">Accounting Period</label>
+                                    <input type="text" id="accounting_period_name" name="accounting_period_name" class="form-control">
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="start_date">Start Date</label>
+                                            <input type="datetime-local" id="start_date" name="start_date" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="end_date">End Date</label>
+                                            <input type="datetime-local" id="end_date" name="end_date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script defer src="~/app/areas/accounting/accounting_period/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

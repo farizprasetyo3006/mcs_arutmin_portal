@@ -1,0 +1,148 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+
+        <div class="state">
+            <input name="equipment_usage_transaction_id" type="hidden" value="@ViewBag.EquipmentUsageTransaction.id" />
+        </div>
+
+        <div class="row align-items-center mb-3">
+            <div class="col-md-6">
+                <p class="mb-1">Equipment Usage Transaction Detail</p>
+            </div>
+            <div class="col-md-6">
+                <a href="/Equipment/EquipmentUsageTransaction/Index" class="btn btn-secondary float-right">Back to List</a>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div class="master-detail-caption mb-2">Overview</div>
+                <div class="card card-mcs card-headline">
+                    <div class="row">
+                        @*<div class="col-md-4 pr-0">
+                                <div class="headline-title-container">
+                                    <small class="font-weight-normal d-block mb-1">Equipment Usage Number</small>
+                                    <h4 class="headline-title font-weight-bold">@(string.IsNullOrEmpty(ViewBag.EquipmentUsageTransaction.equipment_usage_number) ? "-" : ViewBag.EquipmentUsageTransaction.equipment_usage_number)</h4>
+                                </div>
+                            </div>*@
+                        <div class="col-md-12">
+                            <div class="headline-detail-container">
+                                <div class="row">
+                                    <div class="col-md-12 pl-4">
+                                        <div class="d-flex align-items-start mb-1">
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Equipment Usage Number</small>
+                                                <h6 class="font-weight-bold">@(string.IsNullOrEmpty(ViewBag.EquipmentUsageTransaction.equipment_usage_number) ? "-" : ViewBag.EquipmentUsageTransaction.equipment_usage_number)</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-1">
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Accounting Period</small>
+                                                <h6 class="font-weight-bold">@(string.IsNullOrEmpty(ViewBag.EquipmentUsageTransaction.accounting_period_name) ? "-" : ViewBag.EquipmentUsageTransaction.accounting_period_name)</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-1">
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Advance Contract Number</small>
+                                                <h6 class="font-weight-bold">@(string.IsNullOrEmpty(ViewBag.EquipmentUsageTransaction.advance_contract_number) ? "-" : ViewBag.EquipmentUsageTransaction.advance_contract_number)</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-1">
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Progress Claim Name</small>
+                                                <h6 class="font-weight-bold">@(string.IsNullOrEmpty(ViewBag.EquipmentUsageTransaction.progress_claim_name) ? "-" : ViewBag.EquipmentUsageTransaction.progress_claim_name)</h6>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex align-items-start mb-1">
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Start Date</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.EquipmentUsageTransaction.start_datetime)</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex align-items-start mb-1">
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal DateTime-muted d-block mb-1">End Date</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.EquipmentUsageTransaction.end_datetime)</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>Equipmment Usage Transaction</h2>
+                        <div class="panel-toolbar">
+                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        </div>
+                    </div>
+
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="form-group row mb-2">
+                                        <label for="staticEmail" class="col-sm-3 col-form-label">Equipment Usage Transaction</label>
+                                        <div class="col-sm-9">
+                                            <select class="js-data-example-ajax" id="equipment_usage_transaction_available"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-0">
+                                        <label for="inputPassword" class="col-sm-3 col-form-label"></label>
+                                        <div class="col-sm-9">
+                                            <button type="button" class="btn btn-primary my-1" id="btn-save">Save</button>
+                                        </div>
+                                    </div>
+                                    <hr class="mt-2" />
+                                    <h4 class="font-weight-bold">List</h4>
+                                    <table class="table" id="tbl-list">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Equipment</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Duration</th>
+                                                <th scope="col">Activity</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="d-none">
+                                            
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th class="text-center" colspan="5">No Data available</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    @*<script defer src="~/app/areas/sales/sales_contract/js/detail.js?_=@DateTime.Now.Ticks"></script>*@
+    <script defer src="~/app/areas/equipment/equipment_usage_transaction/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

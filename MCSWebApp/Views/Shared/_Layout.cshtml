@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="~/Views/Shared/_Head.cshtml" />
+    @RenderSection("HeadBlock", required: false)
+</head>
+<body class="mod-bg-1 ">
+    <!-- DOC: script to save and load page settings -->
+    <partial name="~/Views/Shared/_ScriptsLoadingSaving.cshtml" />
+
+    <!-- BEGIN Page Wrapper -->
+    <div class="page-wrapper">
+        <div class="page-inner">
+            <!-- BEGIN Left Aside -->
+            <aside class="page-sidebar">
+                <partial name="~/Views/Shared/_LeftPanel.cshtml" />
+            </aside>
+            <!-- END Left Aside -->
+
+            <div class="page-content-wrapper">
+                <!-- BEGIN Page Header -->
+                <partial name="~/Views/Shared/_PageHeader.cshtml" />
+                <!-- END Page Header -->
+                <!-- BEGIN Page Content -->
+                <!-- the #js-page-content id is needed for some plugins to initialize -->
+                <main id="js-page-content" role="main" class="page-content">
+                    <partial name="~/Views/Shared/_PageBreadcrumb.cshtml" />
+                    <partial name="~/Views/Shared/_PageHeading.cshtml" />
+                    @RenderBody()
+                </main>
+                <!-- this overlay is activated only when mobile menu is triggered -->
+                <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+                <!-- END Page Content -->
+                <!-- BEGIN Page Footer -->
+                <partial name="~/Views/Shared/_PageFooter.cshtml" />
+                <!-- END Page Footer -->
+                <!-- BEGIN Shortcuts -->
+                <partial name="~/Views/Shared/_ShortcutModal.cshtml" />
+                <!-- END Shortcuts -->
+                <!-- BEGIN Color profile -->
+                <!-- this area is hidden and will not be seen on screens or screen readers -->
+                <!-- we use this only for CSS color reference for JS stuff -->
+                <partial name="~/Views/Shared/_ColorProfile.cshtml" />
+                <!-- END Color profile -->
+            </div>
+        </div>
+    </div>
+    <!-- END Page Wrapper -->
+    <!-- BEGIN Quick Menu -->
+    <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+    <partial name="~/Views/Shared/_ShortcutMenu.cshtml" />
+    <!-- END Quick Menu -->
+    <!-- BEGIN Messenger -->
+    <partial name="~/Views/Shared/_ShortcutMessenger.cshtml" />
+    <!-- END Messenger -->
+    <!-- BEGIN Page Settings -->
+    <partial name="~/Views/Shared/_PageSettings.cshtml" />
+    <!-- END Page Settings -->
+    <!-- base vendor bundle:
+         DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations
+                    + pace.js (recommended)
+                    + jquery.js (core)
+                    + jquery-ui-cust.js (core)
+                    + popper.js (core)
+                    + bootstrap.js (core)
+                    + slimscroll.js (extension)
+                    + app.navigation.js (core)
+                    + ba-throttle-debounce.js (core)
+                    + waves.js (extension)
+                    + smartpanels.js (extension)
+                    + src/../jquery-snippets.js (core) -->
+
+    <partial name="~/Views/Shared/_ScriptsBasePlugins.cshtml" />
+    @RenderSection("ScriptsBlock", required: false)
+
+    <script>
+        var token = $.cookie("Token");
+
+        $.ajax({
+            url: '/api/SystemAdministration/RoleBusinessUnit/GetList',
+            method: 'GET',
+            contentType: 'application/json',
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            success: function (response) {
+                var RoleData = response.RoleList;
+                //console.log(response.defaultBUId);
+
+                $('#ddlPublicRole').empty();
+                $.each(RoleData.data, function (i, item) {
+                    $('#ddlPublicRole').append($('<option>', {
+                        value: item.id,
+                        text: item.role_name
+                    }));
+                });
+                $('#ddlPublicRole').val(response.defaultRoleId);
+                $('#public_role_id').val(response.defaultRoleId);
+
+                var BUData = response.BusinessUnitList;
+
+                $('#ddlPublicBusinessUnit').empty();
+                $.each(BUData.data, function (i, item) {
+                    $('#ddlPublicBusinessUnit').append($('<option>', {
+                        value: item.id,
+                        text: item.business_unit_name
+                    }));
+                });
+                $('#ddlPublicBusinessUnit').val(response.defaultBUId);
+                $('#public_business_unit_id').val(response.defaultBUId);
+            },
+            error: function (jqXHR) {
+                $('#ddlPublicRole').empty();
+            }
+        });
+
+        $('#ddlPublicRole').change(function () {
+            $('#public_role_id').val(this.value);
+
+            $.ajax({
+                url: '/api/SystemAdministration/RoleBusinessUnit/BusinessUnitList/' + encodeURIComponent(this.value),
+                method: 'GET',
+                contentType: 'application/json',
+                headers: {
+                    "Authorization": "Bearer " + token
+                },
+                success: function (response) {
+                    $('#ddlPublicBusinessUnit').empty();
+                    $.each(response.data, function (i, item) {
+                        $('#ddlPublicBusinessUnit').append($('<option>', {
+                            value: item.id,
+                            text: item.business_unit_name
+                        }));
+                    });
+                    //console.log($('#ddlPublicBusinessUnit').val());
+                },
+                error: function (jqXHR) {
+                    $('#ddlPublicBusinessUnit').empty();
+                }
+            });
+        });
+
+        $('#ddlPublicBusinessUnit').change(function () {
+            $('#public_business_unit_id').val(this.value);
+        });
+
+        $('#btnSubmitRoleBusinessUnit').click(function () {
+            let RoleId = $("#public_role_id").val();
+            /*let BusinessUnitId = $("#public_business_unit_id").val();*/
+            let BusinessUnitId = $("#ddlPublicBusinessUnit").val();
+
+            $.ajax({
+                url: '/api/SystemAdministration/RoleBusinessUnit/ChangeRoleBusinessUnit/' + RoleId + "/" + BusinessUnitId,
+                type: 'POST',
+                contentType: 'application/json',
+                headers: {
+                    "Authorization": "Bearer " + token
+                },
+                success: function (response) {
+                    //$('#modal-role-business_unit').modal('hide');
+                    location.reload();
+                },
+                error: function (jqXHR) {
+                    $('#ddlPublicBusinessUnit').empty();
+                }
+            });
+        })
+
+        function showAlert() {
+            alert("Right-clicking is not allowed on this page!");
+        }
+        //document.onkeydown = function (e) {
+        //    if (event.keyCode == 123) {
+        //        return false;
+        //    }
+        //    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        //        return false;
+        //    }
+        //    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        //        return false;
+        //    }
+        //    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        //        return false;
+        //    }
+        //}
+    </script>
+</body>
+</html>

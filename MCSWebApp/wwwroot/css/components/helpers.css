@@ -1,0 +1,40 @@
+﻿dd,
+dt {
+    white-space: normal;
+}
+
+.icon-circle {
+    width: 30px;
+    height: 30px;
+    background-color: #e3e3e3;
+    line-height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    margin-top: 4px;
+}
+
+.text-black {
+    color: black !important;
+}
+
+.bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+    .bullet-red {
+        background: #da7777;
+    }
+    .bullet-blue {
+        background: #68b4d2;
+    }
+
+
+/* Datatable fixing fontsize
+-------------------------------------------------- */
+.dataTables_empty {
+    font-size: unset !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}

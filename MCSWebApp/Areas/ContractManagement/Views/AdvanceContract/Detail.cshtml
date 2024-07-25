@@ -1,0 +1,139 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+
+        <div class="state">
+            <input name="advance_contract_id" type="hidden" value="@ViewBag.AdvanceContract.id" />
+        </div>
+
+        <div class="row align-items-center mb-3">
+            <div class="col-md-6">
+                <p class="mb-1">Advance Contract Detail</p>
+            </div>
+            <div class="col-md-6">
+                <a href="/mining/timesheet/index" class="btn btn-secondary float-right">Back to List</a>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div class="master-detail-caption mb-2">Overview</div>
+                <div class="card card-mcs card-headline">
+                    <div class="row">
+                        <div class="col-md-12 pl-0">
+                            <div class="headline-detail-container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-start mb-0">
+                                            <div class="d-inline-block ml-3">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Advance Contract Number</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.AdvanceContract.advance_contract_number != null ? ViewBag.AdvanceContract.advance_contract_number : "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-start mb-0">
+                                            <div class="d-inline-block ml-3">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Contractor</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.AdvanceContract.contractor_name != null ? ViewBag.AdvanceContract.contractor_name : "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-start mb-0">
+                                            <div class="d-inline-block ml-3">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Contractor Code</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.AdvanceContract.contractor_code != null ? ViewBag.AdvanceContract.contractor_code : "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-start mb-0">
+                                            <div class="d-inline-block ml-3">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Quantity</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.AdvanceContract.quantity != null ? ViewBag.AdvanceContract.quantity : "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-start mb-0">
+                                            <div class="d-inline-block ml-3">
+                                                <small class="font-weight-normal text-muted d-block mb-1">UoM</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.AdvanceContract.quantity_uom_symbol != null ? ViewBag.AdvanceContract.quantity_uom_symbol : "-")</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    @ViewBag.Breadcrumb
+                </h2>
+
+                <input type="file" id="fUpload" name="files" />
+                <button type="button" id="btnUpload" class="btn btn-info mr-4">Upload Data</button>
+                <a href="/Sales/Contract/ExcelExport" class="btn btn-success">Download Template</a>
+
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="dx-viewport">
+                                <div class="demo-container">
+                                    <div id="dt-grid"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Upload file -->
+<div class="modal fade" id="modal-upload-file" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload file</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="fUpload" name="files" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnUpload">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/contract_management/advance_contract/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

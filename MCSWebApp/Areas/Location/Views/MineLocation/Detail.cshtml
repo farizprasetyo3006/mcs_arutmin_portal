@@ -1,0 +1,91 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    @ViewBag.Breadcrumb
+                </h2>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Save" name="Save" class="btn btn-sm btn-primary">Save</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Delete" name="Delete" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <form id="form-main">
+                                <input type="hidden" id="id" name="id" value="@ViewBag.Id" />
+                                <input type="hidden" id="business_area_id" name="business_area_id" />
+                                <input type="hidden" id="business_area_name" />
+                                <input type="hidden" id="product_id" name="product_id" />
+                                <input type="hidden" id="product_name" />
+                                <input type="hidden" id="uom_id" name="uom_id" />
+                                <input type="hidden" id="uom_name" />
+
+                                <div class="form-group">
+                                    <label class="form-label" for="BusinessArea">
+                                        Business Area
+                                    </label>
+                                    <select data-placeholder="Business Area ..." class="form-control" id="BusinessArea"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="mine_location_name">Mine Location Name</label>
+                                    <input type="text" id="mine_location_name" name="mine_location_name" class="form-control">
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="opening_date">Opening Date</label>
+                                            <input type="datetime-local" id="opening_date" name="opening_date" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="closing_date">Closing Date</label>
+                                            <input type="datetime-local" id="closing_date" name="closing_date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Product">
+                                                Product
+                                            </label>
+                                            <select data-placeholder="Product ..." class="form-control" id="Product"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="UOM">
+                                                UOM
+                                            </label>
+                                            <select data-placeholder="UOM ..." class="form-control" id="UOM"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script defer src="~/app/areas/location/minelocation/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

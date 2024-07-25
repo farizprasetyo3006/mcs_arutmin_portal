@@ -1,0 +1,239 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+
+        <div class="state">
+            <input name="timesheet_plan_id" type="hidden" value="@ViewBag.TimesheetPlan.id" />
+            <input name="shift_duration" type="hidden" value="@ViewBag.Shift.duration" />
+            <input name="shift_end_time" type="hidden" value="@ViewBag.Shift.end_time" />
+        </div>
+
+        <div class="row align-items-center mb-3">
+            <div class="col-md-6">
+                <p class="mb-1">Daily Plan Detail</p>
+                @*<h3 class="font-weight-bold">@ViewBag.ContractTerm.contract_term_name</h3>*@
+            </div>
+            <div class="col-md-6">
+                <a href="/mining/timesheetplan/index" class="btn btn-secondary float-right">Back to List</a>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <div class="master-detail-caption mb-2">Overview</div>
+                <div class="card card-mcs card-headline">
+                    <div class="row">
+                        <div class="col-md-6 pr-0">
+                            <div class="headline-title-container">
+                                <small class="font-weight-normal d-block mb-1">Shift</small>
+                                <h4 class="headline-title font-weight-bold">@(ViewBag.TimesheetPlan.shift_name != null ? ViewBag.TimesheetPlan.shift_name : "-")</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-0">
+                            <div class="headline-detail-container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-calendar-alt fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Timesheet Date</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.TimesheetPlan.timesheet_date_show != null ? ViewBag.TimesheetPlan.timesheet_date_show : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-file fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Equipment Name</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.TimesheetPlan.cn_name != null ? ViewBag.TimesheetPlan.cn_name : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-file-alt fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">CN Unit</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.TimesheetPlan.egi_unit != null ? ViewBag.TimesheetPlan.egi_unit : "TBA")</h6>
+                                            </div>
+                                        </div>
+                                        @*<div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-clock fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">HM Start</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.TimesheetPlan.hour_start != null ? ViewBag.TimesheetPlan.hour_start : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-clock fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">HM End</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.TimesheetPlan.hour_end != null ? ViewBag.TimesheetPlan.hour_end : "-")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="d-inline-block mr-3">
+                                                <div class="icon-circle">
+                                                    <i class="fas fa-book fa-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <small class="font-weight-normal text-muted d-block mb-1">Activity</small>
+                                                <h6 class="font-weight-bold">@(ViewBag.TimesheetPlan.activity_name != null ? ViewBag.TimesheetPlan.activity_name : "-")</h6>
+                                            </div>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 d-none">
+                <div class="master-detail-caption mb-2">Timesheet Information</div>
+                <div class="card card-mcs card-headline">
+                    <div class="headline-detail-container">
+                        @*<div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-start">
+                                    <div class="d-inline-block mr-3">
+                                        <div class="icon-circle">
+                                            <i class="fas fa-id-card-alt fa-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="d-inline-block">
+                                        <small class="font-weight-normal text-muted d-block mb-1">Operator NIK</small>
+                                        <h6 class="font-weight-bold">@(ViewBag.TimesheetPlan.operator_nik != null ? ViewBag.TimesheetPlan.operator_nik : "-")</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-start">
+                                    <div class="d-inline-block mr-3">
+                                        <div class="icon-circle">
+                                            <i class="fas fa-user fa-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="d-inline-block">
+                                        <small class="font-weight-normal text-muted d-block mb-1">Operator Name</small>
+                                        <h6 class="font-weight-bold">@(ViewBag.TimesheetPlan.operator_name != null ? ViewBag.TimesheetPlan.operator_name : "-")</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-start">
+                                    <div class="d-inline-block mr-3">
+                                        <div class="icon-circle">
+                                            <i class="fas fa-id-card-alt fa-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="d-inline-block">
+                                        <small class="font-weight-normal text-muted d-block mb-1">Supervisor NIK</small>
+                                        <h6 class="font-weight-bold">@(ViewBag.TimesheetPlan.supervisor_nik != null ? ViewBag.TimesheetPlan.supervisor_nik : "-")</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-start">
+                                    <div class="d-inline-block mr-3">
+                                        <div class="icon-circle">
+                                            <i class="fas fa-user fa-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="d-inline-block">
+                                        <small class="font-weight-normal text-muted d-block mb-1">Supervisor Name</small>
+                                        <h6 class="font-weight-bold">@(ViewBag.TimesheetPlan.supervisor_name != null ? ViewBag.TimesheetPlan.supervisor_name : "-")</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    @ViewBag.Breadcrumb
+                </h2>
+
+                @*<input type="file" id="fUpload" name="files" />
+                <button type="button" id="btnUpload" class="btn btn-info mr-4">Upload Data</button>
+                <a href="/Sales/Contract/ExcelExport" class="btn btn-success">Download Template</a>*@
+
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="dx-viewport">
+                                <div class="demo-container">
+                                    <div id="dt-grid"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Upload file -->
+<div class="modal fade" id="modal-upload-file" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload file</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="fUpload" name="files" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnUpload">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script src="~/js/cdnjs/ajax/libs/polyfill.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/jszip.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/exceljs.min.js"></script>
+    <script src="~/js/cdnjs/ajax/libs/FileSaver.min.js"></script>
+    <script src="~/js/devextreme/dx.all.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+    <script defer src="~/app/areas/mining/timesheet_plan/detail.js?_=@DateTime.Now.Ticks"></script>
+}

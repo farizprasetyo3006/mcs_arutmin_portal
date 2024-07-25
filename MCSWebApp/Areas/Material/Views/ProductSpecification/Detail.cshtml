@@ -1,0 +1,100 @@
+﻿<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    @ViewBag.Breadcrumb
+                </h2>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Save" name="Save" class="btn btn-sm btn-primary">Save</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button type="button" id="Delete" name="Delete" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+                <div class="panel-toolbar ml-2">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <form id="form-main">
+                                <input type="hidden" id="id" name="id" value="@ViewBag.Id" />
+                                <input type="hidden" id="product_id" name="product_id" />
+                                <input type="hidden" id="product_name" />
+                                <input type="hidden" id="analyte_id" name="analyte_id" />
+                                <input type="hidden" id="analyte_name" />
+                                <input type="hidden" id="uom_id" name="uom_id" />
+                                <input type="hidden" id="uom_name" />
+
+                                <div class="form-group">
+                                    <label class="form-label" for="Product">
+                                        Product
+                                    </label>
+                                    <select data-placeholder="Product ..." class="form-control" id="Product"></select>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Analyte">
+                                                Analyte
+                                            </label>
+                                            <select data-placeholder="Analyte ..." class="form-control" id="Analyte"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="UOM">
+                                                UOM
+                                            </label>
+                                            <select data-placeholder="UOM ..." class="form-control" id="UOM"></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="target_value">Target Value</label>
+                                            <input type="text" id="target_value" name="target_value" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="applicable_date">Applicable Date</label>
+                                            <input type="datetime-local" id="applicable_date" name="applicable_date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="minimum_value">Minimum Value</label>
+                                            <input type="text" id="minimum_value" name="minimum_value" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="maximum_value">Maximum Value</label>
+                                            <input type="text" id="maximum_value" name="maximum_value" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock
+{
+    <script defer src="~/app/areas/material/productspecification/js/detail.js?_=@DateTime.Now.Ticks"></script>
+}

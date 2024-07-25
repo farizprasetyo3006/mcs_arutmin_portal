@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="03/05/2022 16:08:46" ReportInfo.Modified="03/05/2022 18:54:10" ReportInfo.CreatorVersion="2022.1.0.0">
+  <Dictionary>
+    <PostgresDataConnection Name="Indexim Dev" ConnectionString="rijcmlqVlMOzASlkoIlqIClbeNbsE0aRk7kyVB3pmOuxsrc2ars9nKl4SpuPpmnm2iuxCsVmCC5FDt4sjYRkqvMiNOPRsdtmhQDl3Pl8LSjSO4Ue+E=">
+      <TableDataSource Name="Table" Alias="report_shipping" DataType="System.Int32" Enabled="true" SelectCommand=" SELECT r.id,&#13;&#10;    r.created_by,&#13;&#10;    r.created_on,&#13;&#10;    r.modified_by,&#13;&#10;    r.modified_on,&#13;&#10;    r.is_active,&#13;&#10;    r.is_locked,&#13;&#10;    r.is_default,&#13;&#10;    r.owner_id,&#13;&#10;    r.organization_id,&#13;&#10;    r.entity_id,&#13;&#10;    r.transaction_number,&#13;&#10;    r.reference_number,&#13;&#10;    r.accounting_period_id,&#13;&#10;    ap1.accounting_period_name,&#13;&#10;    COALESCE(ap1.is_closed, false) AS accounting_period_is_closed,&#13;&#10;    r.process_flow_id,&#13;&#10;    pf1.process_flow_name,&#13;&#10;    r.survey_id,&#13;&#10;    s1.survey_number,&#13;&#10;    s1.survey_date,&#13;&#10;    r.is_loading,&#13;&#10;    r.ship_location_id,&#13;&#10;    sl1.stock_location_name AS ship_location_name,&#13;&#10;    r.quantity,&#13;&#10;    r.product_id,&#13;&#10;    p1.product_name,&#13;&#10;    r.uom_id,&#13;&#10;    uom.uom_name,&#13;&#10;    uom.uom_symbol,&#13;&#10;    r.transport_id,&#13;&#10;    r.trip_count,&#13;&#10;    r.equipment_id,&#13;&#10;    eq1.equipment_name,&#13;&#10;    r.hour_usage,&#13;&#10;    r.despatch_order_id,&#13;&#10;    do1.despatch_order_number,&#13;&#10;    ml.item_name AS delivery_term_name,&#13;&#10;    r.arrival_datetime,&#13;&#10;    r.berth_datetime,&#13;&#10;    r.start_datetime,&#13;&#10;    r.end_datetime,&#13;&#10;    r.unberth_datetime,&#13;&#10;    r.departure_datetime,&#13;&#10;    r.note,&#13;&#10;    r.quality_sampling_id,&#13;&#10;    r.draft_survey_id,&#13;&#10;    r.original_quantity,&#13;&#10;    o1.organization_name,&#13;&#10;    COALESCE(u1.fullname, u1.application_username) AS record_created_by,&#13;&#10;    COALESCE(u2.fullname, u2.application_username) AS record_modified_by,&#13;&#10;    COALESCE(u3.fullname, u3.application_username) AS record_owning_user,&#13;&#10;    t1.team_name AS record_owning_team&#13;&#10;   FROM shipping_transaction r&#13;&#10;     LEFT JOIN accounting_period ap1 ON ap1.id = r.accounting_period_id&#13;&#10;     LEFT JOIN process_flow pf1 ON pf1.id = r.process_flow_id&#13;&#10;     LEFT JOIN survey s1 ON s1.id = r.survey_id&#13;&#10;     LEFT JOIN stock_location sl1 ON sl1.id = r.ship_location_id&#13;&#10;     LEFT JOIN product p1 ON p1.id = r.product_id&#13;&#10;     LEFT JOIN uom ON uom.id = r.uom_id&#13;&#10;     LEFT JOIN transport tr1 ON tr1.id = r.transport_id&#13;&#10;     LEFT JOIN equipment eq1 ON eq1.id = r.equipment_id&#13;&#10;     LEFT JOIN despatch_order do1 ON do1.id = r.despatch_order_id&#13;&#10;     LEFT JOIN master_list ml ON ml.id = do1.delivery_term_id&#13;&#10;     LEFT JOIN quality_sampling qs ON qs.id = r.quality_sampling_id&#13;&#10;     LEFT JOIN organization o1 ON o1.id = r.organization_id&#13;&#10;     LEFT JOIN application_user u1 ON u1.id = r.created_by&#13;&#10;     LEFT JOIN application_user u2 ON u2.id = r.modified_by&#13;&#10;     LEFT JOIN application_user u3 ON u3.id = r.owner_id&#13;&#10;     LEFT JOIN team t1 ON t1.id = u3.primary_team_id&#13;&#10;WHERE r.start_datetime &gt;= @StartDateTime&#13;&#10;AND r.end_datetime &lt;= @EndDateTime">
+        <Column Name="id" DataType="System.String"/>
+        <Column Name="created_by" DataType="System.String"/>
+        <Column Name="created_on" DataType="System.DateTime"/>
+        <Column Name="modified_by" DataType="System.String"/>
+        <Column Name="modified_on" DataType="System.DateTime"/>
+        <Column Name="is_active" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="is_locked" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="is_default" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="owner_id" DataType="System.String"/>
+        <Column Name="organization_id" DataType="System.String"/>
+        <Column Name="entity_id" DataType="System.String"/>
+        <Column Name="transaction_number" DataType="System.String"/>
+        <Column Name="reference_number" DataType="System.String"/>
+        <Column Name="accounting_period_id" DataType="System.String"/>
+        <Column Name="accounting_period_name" DataType="System.String"/>
+        <Column Name="accounting_period_is_closed" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="process_flow_id" DataType="System.String"/>
+        <Column Name="process_flow_name" DataType="System.String"/>
+        <Column Name="survey_id" DataType="System.String"/>
+        <Column Name="survey_number" DataType="System.String"/>
+        <Column Name="survey_date" DataType="System.DateTime"/>
+        <Column Name="is_loading" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="ship_location_id" DataType="System.String"/>
+        <Column Name="ship_location_name" DataType="System.String"/>
+        <Column Name="quantity" DataType="System.Decimal"/>
+        <Column Name="product_id" DataType="System.String"/>
+        <Column Name="product_name" DataType="System.String"/>
+        <Column Name="uom_id" DataType="System.String"/>
+        <Column Name="uom_name" DataType="System.String"/>
+        <Column Name="uom_symbol" DataType="System.String"/>
+        <Column Name="transport_id" DataType="System.String"/>
+        <Column Name="trip_count" DataType="System.Int32"/>
+        <Column Name="equipment_id" DataType="System.String"/>
+        <Column Name="equipment_name" DataType="System.String"/>
+        <Column Name="hour_usage" DataType="System.Decimal"/>
+        <Column Name="despatch_order_id" DataType="System.String"/>
+        <Column Name="despatch_order_number" DataType="System.String"/>
+        <Column Name="delivery_term_name" DataType="System.String"/>
+        <Column Name="arrival_datetime" DataType="System.DateTime"/>
+        <Column Name="berth_datetime" DataType="System.DateTime"/>
+        <Column Name="start_datetime" DataType="System.DateTime"/>
+        <Column Name="end_datetime" DataType="System.DateTime"/>
+        <Column Name="unberth_datetime" DataType="System.DateTime"/>
+        <Column Name="departure_datetime" DataType="System.DateTime"/>
+        <Column Name="note" DataType="System.String"/>
+        <Column Name="quality_sampling_id" DataType="System.String"/>
+        <Column Name="draft_survey_id" DataType="System.String"/>
+        <Column Name="original_quantity" DataType="System.Decimal"/>
+        <Column Name="organization_name" DataType="System.String"/>
+        <Column Name="record_created_by" DataType="System.String"/>
+        <Column Name="record_modified_by" DataType="System.String"/>
+        <Column Name="record_owning_user" DataType="System.String"/>
+        <Column Name="record_owning_team" DataType="System.String"/>
+        <CommandParameter Name="StartDateTime" DataType="21" Expression="[StartDateTime]" DefaultValue="0001-01-01"/>
+        <CommandParameter Name="EndDateTime" DataType="21" Expression="[EndDateTime]" DefaultValue="9999-12-31"/>
+      </TableDataSource>
+    </PostgresDataConnection>
+    <Parameter Name="StartDateTime" DataType="System.DateTime"/>
+    <Parameter Name="EndDateTime" DataType="System.DateTime"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Top="20" Width="718.2" Height="75.6">
+      <TextObject Name="Text1" Width="718.2" Height="75.6" Text="Shipping" HorzAlign="Center" VertAlign="Center" Font="Arial, 20pt, style=Bold"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="115.6" Width="718.2" Height="28.35">
+      <TextObject Name="Text2" Width="37.8" Height="28.35" Border.Lines="All" Text="No." HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text3" Left="37.8" Width="141.75" Height="28.35" Border.Lines="All" Text="Shipping Number" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text6" Left="179.55" Width="141.75" Height="28.35" Border.Lines="All" Text="Start" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="321.3" Width="141.75" Height="28.35" Border.Lines="All" Text="End" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text10" Left="463.05" Width="170.1" Height="28.35" Border.Lines="All" Text="Product" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text11" Left="633.15" Width="85.05" Height="28.35" Border.Lines="All" Text="Quantity (t)" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="163.95" Width="718.2" Height="18.9" DataSource="Table">
+      <TextObject Name="Text4" Width="37.8" Height="18.9" Border.Lines="All" Text="[Row#]" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text5" Left="37.8" Width="141.75" Height="18.9" Border.Lines="All" Text="[report_shipping.transaction_number]" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text8" Left="179.55" Width="141.75" Height="18.9" Border.Lines="All" Text="[report_shipping.start_datetime]" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text9" Left="321.3" Width="141.75" Height="18.9" Border.Lines="All" Text="[report_shipping.end_datetime]" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text12" Left="463.05" Width="170.1" Height="18.9" Border.Lines="All" Text="[report_shipping.product_name]" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text13" Left="633.15" Width="85.05" Height="18.9" Border.Lines="All" Text="[report_shipping.quantity]" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt"/>
+      <Sort>
+        <Sort Expression="[report_shipping.start_datetime]" Descending="true"/>
+      </Sort>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="202.85" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>
