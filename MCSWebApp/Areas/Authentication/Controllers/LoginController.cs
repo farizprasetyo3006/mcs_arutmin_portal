@@ -43,8 +43,6 @@ namespace MCSWebApp.Areas.Authentication.Controllers
         [HttpGet]
         public IActionResult Index([FromQuery] string ReturnUrl)
         {
-            //ViewBag.ListRole = new List<string>();
-
             ViewBag.ReturnUrl = ReturnUrl;
             return View();
         }
@@ -77,10 +75,10 @@ namespace MCSWebApp.Areas.Authentication.Controllers
                                 AccessToken, DateTime.Now);
                             if (appUser != null)
                             {
-                                if(StringHash.ValidateHash(appUser.id, AccessToken))
+                                if (StringHash.ValidateHash(appUser.id, AccessToken))
                                 {
                                     ViewBag.Id = AccessToken;
-                                    return View();                                
+                                    return View();
                                 }
                                 else
                                 {
@@ -95,10 +93,10 @@ namespace MCSWebApp.Areas.Authentication.Controllers
                         catch (Exception ex)
                         {
                             logger.Debug(db.LastCommand);
-                            logger.Error(ex.ToString());                            
+                            logger.Error(ex.ToString());
                         }
                     }
-                }                
+                }
             }
 
             return Redirect("/Home/Index");
@@ -128,30 +126,32 @@ namespace MCSWebApp.Areas.Authentication.Controllers
                                     .UsingProvider<PostgreSQLDatabaseProvider>()
                                     .Create())
                             {
-                                if (!string.IsNullOrEmpty(userCredential.Username))
+                                //if (!string.IsNullOrEmpty(userCredential.Username))
+                                if (string.IsNullOrEmpty(userCredential.RoleId))
                                 {
                                     var sql = $"select uro.application_role_id from application_user au join user_role uro on " +
-                                        $"uro.application_user_id = au.id where au.application_username = @0" ;
+                                        $"uro.application_user_id = au.id where au.application_username = @0";
 
                                     var recRole = db.FirstOrDefault<dynamic>(sql, userCredential.Username);
                                     if (recRole != null)
                                     {
-                                        GlobalVars.ROLE_ID = recRole.application_role_id;
+                                        //GlobalVars.ROLE_ID = recRole.application_role_id;
+                                        string roleId = recRole.application_role_id;
+                                        HttpContext.Session.SetString("ROLE_ID", roleId);
                                         userCredential.RoleId = recRole.application_role_id;
 
                                         var businessUnit = db.FirstOrDefault<role_business_unit>("WHERE application_role_id = @0 ", userCredential.RoleId);
                                         if (businessUnit != null)
                                         {
-                                            GlobalVars.BUSINESS_UNIT_ID = businessUnit.business_unit_id;
+                                            //GlobalVars.BUSINESS_UNIT_ID = businessUnit.business_unit_id;
                                             business_unit_id = businessUnit.business_unit_id;
-
-                                            HttpContext.Session.SetString("BUSINESS_UNIT_ID",businessUnit.business_unit_id);
+                                            HttpContext.Session.SetString("BUSINESS_UNIT_ID", businessUnit.business_unit_id);
                                         }
                                     }
                                 }
                             }
 
-                            var r = await auth.Authenticate(userCredential.Username, userCredential.Password, 
+                            var r = await auth.Authenticate(userCredential.Username, userCredential.Password,
                                 userCredential.SystemAdministration, sysAdminOption.Value, ldapConfiguration,
                                 userCredential.OrganizationId);
                             if (r.Success)
@@ -171,7 +171,7 @@ namespace MCSWebApp.Areas.Authentication.Controllers
                                 };
 
                                 var role = "User";
-                                if(userCredential.SystemAdministration ?? false)
+                                if (userCredential.SystemAdministration ?? false)
                                 {
                                     role = "System Administrator";
                                     userContext.SystemAdministrator = sysAdminOption.Value;
@@ -199,11 +199,28 @@ namespace MCSWebApp.Areas.Authentication.Controllers
                                     {
                                         var sql = $"select id, role_name from application_role where organization_id = @0";
 
-                                        List <dynamic> RoleList = db.Fetch<dynamic>(sql, userContext.OrganizationId);
+                                        List<dynamic> RoleList = db.Fetch<dynamic>(sql, userContext.OrganizationId);
                                         if (RoleList != null)
                                         {
                                             ViewBag.RoleList = RoleList.ToList();
                                         }
+
+                                        sql = $"SELECT distinct ae.display_name FROM application_user u " +
+                                            $"INNER JOIN user_role ur ON u.id = ur.application_user_id " +
+                                            $"INNER JOIN role_access ra ON ra.application_role_id = ur.application_role_id " +
+                                            $"INNER JOIN application_entity ae ON ae.id = ra.application_entity_id " +
+                                            $"WHERE u.id = '{userContext.AppUserId}' AND ur.application_role_id = '{userContext.RoleId}' " +
+                                            "AND coalesce(ra.access_read, 0) > 0 ORDER BY ae.display_name";
+
+                                        List<dynamic> RA = db.Fetch<dynamic>(sql);
+
+                                        string sRoleAccess = "";
+                                        foreach (var x in RA)
+                                        {
+                                            //sRoleAccess = string.Concat(sRoleAccess, x.display_name.ToString());
+                                            sRoleAccess = string.Concat(sRoleAccess, x.display_name.ToString().Replace(" ", "").ToUpper(), ",");
+                                        }
+                                        HttpContext.Session.SetString("RoleAccessList", sRoleAccess);
                                     }
                                     catch (Exception ex)
                                     {
@@ -222,7 +239,7 @@ namespace MCSWebApp.Areas.Authentication.Controllers
                         }
                         catch (Exception ex)
                         {
-                            logger.Error(ex.ToString());                            
+                            logger.Error(ex.ToString());
                         }
                     }
                 }
@@ -233,7 +250,7 @@ namespace MCSWebApp.Areas.Authentication.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());                
+                logger.Error(ex.ToString());
             }
 
             return Redirect(redirectionUrl);
@@ -251,7 +268,7 @@ namespace MCSWebApp.Areas.Authentication.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());                
+                logger.Error(ex.ToString());
             }
 
             return Redirect(redirectionUrl);

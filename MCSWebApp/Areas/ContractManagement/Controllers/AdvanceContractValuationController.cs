@@ -15,6 +15,7 @@ using System.IO;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.ContractManagement.Controllers
 {
@@ -37,6 +38,8 @@ namespace MCSWebApp.Areas.ContractManagement.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ContractManagement];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContractValuation];
             ViewBag.BreadcrumbCode = WebAppMenu.AdvanceContractValuation;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

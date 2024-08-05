@@ -1,4 +1,4 @@
-﻿
+﻿@{ string defStr = "xxx"; }
 <ul id="js-nav-menu" class="nav-menu">
     <li class="nav-title">DASHBOARDS</li>
 
@@ -14,7 +14,7 @@
                     <span class="nav-link-text" data-i18n="nav.index">AI Dashboard</span>
                 </a>
             </li>
-                
+
             <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Analytic) ? "active open" : "")">
                 <a href="#" title="Modelling" data-filter-tags="supply chain location">
                     <i class="fal fa-chart-area"></i>
@@ -22,23 +22,23 @@
                 </a>
                 <ul>
                     <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PL) ? "active open" : "")">
-                            @*<i class="fal fa-chart-area"></i>*@
+                        @*<i class="fal fa-chart-area"></i>*@
                         <a href="/Data/HistoricalRainfall/Index" title="Dashboard" data-filter-tags="data dashboard">
                             <span class="nav-link-text" data-i18n="nav.index">Production & Logistic</span>
                         </a>
                     </li>
                     @*<li class="@(ViewBag.AreaBreadcrumb == "Data" && ViewBag.Breadcrumb == "Dashboard" ? "active open" : "")">
-                        <a href="/Data/SalesMarketing/Index" title="Modelling" data-filter-tags="supply chain location">
-                            <span class="nav-link-text" data-i18n="nav.index">Sales Marketing</span>
-                        </a>
+                    <a href="/Data/SalesMarketing/Index" title="Modelling" data-filter-tags="supply chain location">
+                    <span class="nav-link-text" data-i18n="nav.index">Sales Marketing</span>
+                    </a>
                     </li>*@
                     @*<li class="@(ViewBag.AreaBreadcrumb == "Data" && ViewBag.Breadcrumb == "Dashboard" ? "active open" : "")">
-                        <a href="#" title="Modelling" data-filter-tags="supply chain location">
-                            <span class="nav-link-text" data-i18n="nav.index">Sales Marketing</span>
-                        </a>
-                        <ul>
-                         
-                        </ul>
+                    <a href="#" title="Modelling" data-filter-tags="supply chain location">
+                    <span class="nav-link-text" data-i18n="nav.index">Sales Marketing</span>
+                    </a>
+                    <ul>
+
+                    </ul>
                     </li>*@
                 </ul>
             </li>
@@ -72,54 +72,72 @@
         </ul>
     </li>
     <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Modelling) ? "active open" : "")">
-        <a href="#" title="Modelling" data-filter-tags="supply chain location">
+        <a href="#" title="Modelling" data-filter-tags="production logistics location">
             <i class="fal fa-chart-network"></i>
             <span class="nav-link-text" data-i18n="nav.index">Modelling</span>
         </a>
         <ul>
             <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Location) ? "active open" : "")">
-                <a href="#" title="Location" data-filter-tags="supply chain location">
+                <a href="#" title="Location" data-filter-tags="production logistics location">
                     <span class="nav-link-text" data-i18n="nav.index">Location</span>
                 </a>
                 <ul>
-                    
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BusinessArea) ? "active open" : "")">
-                        <a href="/Location/BusinessArea/Index" title="Business Area" data-filter-tags="supply chain location business area">
-                            <span class="nav-link-text" data-i18n="nav.supply_chain_location_business_area">Business Area</span>
-                        </a>
-                    </li>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.MineLocation) ? "active open" : "")">
-                        <a href="/Location/MineLocation/Index" title="Mine Location" data-filter-tags="supply chain mine location">
-                            <span class="nav-link-text" data-i18n="nav.supply_chain_mine_location">Mine Location</span>
-                        </a>
-                    </li>
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("BUSINESSAREA,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BusinessArea) ? "active open" : "")">
+                            <a href="/Location/BusinessArea/Index" title="Business Area" data-filter-tags="production logistics location business area">
+                                <span class="nav-link-text" data-i18n="nav.production_logistics_location_business_area">Business Area</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("MINELOCATION,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.MineLocation) ? "active open" : "")">
+                            <a href="/Location/MineLocation/Index" title="Mine Location" data-filter-tags="production logistics mine location">
+                                <span class="nav-link-text" data-i18n="nav.production_logistics_mine_location">Mine Location</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("STOCKPILELOCATION,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.StockpileLocation) ? "active open" : "")">
+                            <a href="/Location/StockpileLocation/Index" title="Stockpile Location" data-filter-tags="production logistics stockpile location">
+                                <span class="nav-link-text" data-i18n="nav.production_logistics_stockpile_location">Stockpile Location</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("PORTLOCATION,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PortLocation) ? "active open" : "")">
+                            <a href="/Location/PortLocation/Index" title="Port Location" data-filter-tags="production logistics port location">
+                                <span class="nav-link-text" data-i18n="nav.production_logistics_port_location">Port Location</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("WASTELOCATION,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.WasteLocation) ? "active open" : "")">
+                            <a href="/Location/WasteLocation/Index" title="Waste Location" data-filter-tags="production logistics waste location">
+                                <span class="nav-link-text" data-i18n="nav.production_logistics_waste_location">Waste Location</span>
+                            </a>
+                        </li>
+                    }
+
                     @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalProcessingPlant) ? "active open" : "")">
-                        <a href="/Location/CPPLocation/Index" title="CPP Location" data-filter-tags="cpp location">
-                            <span class="nav-link-text" data-i18n="nav.cpp_location">CPP Location</span>
-                        </a>
+                    <a href="/Location/CPPLocation/Index" title="CPP Location" data-filter-tags="cpp location">
+                    <span class="nav-link-text" data-i18n="nav.cpp_location">CPP Location</span>
+                    </a>
                     </li>*@
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PortLocation) ? "active open" : "")">
-                        <a href="/Location/PortLocation/Index" title="Port Location" data-filter-tags="port location">
-                            <span class="nav-link-text" data-i18n="nav.port_location">Port Location</span>
-                        </a>
-                    </li>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.StockpileLocation) ? "active open" : "")">
-                        <a href="/Location/StockpileLocation/Index" title="Stockpile Location" data-filter-tags="supply chain stockpile location">
-                            <span class="nav-link-text" data-i18n="nav.supply_chain_stockpile_location">Stockpile Location</span>
-                        </a>
-                    </li>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.WasteLocation) ? "active open" : "")">
-                        <a href="/Location/WasteLocation/Index" title="Waste Location" data-filter-tags="supply chain waste location">
-                            <span class="nav-link-text" data-i18n="nav.supply_chain_waste_location">Waste Location</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProcessingFlow) ? "active open" : "")">
-                <a href="/ProcessFlow/ProcessFlow/Index" title="Process Flow" data-filter-tags="supply chain transaction process flow analyte">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_process_flow">Process Flow</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("PROCESSFLOW,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProcessingFlow) ? "active open" : "")">
+                    <a href="/ProcessFlow/ProcessFlow/Index" title="Process Flow" data-filter-tags="production logistics transaction process flow analyte">
+                        <span class="nav-link-text" data-i18n="nav.production_logistics_transaction_process_flow">Process Flow</span>
+                    </a>
+                </li>
+            }
 
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProcessFlow) ? "active open" : "")">
             <a href="#" title="Location" data-filter-tags="supply chain location">
@@ -147,46 +165,64 @@
             <span class="nav-link-text" data-i18n="nav.index">Mining</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.WasteRemoval) ? "active open" : "")">
-                <a href="/Mining/WasteRemoval/Index" title="Waste Removal" data-filter-tags="supply chain transaction waste removal">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_waste_removal">Waste Removal</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Production) ? "active open" : "")">
-                <a href="/Mining/Production/Index" title="Coal Mined" data-filter-tags="supply chain transaction coal mined">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_coal_mined">Coal Mined</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Hauling) ? "active open" : "")">
-                <a href="/Mining/Hauling/Index" title="Coal Hauling" data-filter-tags="supply chain transaction coal hauling">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_coal_hauling">Coal Hauling</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("WASTEREMOVAL,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.WasteRemoval) ? "active open" : "")">
+                    <a href="/Mining/WasteRemoval/Index" title="Waste Removal" data-filter-tags="supply chain transaction waste removal">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_waste_removal">Waste Removal</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("PRODUCTIONTRANSACTION,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Production) ? "active open" : "")">
+                    <a href="/Mining/Production/Index" title="Coal Mined" data-filter-tags="supply chain transaction coal mined">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_coal_mined">Coal Mined</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("HAULINGTRANSACTION,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Hauling) ? "active open" : "")">
+                    <a href="/Mining/Hauling/Index" title="Coal Hauling" data-filter-tags="supply chain transaction coal hauling">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_coal_hauling">Coal Hauling</span>
+                    </a>
+                </li>
+            }
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.WasteRemovalByFleet) ? "active open" : "")">
             <a href="/Mining/ArutminWasteRemoval/Index" title="Waste Removal by Fleet" data-filter-tags="supply chain transaction waste removal by fleet">
             <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_waste_removal_by_fleet">Waste Removal By Fleet</span>
             </a>
             </li>*@
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalProduce) ? "active open" : "")">
-                <a href="/Mining/Processing/Index" title="Coal Produce" data-filter-tags="supply chain transaction coal produce">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_processing">Coal Produce</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalTransfer) ? "active open" : "")">
-                <a href="/Mining/CoalTransfer/Index" title="Coal Transfer" data-filter-tags="supply chain transaction coal transfer">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_coal_transfer">Coal Transfer</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("PROCESSINGTRANSACTION,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalProduce) ? "active open" : "")">
+                    <a href="/Mining/Processing/Index" title="Coal Produce" data-filter-tags="supply chain transaction coal produce">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_processing">Coal Produce</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("COALTRANSFER,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalTransfer) ? "active open" : "")">
+                    <a href="/Mining/CoalTransfer/Index" title="Coal Transfer" data-filter-tags="supply chain transaction coal transfer">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_coal_transfer">Coal Transfer</span>
+                    </a>
+                </li>
+            }
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Railing) ? "active open" : "")">
             <a href="/Mining/Railing/Index" title="Railing" data-filter-tags="supply chain transaction railing">
             <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_railing">Railing</span>
             </a>
             </li>*@
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Rehandling) ? "active open" : "")">
-                <a href="/Mining/Rehandling/Index" title="Rehandling" data-filter-tags="mining rehandling">
-                    <span class="nav-link-text" data-i18n="nav.mining_rehandling">Rehandling</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("REHANDLINGTRANSACTION,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Rehandling) ? "active open" : "")">
+                    <a href="/Mining/Rehandling/Index" title="Rehandling" data-filter-tags="mining rehandling">
+                        <span class="nav-link-text" data-i18n="nav.mining_rehandling">Rehandling</span>
+                    </a>
+                </li>
+            }
 
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.JointSurvey) ? "active open" : "")">
             <a href="/Mining/JointSurvey/Index" title="Joint Survey" data-filter-tags="contract management joint survey">
@@ -229,11 +265,14 @@
             </li>
             </ul>
             </li>*@
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CHLS) ? "active open" : "")">
-                <a href="/Mining/CHLS/Index" title="CHLS" data-filter-tags="supply chain transaction chls">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_chls">CHLS</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("CHLS,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CHLS) ? "active open" : "")">
+                    <a href="/Mining/CHLS/Index" title="CHLS" data-filter-tags="supply chain transaction chls">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_chls">CHLS</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
 
@@ -243,61 +282,73 @@
             <span class="nav-link-text" data-i18n="nav.index">Port</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PortBarging) ? "active open" : "")">
-                <a href="#" title="Barging" data-filter-tags="port barging">
-                    <span class="nav-link-text" data-i18n="nav.port_barging">Barging</span>
-                </a>
-                <ul>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BargeLoading) ? "active open" : "")">
-                        <a href="/Port/Barging/Loading" title="Loading" data-filter-tags="port barging loading">
-                            <span class="nav-link-text" data-i18n="nav.port_barging_loading">Loading</span>
-                        </a>
-                    </li>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BargeUnloading) ? "active open" : "")">
-                        <a href="/Port/Barging/Unloading" title="Unloading" data-filter-tags="port barging unloading">
-                            <span class="nav-link-text" data-i18n="nav.port_barging_unloading">Unloading</span>
-                        </a>
-                    </li>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BargeRotation) ? "active open" : "")">
-                        <a href="/Port/Barging/Rotation" title="Rotation" data-filter-tags="port barging rotation">
-                            <span class="nav-link-text" data-i18n="nav.port_barging_rotation">Rotation</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PortShipping) ? "active open" : "")">
-                <a href="#" title="Shipping" data-filter-tags="supply chain transaction shipping">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_shipping">Shipping</span>
-                </a>
-                <ul>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShipLoading) ? "active open" : "")">
-                        <a href="/Port/Shipping/Loading" title="Ship Loading" data-filter-tags="supply chain transaction shipping">
-                            <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_shipping">Loading</span>
-                        </a>
-                    </li>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShipUnloading) ? "active open" : "")">
-                        <a href="/Port/Shipping/Unloading" title="Ship Unloading" data-filter-tags="supply chain transaction shipping">
-                            <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_shipping">Unloading</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingInstruction) ? "active open" : ""))">
-                <a href="/Sales/ShippingInstruction/Index" title="Shipping Instruction" data-filter-tags="supply chain shipping instruction">
-                    <span class="nav-link-text" data-i18n="nav.contract_management_shipping_instruction">@WebAppMenu.BreadcrumbText[WebAppMenu.ShippingInstruction]</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("BARGINGTRANSACTION,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PortBarging) ? "active open" : "")">
+                    <a href="#" title="Barging" data-filter-tags="port barging">
+                        <span class="nav-link-text" data-i18n="nav.port_barging">Barging</span>
+                    </a>
+                    <ul>
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BargeLoading) ? "active open" : "")">
+                            <a href="/Port/Barging/Loading" title="Loading" data-filter-tags="port barging loading">
+                                <span class="nav-link-text" data-i18n="nav.port_barging_loading">Loading</span>
+                            </a>
+                        </li>
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BargeUnloading) ? "active open" : "")">
+                            <a href="/Port/Barging/Unloading" title="Unloading" data-filter-tags="port barging unloading">
+                                <span class="nav-link-text" data-i18n="nav.port_barging_unloading">Unloading</span>
+                            </a>
+                        </li>
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BargeRotation) ? "active open" : "")">
+                            <a href="/Port/Barging/Rotation" title="Rotation" data-filter-tags="port barging rotation">
+                                <span class="nav-link-text" data-i18n="nav.port_barging_rotation">Rotation</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SHIPPINGTRANSACTION,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PortShipping) ? "active open" : "")">
+                    <a href="#" title="Shipping" data-filter-tags="supply chain transaction shipping">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_shipping">Shipping</span>
+                    </a>
+                    <ul>
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShipLoading) ? "active open" : "")">
+                            <a href="/Port/Shipping/Loading" title="Ship Loading" data-filter-tags="supply chain transaction shipping">
+                                <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_shipping">Loading</span>
+                            </a>
+                        </li>
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShipUnloading) ? "active open" : "")">
+                            <a href="/Port/Shipping/Unloading" title="Ship Unloading" data-filter-tags="supply chain transaction shipping">
+                                <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_shipping">Unloading</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SHIPPINGINSTRUCTION,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingInstruction) ? "active open" : ""))">
+                    <a href="/Sales/ShippingInstruction/Index" title="Shipping Instruction" data-filter-tags="supply chain shipping instruction">
+                        <span class="nav-link-text" data-i18n="nav.contract_management_shipping_instruction">@WebAppMenu.BreadcrumbText[WebAppMenu.ShippingInstruction]</span>
+                    </a>
+                </li>
+            }
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingInstruction) ? "active open" : ""))">
             <a href="/Sales/ShippingInstructionApproval/Index" title="Shipping Instructions Approval" data-filter-tags="supply chain shipping instruction approval">
             <span class="nav-link-text" data-i18n="nav.contract_management_shipping_instruction_approval">Shipping Instructions Approval</span>
             </a>
             </li>*@
 
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingDocs) ? "active open" : "")">
-                <a href="/SurveyManagement/ShippingDocs/Index" title="Shipping Docs" data-filter-tags="port shipping docs">
-                    <span class="nav-link-text" data-i18n="nav.port_cow">Shipping Docs</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("DRAFTSURVEY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingDocs) ? "active open" : "")">
+                    <a href="/SurveyManagement/ShippingDocs/Index" title="Shipping Docs" data-filter-tags="port shipping docs">
+                        <span class="nav-link-text" data-i18n="nav.port_cow">Shipping Docs</span>
+                    </a>
+                </li>
+            }
 
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PortDespatchDemurrage) ? "active open" : "")">
             <a href="#" title="Despatch Demurrage" data-filter-tags="despatch demurrage">
@@ -312,16 +363,22 @@
             </ul>
             </li>*@
 
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.StatementOfFact) ? "active open" : "")">
-                <a href="/Port/StatementOfFact/Index" title="Laytime Calculation" data-filter-tags="laytime calculation">
-                    <span class="nav-link-text" data-i18n="nav.statement_of_fact">Laytime Calculation</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalMovement) ? "active open" : "")">
-                <a href="/Port/CoalMovement/Index" title="Coal Movement" data-filter-tags="port coal movement">
-                    <span class="nav-link-text" data-i18n="nav.coal_movement">Coal Movement</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SOF,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.StatementOfFact) ? "active open" : "")">
+                    <a href="/Port/StatementOfFact/Index" title="Laytime Calculation" data-filter-tags="laytime calculation">
+                        <span class="nav-link-text" data-i18n="nav.statement_of_fact">Laytime Calculation</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("COALMOVEMENT,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalMovement) ? "active open" : "")">
+                    <a href="/Port/CoalMovement/Index" title="Coal Movement" data-filter-tags="port coal movement">
+                        <span class="nav-link-text" data-i18n="nav.coal_movement">Coal Movement</span>
+                    </a>
+                </li>
+            }
 
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Mining) ? "active open" : "")">
             <a href="#" title="Month End" data-filter-tags="port month end">
@@ -346,21 +403,30 @@
                     <span class="nav-link-text" data-i18n="nav.sils">SILS</span>
                 </a>
                 <ul>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SILSLoading) ? "active open" : "")">
-                        <a href="/Port/SILS/Index" title="SILS Port Loading" data-filter-tags="sils port loading">
-                            <span class="nav-link-text" data-i18n="nav.sils_port_loading">SILS Port Loading</span>
-                        </a>
-                    </li>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SILSNPLCT) ? "active open" : "")">
-                        <a href="/Port/SILSNPLCT/Index" title="SILS NPLCT Loading Vessel" data-filter-tags="sils nplct loading barge">
-                            <span class="nav-link-text" data-i18n="nav.sils_nplct_loading_barge">SILS NPLCT Loading Vessel</span>
-                        </a>
-                    </li>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SILSUnloading) ? "active open" : "")">
-                        <a href="/Port/SILSUnloading/Index" title="SILS NPLCT Unloading Barge" data-filter-tags="sils nplct unloading barge">
-                            <span class="nav-link-text" data-i18n="nav.sils_nplct_unloading_barge">SILS NPLCT Unloading Barge</span>
-                        </a>
-                    </li>
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("SILS,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SILSLoading) ? "active open" : "")">
+                            <a href="/Port/SILS/Index" title="SILS Port Loading" data-filter-tags="sils port loading">
+                                <span class="nav-link-text" data-i18n="nav.sils_port_loading">SILS Port Loading</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("SILSNPLCT,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SILSNPLCT) ? "active open" : "")">
+                            <a href="/Port/SILSNPLCT/Index" title="SILS NPLCT Loading Vessel" data-filter-tags="sils nplct loading barge">
+                                <span class="nav-link-text" data-i18n="nav.sils_nplct_loading_barge">SILS NPLCT Loading Vessel</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("SILSUNLOADING,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SILSUnloading) ? "active open" : "")">
+                            <a href="/Port/SILSUnloading/Index" title="SILS NPLCT Unloading Barge" data-filter-tags="sils nplct unloading barge">
+                                <span class="nav-link-text" data-i18n="nav.sils_nplct_unloading_barge">SILS NPLCT Unloading Barge</span>
+                            </a>
+                        </li>
+                    }
                 </ul>
             </li>
         </ul>
@@ -391,11 +457,14 @@
             <span class="nav-link-text" data-i18n="nav.index">Stockpile Management</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SamplingType) ? "active open" : "")">
-                <a href="/StockpileManagement/SamplingType/Index" title="Sampling Type" data-filter-tags="stockpile management sampling type">
-                    <span class="nav-link-text" data-i18n="nav.stockpile_management_sampling_type">Sampling Type</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SAMPLINGTYPE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SamplingType) ? "active open" : "")">
+                    <a href="/StockpileManagement/SamplingType/Index" title="Sampling Type" data-filter-tags="stockpile management sampling type">
+                        <span class="nav-link-text" data-i18n="nav.stockpile_management_sampling_type">Sampling Type</span>
+                    </a>
+                </li>
+            }
             <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.QualitySampling) ? "active open" : "")">
                 <a href="/StockpileManagement/QualitySampling/Index" title="Quality Sampling" data-filter-tags="stockpile management quality sampling">
                     <span class="nav-link-text" data-i18n="nav.stockpile_management_quality_sampling">Quality Sampling</span>
@@ -412,17 +481,19 @@
             <span class="nav-link-text" data-i18n="nav.stockpile_management_stockpile_state">Stockpile State</span>
             </a>
             </li>*@
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.StockpileMutation) ? "active open" : "")">
-                <a href="/StockpileManagement/StockpileMutation/Index" title="Stockpile Mutation" data-filter-tags="stockpile management stockpile mutation">
-                    <span class="nav-link-text" data-i18n="nav.stockpile_management_stockpile_mutation">Stockpile Mutation</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.StockpileState) ? "active open" : "")">
-                <a href="/StockpileManagement/StockpileSummary/Index" title="Stockpile Summary" data-filter-tags="stockpile management stockpile summary">
-                    <span class="nav-link-text" data-i18n="nav.stockpile_management_stockpile_summary">Stockpile Summary</span>
-                </a>
-            </li>
-
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("STOCKLOCATION,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.StockpileMutation) ? "active open" : "")">
+                    <a href="/StockpileManagement/StockpileMutation/Index" title="Stockpile Mutation" data-filter-tags="stockpile management stockpile mutation">
+                        <span class="nav-link-text" data-i18n="nav.stockpile_management_stockpile_mutation">Stockpile Mutation</span>
+                    </a>
+                </li>
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.StockpileState) ? "active open" : "")">
+                    <a href="/StockpileManagement/StockpileSummary/Index" title="Stockpile Summary" data-filter-tags="stockpile management stockpile summary">
+                        <span class="nav-link-text" data-i18n="nav.stockpile_management_stockpile_summary">Stockpile Summary</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
 
@@ -437,71 +508,107 @@
             <span class="nav-link-text" data-i18n="nav.daily_record_equipment_group">Equipment Group</span>
             </a>
             </li>*@
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Rainfall) ? "active open" : ""))">
-                <a href="/DailyRecord/Rainfall/Index" title="Rainfall" data-filter-tags="daily record rainfall">
-                    <span class="nav-link-text" data-i18n="nav.daily_record_rainfall">Rainfall</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Slippery) ? "active open" : ""))">
-                <a href="/DailyRecord/Slippery/Index" title="Slippery" data-filter-tags="daily record slippery">
-                    <span class="nav-link-text" data-i18n="nav.daily_record_slippery">Slippery</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Haze) ? "active open" : ""))">
-                <a href="/DailyRecord/Haze/Index" title="Haze" data-filter-tags="daily record haze">
-                    <span class="nav-link-text" data-i18n="nav.daily_record_haze">Haze</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.TideandWave) ? "active open" : ""))">
-                <a href="/DailyRecord/TidalWave/Index" title="Tide and Wave" data-filter-tags="daily record tide and wave">
-                    <span class="nav-link-text" data-i18n="nav.daily_record_tide_and_wave">Tide and Wave</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PriceIndexHistory) ? "active open" : ""))">
-                <a href="/DailyRecord/PriceIndexHistory/Index" title="Price Index History" data-filter-tags="daily record price index history">
-                    <span class="nav-link-text" data-i18n="nav.daily_record_price_index_history">Price Index History</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Timesheet) ? "active open" : "")">
-                <a href="/Mining/Timesheet/Index" title="Timesheet" data-filter-tags="supply chain production timesheet">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_timesheet">Timesheet</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Daywork) ? "active open" : ""))">
-                <a href="/DailyRecord/Daywork/Index" title="Daywork" data-filter-tags="daily record daywork">
-                    <span class="nav-link-text" data-i18n="nav.daily_record_daywork">Daywork</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DayworkClosing) ? "active open" : ""))">
-                <a href="/DailyRecord/DayworkClosing/Index" title="Daywork Closing" data-filter-tags="daily record daywork closing">
-                    <span class="nav-link-text" data-i18n="nav.daily_record_daywork_closing">Daywork Closing</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Delay) ? "active open" : ""))">
-                <a href="/Delay/Delay/Index" title="Delay" data-filter-tags="daily record delay event">
-                    <span class="nav-link-text" data-i18n="nav.daily_record_delay_event">Delay & Event</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("RAINFALL,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Rainfall) ? "active open" : ""))">
+                    <a href="/DailyRecord/Rainfall/Index" title="Rainfall" data-filter-tags="daily record rainfall">
+                        <span class="nav-link-text" data-i18n="nav.daily_record_rainfall">Rainfall</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SLIPPERY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Slippery) ? "active open" : ""))">
+                    <a href="/DailyRecord/Slippery/Index" title="Slippery" data-filter-tags="daily record slippery">
+                        <span class="nav-link-text" data-i18n="nav.daily_record_slippery">Slippery</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("HAZE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Haze) ? "active open" : ""))">
+                    <a href="/DailyRecord/Haze/Index" title="Haze" data-filter-tags="daily record haze">
+                        <span class="nav-link-text" data-i18n="nav.daily_record_haze">Haze</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("TIDALWAVE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.TideandWave) ? "active open" : ""))">
+                    <a href="/DailyRecord/TidalWave/Index" title="Tide and Wave" data-filter-tags="daily record tide and wave">
+                        <span class="nav-link-text" data-i18n="nav.daily_record_tide_and_wave">Tide and Wave</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("PRICEINDEXHISTORY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PriceIndexHistory) ? "active open" : ""))">
+                    <a href="/DailyRecord/PriceIndexHistory/Index" title="Price Index History" data-filter-tags="daily record price index history">
+                        <span class="nav-link-text" data-i18n="nav.daily_record_price_index_history">Price Index History</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("TIMESHEET,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Timesheet) ? "active open" : "")">
+                    <a href="/Mining/Timesheet/Index" title="Timesheet" data-filter-tags="supply chain production timesheet">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_timesheet">Timesheet</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("DAYWORK,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Daywork) ? "active open" : ""))">
+                    <a href="/DailyRecord/Daywork/Index" title="Daywork" data-filter-tags="daily record daywork">
+                        <span class="nav-link-text" data-i18n="nav.daily_record_daywork">Daywork</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("DAYWORKCLOSING,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DayworkClosing) ? "active open" : ""))">
+                    <a href="/DailyRecord/DayworkClosing/Index" title="Daywork Closing" data-filter-tags="daily record daywork closing">
+                        <span class="nav-link-text" data-i18n="nav.daily_record_daywork_closing">Daywork Closing</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("DELAY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Delay) ? "active open" : ""))">
+                    <a href="/Delay/Delay/Index" title="Delay" data-filter-tags="daily record delay event">
+                        <span class="nav-link-text" data-i18n="nav.daily_record_delay_event">Delay & Event</span>
+                    </a>
+                </li>
+            }
             @* <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DailyStockPort) ? "active open" : ""))">
             <a href="/DailyRecord/DailyStockPort/Index" title="Daily Stock Port" data-filter-tags="daily record daily stock port">
             <span class="nav-link-text" data-i18n="nav.daily_record_daily_stock_port">Daily Stock Port</span>
             </a>
             </li>*@
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.LandClearing) ? "active open" : ""))">
-                <a href="/Mining/LandClearing/Index" title="Land Clearing" data-filter-tags="supply chain transaction land clearing">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_waste_removal_by_fleet">Land Clearing</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.FuelInventory) ? "active open" : ""))">
-                <a href="/DailyRecord/FuelInventory/Index" title="Fuel Inventory" data-filter-tags="daily record fuel inventory">
-                    <span class="nav-link-text" data-i18n="nav.daily_record_fuel_inventory">Fuel Inventory</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.HSELTI) ? "active open" : ""))">
-                <a href="/DailyRecord/HSELTI/Index" title="HSE & LTI" data-filter-tags="hse & lti">
-                    <span class="nav-link-text" data-i18n="nav.equipment_incident">HSE & LTI</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("LANDCLEARING,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.LandClearing) ? "active open" : ""))">
+                    <a href="/Mining/LandClearing/Index" title="Land Clearing" data-filter-tags="supply chain transaction land clearing">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_waste_removal_by_fleet">Land Clearing</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("FUELINVENTORY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.FuelInventory) ? "active open" : ""))">
+                    <a href="/DailyRecord/FuelInventory/Index" title="Fuel Inventory" data-filter-tags="daily record fuel inventory">
+                        <span class="nav-link-text" data-i18n="nav.daily_record_fuel_inventory">Fuel Inventory</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("EQUIPMENTINCIDENT,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.HSELTI) ? "active open" : ""))">
+                    <a href="/DailyRecord/HSELTI/Index" title="HSE & LTI" data-filter-tags="hse & lti">
+                        <span class="nav-link-text" data-i18n="nav.equipment_incident">HSE & LTI</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
     <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.IHub) ? "active open" : "")">
@@ -510,26 +617,38 @@
             <span class="nav-link-text" data-i18n="nav.index">I-Hub</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Weighbridge) ? "active open" : ""))">
-                <a href="/Ihub/Weighbridge/Index" title="Weighbridge" data-filter-tags="weightbridge">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Weighbridge</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BeltScale) ? "active open" : ""))">
-                <a href="/Ihub/BeltScale/Index" title="Belt Scale" data-filter-tags="belt scale">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Belt Scale</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CurrencyExchangeApi) ? "active open" : ""))">
-                <a href="/Ihub/CurrencyExchange/Index" title="CurrencyExchangeApi" data-filter-tags="currency exchange api">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Currency Exchange API</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.InvoicePayment) ? "active open" : ""))">
-                <a href="/Ihub/InvoicePayment/Index" title="InvoicePayment" data-filter-tags="invoice payment api">
-                    <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Invoice Payment</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("WEIGHBRIDGE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Weighbridge) ? "active open" : ""))">
+                    <a href="/Ihub/Weighbridge/Index" title="Weighbridge" data-filter-tags="weightbridge">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Weighbridge</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("BELTSCALE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BeltScale) ? "active open" : ""))">
+                    <a href="/Ihub/BeltScale/Index" title="Belt Scale" data-filter-tags="belt scale">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Belt Scale</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("CURRENCYEXCHANGE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CurrencyExchangeApi) ? "active open" : ""))">
+                    <a href="/Ihub/CurrencyExchange/Index" title="CurrencyExchangeApi" data-filter-tags="currency exchange api">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Currency Exchange API</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SIPLOGS,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.InvoicePayment) ? "active open" : ""))">
+                    <a href="/Ihub/InvoicePayment/Index" title="InvoicePayment" data-filter-tags="invoice payment api">
+                        <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_equipment_usage">Invoice Payment</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
 
@@ -539,17 +658,22 @@
             <span class="nav-link-text" data-i18n="nav.index">Survey</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.JointSurvey) ? "active open" : "")">
-                <a href="/SurveyManagement/JointSurvey/Index" title="Joint Survey" data-filter-tags="production logistic joint survey">
-                    <span class="nav-link-text" data-i18n="nav.production_logistic_joint_survey">Joint Survey</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.StockpileSurvey) ? "active open" : "")">
-                <a href="/SurveyManagement/StockpileSurvey/Index" title="Stockpile Survey" data-filter-tags="production logistic stockpile survey">
-                    <span class="nav-link-text" data-i18n="nav.production_logistic_stockpile_survey">Stockpile Survey</span>
-                </a>
-            </li>
-
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("JOINTSURVEY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.JointSurvey) ? "active open" : "")">
+                    <a href="/SurveyManagement/JointSurvey/Index" title="Joint Survey" data-filter-tags="production logistic joint survey">
+                        <span class="nav-link-text" data-i18n="nav.production_logistic_joint_survey">Joint Survey</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SURVEY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.StockpileSurvey) ? "active open" : "")">
+                    <a href="/SurveyManagement/StockpileSurvey/Index" title="Stockpile Survey" data-filter-tags="production logistic stockpile survey">
+                        <span class="nav-link-text" data-i18n="nav.production_logistic_stockpile_survey">Stockpile Survey</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
 
@@ -559,47 +683,70 @@
             <span class="nav-link-text" data-i18n="nav.index">Reconcile Number</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.WasteRemovalClosing) ? "active open" : ""))">
-                <a href="/Mining/WasteRemovalClosing/Index" title="Waste Removal Closing" data-filter-tags="reconcile number waste removal closing">
-                    <span class="nav-link-text" data-i18n="nav.mining_waste_closing">Waste Removal Closing</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProductionClosing) ? "active open" : ""))">
-                <a href="/Mining/CoalMinedClosing/Index" title="Coal Mined Closing" data-filter-tags="reconcile number coal mined closing">
-                    <span class="nav-link-text" data-i18n="nav.mining_production_closing">Coal Mined Closing</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.HaulingClosing) ? "active open" : ""))">
-                <a href="/Mining/HaulingClosing/Index" title="Coal Hauling Closing" data-filter-tags="reconcile number mining coal hauling closing">
-                    <span class="nav-link-text" data-i18n="nav.mining_coal_hauling_closing">Coal Hauling Closing</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalProduceClosing) ? "active open" : ""))">
-                <a href="/Mining/ProcessingClosing/Index" title="Coal Produce Closing" data-filter-tags="reconcile number mining coal produce closing">
-                    <span class="nav-link-text" data-i18n="nav.mining_processing_closing">Coal Produce Closing</span>
-                </a>
-            </li>
-
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalTransferClosing) ? "active open" : ""))">
-                <a href="/Mining/CoalTransferClosing/Index" title="Coal Transfer Closing" data-filter-tags="reconcile number coal transfer closing">
-                    <span class="nav-link-text" data-i18n="nav.mining_production_closing">Coal Transfer Closing</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.RehandlingClosing) ? "active open" : ""))">
-                <a href="/Mining/RehandlingClosing/Index" title="Rehandling Closing" data-filter-tags="reconcile number mining rehandling closing">
-                    <span class="nav-link-text" data-i18n="nav.mining_rehandling_closing">Rehandling Closing</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BargingClosing) ? "active open" : ""))">
-                <a href="/Port/BargingClosing/Index" title="Barging Closing" data-filter-tags="reconcile number mining barging closing">
-                    <span class="nav-link-text" data-i18n="nav.mining_barging_closing">Barging Closing</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingClosing) ? "active open" : ""))">
-                <a href="/Port/ShippingClosing/Index" title="Shipping Closing" data-filter-tags="reconcile number mining shipping closing">
-                    <span class="nav-link-text" data-i18n="nav.mining_shipping_closing">Shipping Closing</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("WASTEREMOVALCLOSING,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.WasteRemovalClosing) ? "active open" : ""))">
+                    <a href="/Mining/WasteRemovalClosing/Index" title="Waste Removal Closing" data-filter-tags="reconcile number waste removal closing">
+                        <span class="nav-link-text" data-i18n="nav.mining_waste_closing">Waste Removal Closing</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("PRODUCTIONCLOSING,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProductionClosing) ? "active open" : ""))">
+                    <a href="/Mining/CoalMinedClosing/Index" title="Coal Mined Closing" data-filter-tags="reconcile number coal mined closing">
+                        <span class="nav-link-text" data-i18n="nav.mining_production_closing">Coal Mined Closing</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("HAULINGCLOSING,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.HaulingClosing) ? "active open" : ""))">
+                    <a href="/Mining/HaulingClosing/Index" title="Coal Hauling Closing" data-filter-tags="reconcile number mining coal hauling closing">
+                        <span class="nav-link-text" data-i18n="nav.mining_coal_hauling_closing">Coal Hauling Closing</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("PROCESSINGCLOSING,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalProduceClosing) ? "active open" : ""))">
+                    <a href="/Mining/ProcessingClosing/Index" title="Coal Produce Closing" data-filter-tags="reconcile number mining coal produce closing">
+                        <span class="nav-link-text" data-i18n="nav.mining_processing_closing">Coal Produce Closing</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("COALTRANSFERCLOSING,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CoalTransferClosing) ? "active open" : ""))">
+                    <a href="/Mining/CoalTransferClosing/Index" title="Coal Transfer Closing" data-filter-tags="reconcile number coal transfer closing">
+                        <span class="nav-link-text" data-i18n="nav.mining_production_closing">Coal Transfer Closing</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("REHANDLINGCLOSING,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.RehandlingClosing) ? "active open" : ""))">
+                    <a href="/Mining/RehandlingClosing/Index" title="Rehandling Closing" data-filter-tags="reconcile number mining rehandling closing">
+                        <span class="nav-link-text" data-i18n="nav.mining_rehandling_closing">Rehandling Closing</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("BARGINGCLOSING,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BargingClosing) ? "active open" : ""))">
+                    <a href="/Port/BargingClosing/Index" title="Barging Closing" data-filter-tags="reconcile number mining barging closing">
+                        <span class="nav-link-text" data-i18n="nav.mining_barging_closing">Barging Closing</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SHIPPINGCLOSING,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingClosing) ? "active open" : ""))">
+                    <a href="/Port/ShippingClosing/Index" title="Shipping Closing" data-filter-tags="reconcile number mining shipping closing">
+                        <span class="nav-link-text" data-i18n="nav.mining_shipping_closing">Shipping Closing</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
     @*
@@ -638,31 +785,43 @@
             <span class="nav-link-text" data-i18n="nav.index">@WebAppMenu.BreadcrumbText[WebAppMenu.Contract]</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesContract) ? "active open" : ""))">
-                <a href="/Sales/SalesContract/Index" title="Sales Contract" data-filter-tags="sales contract">
-                    <span class="nav-link-text" data-i18n="nav.contract_management_sales_contract">@WebAppMenu.BreadcrumbText[WebAppMenu.SalesContract]</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DespatchOrder) ? "active open" : ""))">
-                <a href="/Sales/DespatchOrder/Index" title="Shipping Order" data-filter-tags="supply chain shipping order">
-                    <span class="nav-link-text" data-i18n="nav.contract_management_despatch_order">@WebAppMenu.BreadcrumbText[WebAppMenu.DespatchOrder]</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SALESCONTRACT,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesContract) ? "active open" : ""))">
+                    <a href="/Sales/SalesContract/Index" title="Sales Contract" data-filter-tags="sales contract">
+                        <span class="nav-link-text" data-i18n="nav.contract_management_sales_contract">@WebAppMenu.BreadcrumbText[WebAppMenu.SalesContract]</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("DESPATCHORDER,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DespatchOrder) ? "active open" : ""))">
+                    <a href="/Sales/DespatchOrder/Index" title="Shipping Order" data-filter-tags="supply chain shipping order">
+                        <span class="nav-link-text" data-i18n="nav.contract_management_despatch_order">@WebAppMenu.BreadcrumbText[WebAppMenu.DespatchOrder]</span>
+                    </a>
+                </li>
+            }
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingInstruction) ? "active open" : ""))">
             <a href="/Sales/ShippingInstruction/Index" title="Shipping Instructions" data-filter-tags="supply chain shipping instructions">
             <span class="nav-link-text" data-i18n="nav.contract_management_despatch_order">@WebAppMenu.BreadcrumbText[WebAppMenu.ShippingInstruction]</span>
             </a>
             </li>*@
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesCharge) ? "active open" : "")">
-                <a href="/Sales/SalesCharge/Index" title="Price Adjustment" data-filter-tags="contract management price adjustment">
-                    <span class="nav-link-text" data-i18n="nav.contract_management_price_adjustment">@WebAppMenu.BreadcrumbText[WebAppMenu.SalesCharge]</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DespatchDemurrageContract) ? "active open" : ""))">
-                <a href="/DespatchDemurrage/Contract/Index" title="Despatch Demurrage" data-filter-tags="contract management desdem">
-                    <span class="nav-link-text" data-i18n="nav.contract_management__despatch_demurrage">@WebAppMenu.BreadcrumbText[WebAppMenu.DespatchDemurrageContract]</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SALESCHARGE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesCharge) ? "active open" : "")">
+                    <a href="/Sales/SalesCharge/Index" title="Price Adjustment" data-filter-tags="contract management price adjustment">
+                        <span class="nav-link-text" data-i18n="nav.contract_management_price_adjustment">@WebAppMenu.BreadcrumbText[WebAppMenu.SalesCharge]</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("DESPATCHDEMURRAGE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DespatchDemurrageContract) ? "active open" : ""))">
+                    <a href="/DespatchDemurrage/Contract/Index" title="Despatch Demurrage" data-filter-tags="contract management desdem">
+                        <span class="nav-link-text" data-i18n="nav.contract_management__despatch_demurrage">@WebAppMenu.BreadcrumbText[WebAppMenu.DespatchDemurrageContract]</span>
+                    </a>
+                </li>
+            }
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProgressClaim) ? "active open" : "")">
             <a href="/ContractManagement/ProgressClaim/Index" title="Progress Claim" data-filter-tags="contract management progress claim">
             <span class="nav-link-text" data-i18n="nav.contract_management_progress_claim">Progress Claim</span>
@@ -674,27 +833,38 @@
                     <span class="nav-link-text" data-i18n="nav.contract_management_advance_contract">@WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContract]</span>
                 </a>
                 <ul>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AdvanceContractIndex) ? "active open" : "")">
-                        <a href="/ContractManagement/AdvanceContract/Index" title="Advance Contract" data-filter-tags="contract management advance contract">
-                            <span class="nav-link-text" data-i18n="nav.contract_management_advance_contract">@WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContract]</span>
-                        </a>
-                    </li>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AdvanceContractCharge) ? "active open" : "")">
-                        <a href="/ContractManagement/AdvanceContractCharge/Index" title="Advance Contract Charge" data-filter-tags="contract management advance contract charge">
-                            <span class="nav-link-text" data-i18n="nav.contract_management_advance_contract_charge">@WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContractCharge]</span>
-                        </a>
-                    </li>
-
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AdvanceContract) ? "active open" : "")">
-                        <a href="/ContractManagement/AdvanceContractReference/Index" title="Advance Contract Reference" data-filter-tags="contract management advance contract charge">
-                            <span class="nav-link-text" data-i18n="nav.contract_management_advance_contract_charge">@WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContractReference]</span>
-                        </a>
-                    </li>
-                    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AdvanceContractValuation) ? "active open" : "")">
-                        <a href="/ContractManagement/AdvanceContractValuation/Index" title="Advance Contract Valuation" data-filter-tags="contract management advance contract valuation">
-                            <span class="nav-link-text" data-i18n="nav.contract_management_advance_contract_valuation">@WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContractValuation]</span>
-                        </a>
-                    </li>
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("ADVANCECONTRACT,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AdvanceContractIndex) ? "active open" : "")">
+                            <a href="/ContractManagement/AdvanceContract/Index" title="Advance Contract" data-filter-tags="contract management advance contract">
+                                <span class="nav-link-text" data-i18n="nav.contract_management_advance_contract">@WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContract]</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("ADVANCECONTRACTCHARGE,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AdvanceContractCharge) ? "active open" : "")">
+                            <a href="/ContractManagement/AdvanceContractCharge/Index" title="Advance Contract Charge" data-filter-tags="contract management advance contract charge">
+                                <span class="nav-link-text" data-i18n="nav.contract_management_advance_contract_charge">@WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContractCharge]</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("ADVANCECONTRACTREFERENCE,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AdvanceContract) ? "active open" : "")">
+                            <a href="/ContractManagement/AdvanceContractReference/Index" title="Advance Contract Reference" data-filter-tags="contract management advance contract charge">
+                                <span class="nav-link-text" data-i18n="nav.contract_management_advance_contract_charge">@WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContractReference]</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((ViewBag.RoleAccessList ?? defStr).Contains("ADVANCECONTRACTVALUATION,"))
+                    {
+                        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AdvanceContractValuation) ? "active open" : "")">
+                            <a href="/ContractManagement/AdvanceContractValuation/Index" title="Advance Contract Valuation" data-filter-tags="contract management advance contract valuation">
+                                <span class="nav-link-text" data-i18n="nav.contract_management_advance_contract_valuation">@WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContractValuation]</span>
+                            </a>
+                        </li>
+                    }
                 </ul>
             </li>
         </ul>
@@ -705,45 +875,66 @@
             <span class="nav-link-text" data-i18n="nav.index">@WebAppMenu.BreadcrumbText[WebAppMenu.Invoice]</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesInvoice) ? "active open" : ""))">
-                <a href="/Sales/SalesInvoice/Index" title="Sales Invoice" data-filter-tags="contract management sales invoice">
-                    <span class="nav-link-text" data-i18n="nav.contract_management_sales_invoice">@WebAppMenu.BreadcrumbText[WebAppMenu.SalesInvoice]</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesInvoiceApproval) ? "active open" : ""))">
-                <a href="/Sales/SalesInvoiceApproval/Index" title="Sales Invoice Approval" data-filter-tags="contract management sales invoice approval">
-                    <span class="nav-link-text" data-i18n="nav.contract_management_sales_invoice_approval">Sales Invoice Approval</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DesDemValuation) ? "active open" : ""))">
-                <a href="/DespatchDemurrage/Invoice/Index" title="Laytime Valuation" data-filter-tags="laytime valuation">
-                    @*<span class="nav-link-text" data-i18n="nav.contract_management_despatch_demurrage_invoice">Despatch Demurrage Invoice</span>*@
-                    <span class="nav-link-text" data-i18n="nav.desdem_valuation">@WebAppMenu.BreadcrumbText[WebAppMenu.DesDemValuation]</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DesDemValuation) ? "active open" : ""))">
-                <a href="/ContractManagement/ShippingCost/Index" title="Shipping Cost" data-filter-tags="shipping cost">
-                    <span class="nav-link-text" data-i18n="nav.shipping_cost">Shipping Cost</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DesDemValuation) ? "active open" : ""))">
-                <a href="/ContractManagement/ParentDespatchOrder/Index" title="Parent Shipping Order" data-filter-tags="parent shipping order">
-                    <span class="nav-link-text" data-i18n="nav.parent_despatch_order">Parent Shipping Order</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Royalty) ? "active open" : ""))">
-                <a href="/Sales/Royalty/Index" title="Royalty" data-filter-tags="contract management royalty">
-                    <span class="nav-link-text" data-i18n="nav.contract_management_royalty">Royalty</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SALESINVOICE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesInvoice) ? "active open" : ""))">
+                    <a href="/Sales/SalesInvoice/Index" title="Sales Invoice" data-filter-tags="contract management sales invoice">
+                        <span class="nav-link-text" data-i18n="nav.contract_management_sales_invoice">@WebAppMenu.BreadcrumbText[WebAppMenu.SalesInvoice]</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SALESINVOICEAPPROVAL,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesInvoiceApproval) ? "active open" : ""))">
+                    <a href="/Sales/SalesInvoiceApproval/Index" title="Sales Invoice Approval" data-filter-tags="contract management sales invoice approval">
+                        <span class="nav-link-text" data-i18n="nav.contract_management_sales_invoice_approval">Sales Invoice Approval</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("DESPATCHDEMURRAGE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DesDemValuation) ? "active open" : ""))">
+                    <a href="/DespatchDemurrage/Invoice/Index" title="Laytime Valuation" data-filter-tags="laytime valuation">
+                        @*<span class="nav-link-text" data-i18n="nav.contract_management_despatch_demurrage_invoice">Despatch Demurrage Invoice</span>*@
+                        <span class="nav-link-text" data-i18n="nav.desdem_valuation">@WebAppMenu.BreadcrumbText[WebAppMenu.DesDemValuation]</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SHIPPINGCOST,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DesDemValuation) ? "active open" : ""))">
+                    <a href="/ContractManagement/ShippingCost/Index" title="Shipping Cost" data-filter-tags="shipping cost">
+                        <span class="nav-link-text" data-i18n="nav.shipping_cost">Shipping Cost</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("PARENTDESPATCHORDER,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DesDemValuation) ? "active open" : ""))">
+                    <a href="/ContractManagement/ParentDespatchOrder/Index" title="Parent Shipping Order" data-filter-tags="parent shipping order">
+                        <span class="nav-link-text" data-i18n="nav.parent_despatch_order">Parent Shipping Order</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("ROYALTY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Royalty) ? "active open" : ""))">
+                    <a href="/Sales/Royalty/Index" title="Royalty" data-filter-tags="contract management royalty">
+                        <span class="nav-link-text" data-i18n="nav.contract_management_royalty">Royalty</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DesDemDebitCreditNote) ? "active open" : "")">
-        <a href="/DespatchDemurrage/DebitCreditNote/Index" title="Debit/Credit Note" data-filter-tags="debit credit note">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.despatch_demurrage_debit_credit_note">Debit/Credit Note</span>
-        </a>
-    </li>
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("DESPATCHDEMURRAGEDEBITCREDITNOTE,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DesDemDebitCreditNote) ? "active open" : "")">
+            <a href="/DespatchDemurrage/DebitCreditNote/Index" title="Debit/Credit Note" data-filter-tags="debit credit note">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.despatch_demurrage_debit_credit_note">Debit/Credit Note</span>
+            </a>
+        </li>
+    }
 
     <li class="nav-title">PLANNING MANAGEMENT</li>
     @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Planning) ? "active open" : "")">
@@ -755,88 +946,118 @@
     </ul>
     </li>*@
 
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProductionPlan) ? "active open" : "")">
-        <a href="/Planning/ProductionPlan/Index" title="Production Plan" data-filter-tags="supply chain planning production plan">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.planning_production_plan">Production Plan</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BlendingPlan) ? "active open" : "")">
-        <a href="/Planning/BlendingPlan/Index" title="Blending" data-filter-tags="planning blending">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.planning_blending">Blending Plan</span>
-        </a>
-    </li>
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("PRODUCTIONPLAN,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProductionPlan) ? "active open" : "")">
+            <a href="/Planning/ProductionPlan/Index" title="Production Plan" data-filter-tags="supply chain planning production plan">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.planning_production_plan">Production Plan</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("BLENDINGPLAN,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BlendingPlan) ? "active open" : "")">
+            <a href="/Planning/BlendingPlan/Index" title="Blending" data-filter-tags="planning blending">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.planning_blending">Blending Plan</span>
+            </a>
+        </li>
+    }
     @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingPlan) ? "active open" : "")">
     <a href="#" title="Shipping" data-filter-tags="supply chain planning shipping">
     <i class="fal fa-clipboard-list"></i>
     <span class="nav-link-text" data-i18n="nav.supply_chain_planning_shipping">Shipping Plan</span>
     </a>
     </li>*@
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesPlan) ? "active open" : "")">
-        <a href="/Planning/SalesPlan/Index" title="Sales Plan" data-filter-tags="supply chain planning sales plan">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.supply_chain_planning_sales_plan">Sales Plan</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesPlanSnapshot) ? "active open" : "")">
-        <a href="/Planning/SalesPlanSnapshot/Index" title="Sales Plan Report Snapshot" data-filter-tags="supply chain planning sales plan snapshot">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.supply_chain_planning_sales_plan">Sales Plan Snapshot</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingProgram) ? "active open" : "")">
-        <a href="/Planning/ShippingProgram/Index" title="Shipping Program" data-filter-tags="supply chain planning shipping program">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.supply_chain_planning_sales_plan">Shipping Program</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.EightWeekForecast) ? "active open" : "")">
-        <a href="/Planning/EightWeekForecast/Index" title="8 Week Forecast" data-filter-tags="supply chain planning eight week forecast 8 week forecast">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.supply_chain_planning_sales_plan">8 Week Forecast</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShipmentPlan) ? "active open" : "")">
-        <a href="/Planning/ShipmentPlan/Index" title="Shipment Plan" data-filter-tags="supply chain planning shipment plan">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.supply_chain_planning_shipment_plan">Shipment Plan</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DrillBlastPlan) ? "active open" : "")">
-        <a href="/Mining/DrillBlastPlan/Index" title="Drill & Blast Plan" data-filter-tags="drill blast plan">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.drill_blast_plan">Drill & Blast Plan</span>
-        </a>
-    </li>
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("SALESPLAN,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesPlan) ? "active open" : "")">
+            <a href="/Planning/SalesPlan/Index" title="Sales Plan" data-filter-tags="supply chain planning sales plan">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.supply_chain_planning_sales_plan">Sales Plan</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("SALESPLANSNAPSHOT,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SalesPlanSnapshot) ? "active open" : "")">
+            <a href="/Planning/SalesPlanSnapshot/Index" title="Sales Plan Report Snapshot" data-filter-tags="supply chain planning sales plan snapshot">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.supply_chain_planning_sales_plan">Sales Plan Snapshot</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("SHIPPINGPROGRAM,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingProgram) ? "active open" : "")">
+            <a href="/Planning/ShippingProgram/Index" title="Shipping Program" data-filter-tags="supply chain planning shipping program">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.supply_chain_planning_sales_plan">Shipping Program</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("EIGHTWEEKFORECAST,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.EightWeekForecast) ? "active open" : "")">
+            <a href="/Planning/EightWeekForecast/Index" title="8 Week Forecast" data-filter-tags="supply chain planning eight week forecast 8 week forecast">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.supply_chain_planning_sales_plan">8 Week Forecast</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("SHIPMENTPLAN,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShipmentPlan) ? "active open" : "")">
+            <a href="/Planning/ShipmentPlan/Index" title="Shipment Plan" data-filter-tags="supply chain planning shipment plan">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.supply_chain_planning_shipment_plan">Shipment Plan</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("DRILLBLASTPLAN,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DrillBlastPlan) ? "active open" : "")">
+            <a href="/Mining/DrillBlastPlan/Index" title="Drill & Blast Plan" data-filter-tags="drill blast plan">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.drill_blast_plan">Drill & Blast Plan</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("EXPLOSIVEUSAGEPLAN,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ExplosiveUsagePlan) ? "active open" : "")">
+            <a href="/Mining/ExplosiveUsagePlan/Index" title="Explosive Usage Plan" data-filter-tags="explosive usage plan">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.explosive_usage_plan">Explosive Usage Plan</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("TIMESHEETPLAN,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.TimesheetPlan) ? "active open" : "")">
+            <a href="/Mining/TimesheetPlan/Index" title="Daily Plan" data-filter-tags="timesheet plan">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.timesheet_plan">Timesheet Plan</span>
+            </a>
+        </li>
+    }
 
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ExplosiveUsagePlan) ? "active open" : "")">
-        <a href="/Mining/ExplosiveUsagePlan/Index" title="Explosive Usage Plan" data-filter-tags="explosive usage plan">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.explosive_usage_plan">Explosive Usage Plan</span>
-        </a>
-    </li>
-
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.TimesheetPlan) ? "active open" : "")">
-        <a href="/Mining/TimesheetPlan/Index" title="Daily Plan" data-filter-tags="timesheet plan">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.timesheet_plan">Timesheet Plan</span>
-        </a>
-    </li>
-
-   @* <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.TimesheetPlan) ? "active open" : "")">
-        <a href="/Planning/HaulingPlan/Index" title="Daily Plan" data-filter-tags="hauling plan">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.hauling_plan">Hauling Plan</span>
-        </a>
+    @* <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.TimesheetPlan) ? "active open" : "")">
+    <a href="/Planning/HaulingPlan/Index" title="Daily Plan" data-filter-tags="hauling plan">
+    <i class="fal fa-clipboard-list"></i>
+    <span class="nav-link-text" data-i18n="nav.hauling_plan">Hauling Plan</span>
+    </a>
     </li>*@
-
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BargingPlan) ? "active open" : "")">
-        <a href="/Planning/BargingPlan/Index" title="Barging Plan" data-filter-tags="barging plan">
-            <i class="fal fa-clipboard-list"></i>
-            <span class="nav-link-text" data-i18n="nav.barging_plan">Barging Plan</span>
-        </a>
-    </li>
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("BARGINGPLAN,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BargingPlan) ? "active open" : "")">
+            <a href="/Planning/BargingPlan/Index" title="Barging Plan" data-filter-tags="barging plan">
+                <i class="fal fa-clipboard-list"></i>
+                <span class="nav-link-text" data-i18n="nav.barging_plan">Barging Plan</span>
+            </a>
+        </li>
+    }
 
 
     <li class="nav-title">ACCOUNTING MANAGEMENT</li>
@@ -865,19 +1086,25 @@
     </a>
     </li>*@
 
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Accounts) ? "active open" : ""))">
-        <a href="/Accounting/Account/Index" title="Account" data-filter-tags="accounting management account">
-            <i class="fal fa-calendar"></i>
-            <span class="nav-link-text" data-i18n="nav.accounting_management_account">Accounts</span>
-        </a>
-    </li>
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("COA,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Accounts) ? "active open" : ""))">
+            <a href="/Accounting/Account/Index" title="Account" data-filter-tags="accounting management account">
+                <i class="fal fa-calendar"></i>
+                <span class="nav-link-text" data-i18n="nav.accounting_management_account">Accounts</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("ACCOUNTINGPERIOD,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AccountingPeriod) ? "active open" : ""))">
+            <a href="/Accounting/AccountingPeriod/Index" title="Accounting Period" data-filter-tags="organization accounting period">
+                <i class="fal fa-calendar"></i>
+                <span class="nav-link-text" data-i18n="nav.organization_accounting_period">Accounting Period</span>
+            </a>
+        </li>
+    }
 
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AccountingPeriod) ? "active open" : ""))">
-        <a href="/Accounting/AccountingPeriod/Index" title="Accounting Period" data-filter-tags="organization accounting period">
-            <i class="fal fa-calendar"></i>
-            <span class="nav-link-text" data-i18n="nav.organization_accounting_period">Accounting Period</span>
-        </a>
-    </li>
     @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CostDistribution) ? "active open" : ""))">
     <a href="#" title="Bank" data-filter-tags="general bank">
     <i class="fal fa-money-check"></i>
@@ -902,42 +1129,60 @@
     </li>
     </ul>
     </li>*@
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith("Employee") ? "active open" : ""))">
-        <a href="/General/Employee/Index" title="Employee" data-filter-tags="general employee">
-            <i class="fal fa-building"></i>
-            <span class="nav-link-text">Employee</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Bank) ? "active open" : ""))">
-        <a href="/General/Bank/Index" title="Bank" data-filter-tags="general bank">
-            <i class="fal fa-building"></i>
-            <span class="nav-link-text" data-i18n="nav.general_bank">Bank</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BankAccount) ? "active open" : ""))">
-        <a href="/General/BankAccount/Index" title="Bank Account" data-filter-tags="general bank account">
-            <i class="fal fa-file-user"></i>
-            <span class="nav-link-text" data-i18n="nav.general_bank_account">Bank Account</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Currency) ? "active open" : ""))">
-        <a href="/General/Currency/Index" title="Currency" data-filter-tags="general currency">
-            <i class="fal fa-money-bill"></i>
-            <span class="nav-link-text" data-i18n="nav.general_currency">Currency</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CurrencyExchange) ? "active open" : ""))">
-        <a href="/General/CurrencyExchange/Index" title="Currency Exchange" data-filter-tags="general currency exchange">
-            <i class="fal fa-money-check-edit"></i>
-            <span class="nav-link-text" data-i18n="nav.general_currency_exchange">Currency Exchange</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Tax) ? "active open" : ""))">
-        <a href="/General/Tax/Index" title="Tax" data-filter-tags="general tax">
-            <i class="fal fa-money-check"></i>
-            <span class="nav-link-text" data-i18n="nav.general_tax">Tax</span>
-        </a>
-    </li>
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("EMPLOYEE,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith("Employee") ? "active open" : ""))">
+            <a href="/General/Employee/Index" title="Employee" data-filter-tags="general employee">
+                <i class="fal fa-building"></i>
+                <span class="nav-link-text">Employee</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("BANK,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Bank) ? "active open" : ""))">
+            <a href="/General/Bank/Index" title="Bank" data-filter-tags="general bank">
+                <i class="fal fa-building"></i>
+                <span class="nav-link-text" data-i18n="nav.general_bank">Bank</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("BANKACCOUNT,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BankAccount) ? "active open" : ""))">
+            <a href="/General/BankAccount/Index" title="Bank Account" data-filter-tags="general bank account">
+                <i class="fal fa-file-user"></i>
+                <span class="nav-link-text" data-i18n="nav.general_bank_account">Bank Account</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("CURRENCY,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Currency) ? "active open" : ""))">
+            <a href="/General/Currency/Index" title="Currency" data-filter-tags="general currency">
+                <i class="fal fa-money-bill"></i>
+                <span class="nav-link-text" data-i18n="nav.general_currency">Currency</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("CURRENCYEXCHANGE,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.CurrencyExchange) ? "active open" : ""))">
+            <a href="/General/CurrencyExchange/Index" title="Currency Exchange" data-filter-tags="general currency exchange">
+                <i class="fal fa-money-check-edit"></i>
+                <span class="nav-link-text" data-i18n="nav.general_currency_exchange">Currency Exchange</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("TAX,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Tax) ? "active open" : ""))">
+            <a href="/General/Tax/Index" title="Tax" data-filter-tags="general tax">
+                <i class="fal fa-money-check"></i>
+                <span class="nav-link-text" data-i18n="nav.general_tax">Tax</span>
+            </a>
+        </li>
+    }
     @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.MiningOperationDashboard) ? "active open" : ""))">
     <a href="#" title="Mining Operation Dashboard" data-filter-tags="general bank">
     <i class="fal fa-chart-line"></i>
@@ -952,26 +1197,38 @@
             <span class="nav-link-text" data-i18n="nav.pages">Material</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Product) ? "active open" : ""))">
-                <a href="/Material/Product/Index" title="Product" data-filter-tags="material product">
-                    <span class="nav-link-text" data-i18n="nav.material_product">Product</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProductCategory) ? "active open" : ""))">
-                <a href="/Material/ProductCategory/Index" title="Product Category" data-filter-tags="material product category">
-                    <span class="nav-link-text" data-i18n="nav.material_product_category">Product Category</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Waste) ? "active open" : ""))">
-                <a href="/Material/Waste/Index" title="Waste" data-filter-tags="material waste">
-                    <span class="nav-link-text" data-i18n="nav.material_waste">Waste</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.WasteCategory) ? "active open" : ""))">
-                <a href="/Material/WasteCategory/Index" title="Waste Category" data-filter-tags="material waste category">
-                    <span class="nav-link-text" data-i18n="nav.material_waste_category">Waste Category</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("PRODUCT,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Product) ? "active open" : ""))">
+                    <a href="/Material/Product/Index" title="Product" data-filter-tags="material product">
+                        <span class="nav-link-text" data-i18n="nav.material_product">Product</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("PRODUCTCATEGORY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProductCategory) ? "active open" : ""))">
+                    <a href="/Material/ProductCategory/Index" title="Product Category" data-filter-tags="material product category">
+                        <span class="nav-link-text" data-i18n="nav.material_product_category">Product Category</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("WASTE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Waste) ? "active open" : ""))">
+                    <a href="/Material/Waste/Index" title="Waste" data-filter-tags="material waste">
+                        <span class="nav-link-text" data-i18n="nav.material_waste">Waste</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("WASTECATEGORY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.WasteCategory) ? "active open" : ""))">
+                    <a href="/Material/WasteCategory/Index" title="Waste Category" data-filter-tags="material waste category">
+                        <span class="nav-link-text" data-i18n="nav.material_waste_category">Waste Category</span>
+                    </a>
+                </li>
+            }
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.OtherMaterial) ? "active open" : ""))">
             <a href="/Material/Other/Index" title="Waste" data-filter-tags="material other">
             <span class="nav-link-text" data-i18n="nav.material_other">Other Material</span>
@@ -985,16 +1242,22 @@
             <span class="nav-link-text" data-i18n="nav.pages">Quality</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AnalyteDefinitions) ? "active open" : ""))">
-                <a href="/Quality/Analyte/Index" title="Sampling Template" data-filter-tags="quality analyte definition">
-                    <span class="nav-link-text" data-i18n="nav.quality_analyte">Analyte Definitions</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SamplingTemplate) ? "active open" : ""))">
-                <a href="/Quality/SamplingTemplate/Index" title="Sampling Template" data-filter-tags="quality sampling template">
-                    <span class="nav-link-text" data-i18n="nav.sampling_template">Sampling Template</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("ANALYTE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AnalyteDefinitions) ? "active open" : ""))">
+                    <a href="/Quality/Analyte/Index" title="Sampling Template" data-filter-tags="quality analyte definition">
+                        <span class="nav-link-text" data-i18n="nav.quality_analyte">Analyte Definitions</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SAMPLINGTEMPLATE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SamplingTemplate) ? "active open" : ""))">
+                    <a href="/Quality/SamplingTemplate/Index" title="Sampling Template" data-filter-tags="quality sampling template">
+                        <span class="nav-link-text" data-i18n="nav.sampling_template">Sampling Template</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
 
@@ -1004,16 +1267,22 @@
             <span class="nav-link-text" data-i18n="nav.index">Equipment</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.EquipmentList) ? "active open" : "")">
-                <a href="/Equipment/EquipmentList/Index" title="Equipment" data-filter-tags="equipment">
-                    <span class="nav-link-text" data-i18n="nav.equipment_type">Equipment List</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.EquipmentType) ? "active open" : "")">
-                <a href="/Equipment/EquipmentType/Index" title="Equipment Type" data-filter-tags="equipment type">
-                    <span class="nav-link-text" data-i18n="nav.equipment_type">Equipment Type</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("EQUIPMENT,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.EquipmentList) ? "active open" : "")">
+                    <a href="/Equipment/EquipmentList/Index" title="Equipment" data-filter-tags="equipment">
+                        <span class="nav-link-text" data-i18n="nav.equipment_type">Equipment List</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("EQUIPMENTTYPE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.EquipmentType) ? "active open" : "")">
+                    <a href="/Equipment/EquipmentType/Index" title="Equipment Type" data-filter-tags="equipment type">
+                        <span class="nav-link-text" data-i18n="nav.equipment_type">Equipment Type</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
 
@@ -1023,31 +1292,43 @@
             <span class="nav-link-text" data-i18n="nav.pages">Transport</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Truck) ? "active open" : ""))">
-                <a href="/Transport/Truck/Index" title="Truck" data-filter-tags="transport truck">
-                    <span class="nav-link-text" data-i18n="nav.transport_truck">Truck</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("TRUCK,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Truck) ? "active open" : ""))">
+                    <a href="/Transport/Truck/Index" title="Truck" data-filter-tags="transport truck">
+                        <span class="nav-link-text" data-i18n="nav.transport_truck">Truck</span>
+                    </a>
+                </li>
+            }
             @* <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Train) ? "active open" : ""))">
-                <a href="/Transport/Train/Index" title="Truck" data-filter-tags="transport train">
-                    <span class="nav-link-text" data-i18n="nav.transport_train">Train</span>
-                </a>
+            <a href="/Transport/Train/Index" title="Truck" data-filter-tags="transport train">
+            <span class="nav-link-text" data-i18n="nav.transport_train">Train</span>
+            </a>
             </li> *@
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Tug) ? "active open" : ""))">
-                <a href="/Transport/Tug/Index" title="Tug" data-filter-tags="transport tug">
-                    <span class="nav-link-text" data-i18n="nav.transport_tug">Tug</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Barge) ? "active open" : ""))">
-                <a href="/Transport/Barge/Index" title="Barge" data-filter-tags="transport barge">
-                    <span class="nav-link-text" data-i18n="nav.transport_barge">Barge</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Vessel) ? "active open" : ""))">
-                <a href="/Transport/Vessel/Index" title="Vessel" data-filter-tags="transport vessel">
-                    <span class="nav-link-text" data-i18n="nav.transport_vessel">Vessel</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("TUG,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Tug) ? "active open" : ""))">
+                    <a href="/Transport/Tug/Index" title="Tug" data-filter-tags="transport tug">
+                        <span class="nav-link-text" data-i18n="nav.transport_tug">Tug</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("BARGE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Barge) ? "active open" : ""))">
+                    <a href="/Transport/Barge/Index" title="Barge" data-filter-tags="transport barge">
+                        <span class="nav-link-text" data-i18n="nav.transport_barge">Barge</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("VESSEL,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Vessel) ? "active open" : ""))">
+                    <a href="/Transport/Vessel/Index" title="Vessel" data-filter-tags="transport vessel">
+                        <span class="nav-link-text" data-i18n="nav.transport_vessel">Vessel</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
     <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Shift) ? "active open" : "")">
@@ -1056,16 +1337,22 @@
             <span class="nav-link-text" data-i18n="nav.pages">Shift</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Shift) ? "active open" : ""))">
-                <a href="/Shift/Shift/Index" title="Shift" data-filter-tags="organization shift">
-                    <span class="nav-link-text" data-i18n="nav.organization_shift">Shift Definition</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShiftCategory) ? "active open" : ""))">
-                <a href="/Shift/ShiftCategory/Index" title="Shift Category" data-filter-tags="organization shift category">
-                    <span class="nav-link-text" data-i18n="nav.organization_shift_category">Shift Category</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SHIFT,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Shift) ? "active open" : ""))">
+                    <a href="/Shift/Shift/Index" title="Shift" data-filter-tags="organization shift">
+                        <span class="nav-link-text" data-i18n="nav.organization_shift">Shift Definition</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("SHIFTCATEGORY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShiftCategory) ? "active open" : ""))">
+                    <a href="/Shift/ShiftCategory/Index" title="Shift Category" data-filter-tags="organization shift category">
+                        <span class="nav-link-text" data-i18n="nav.organization_shift_category">Shift Category</span>
+                    </a>
+                </li>
+            }
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Company) ? "active open" : ""))">
             <a href="/Organisation/Company/Index" title="Company" data-filter-tags="organization business partner">
             <span class="nav-link-text" data-i18n="nav.organization_business_partner">Company</span>
@@ -1080,11 +1367,14 @@
             <span class="nav-link-text" data-i18n="nav.pages">Operator</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Operator) ? "active open" : ""))">
-                <a href="/General/Operator/Index" title="Operator" data-filter-tags="organization operator">
-                    <span class="nav-link-text" data-i18n="nav.organization_operator">Operator</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("OPERATOR,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Operator) ? "active open" : ""))">
+                    <a href="/General/Operator/Index" title="Operator" data-filter-tags="organization operator">
+                        <span class="nav-link-text" data-i18n="nav.organization_operator">Operator</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
     <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.UOM) ? "active open" : "")">
@@ -1093,17 +1383,22 @@
             <span class="nav-link-text" data-i18n="nav.pages">UOM</span>
         </a>
         <ul>
-
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.UOM) ? "active open" : ""))">
-                <a href="/UOM/UOM/Index" title="UOM" data-filter-tags="general uom">
-                    <span class="nav-link-text" data-i18n="nav.general_uom">UOM</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.UOMCategory) ? "active open" : ""))">
-                <a href="/UOM/UOMCategory/Index" title="UOM Category" data-filter-tags="general uom category">
-                    <span class="nav-link-text" data-i18n="nav.general_uom_category">UOM Category</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("UOM,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.UOM) ? "active open" : ""))">
+                    <a href="/UOM/UOM/Index" title="UOM" data-filter-tags="general uom">
+                        <span class="nav-link-text" data-i18n="nav.general_uom">UOM</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("UOMCATEGORY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.UOMCategory) ? "active open" : ""))">
+                    <a href="/UOM/UOMCategory/Index" title="UOM Category" data-filter-tags="general uom category">
+                        <span class="nav-link-text" data-i18n="nav.general_uom_category">UOM Category</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
     <!--
@@ -1129,61 +1424,84 @@
             <span class="nav-link-text" data-i18n="nav.pages">Event Definition</span>
         </a>
         <ul>
-
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.EventDefinitionCategory) ? "active open" : ""))">
-                <a href="/General/EventDefinitionCategory/Index" title="Event Definition Category" data-filter-tags="general event definition category">
-                    <span class="nav-link-text" data-i18n="nav.general_event_definition_category">Event Definition Category</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.EventDefinition) ? "active open" : ""))">
-                <a href="/General/EventCategory/Index" title="Event Definition" data-filter-tags="general event definition">
-                    <span class="nav-link-text" data-i18n="nav.general_event_definition">Event Definition</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("EVENTDEFINITIONCATEGORY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.EventDefinitionCategory) ? "active open" : ""))">
+                    <a href="/General/EventDefinitionCategory/Index" title="Event Definition Category" data-filter-tags="general event definition category">
+                        <span class="nav-link-text" data-i18n="nav.general_event_definition_category">Event Definition Category</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("EVENTCATEGORY,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.EventDefinition) ? "active open" : ""))">
+                    <a href="/General/EventCategory/Index" title="Event Definition" data-filter-tags="general event definition">
+                        <span class="nav-link-text" data-i18n="nav.general_event_definition">Event Definition</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
 
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Customer) ? "active open" : ""))">
-        <a href="/Sales/Customer/Index" title="Customer" data-filter-tags="sales marketing customer">
-            <i class="fal fa-user-circle"></i>
-            <span class="nav-link-text" data-i18n="nav.sales_marketing_customer">Customer</span>
-        </a>
-    </li>
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("CUSTOMER,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Customer) ? "active open" : ""))">
+            <a href="/Sales/Customer/Index" title="Customer" data-filter-tags="sales marketing customer">
+                <i class="fal fa-user-circle"></i>
+                <span class="nav-link-text" data-i18n="nav.sales_marketing_customer">Customer</span>
+            </a>
+        </li>
+    }
 
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Contractor) ? "active open" : "")">
-        <a href="/Organisation/Contractor/Index" title="Contractor" data-filter-tags="production logistics contractor">
-            <i class="fal fa-user-circle"></i>
-            <span class="nav-link-text" data-i18n="nav.production_logistics_contractor">Contractor</span>
-        </a>
-    </li>
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("CONTRACTOR,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Contractor) ? "active open" : "")">
+            <a href="/Organisation/Contractor/Index" title="Contractor" data-filter-tags="production logistics contractor">
+                <i class="fal fa-user-circle"></i>
+                <span class="nav-link-text" data-i18n="nav.production_logistics_contractor">Contractor</span>
+            </a>
+        </li>
+    }
 
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DocumentType) ? "active open" : ""))">
-        <a href="/General/DocumentType/Index" title="Document Type" data-filter-tags="general document type">
-            <i class="fal fa-book"></i>
-            <span class="nav-link-text" data-i18n="nav.general_document_type">Document Type</span>
-        </a>
-    </li>
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("DOCUMENTTYPE,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DocumentType) ? "active open" : ""))">
+            <a href="/General/DocumentType/Index" title="Document Type" data-filter-tags="general document type">
+                <i class="fal fa-book"></i>
+                <span class="nav-link-text" data-i18n="nav.general_document_type">Document Type</span>
+            </a>
+        </li>
+    }
     <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.AdministrativeArea) ? "active open" : ""))">
         <a href="#" title="Region" data-filter-tags="material">
             <i class="fal fa-atlas"></i>
             <span class="nav-link-text" data-i18n="nav.pages">Administrative Area</span>
         </a>
         <ul>
-            <li>
-                <a href="/General/City/Index" title="City" data-filter-tags="general city">
-                    <span class="nav-link-text" data-i18n="nav.general_city">City</span>
-                </a>
-            </li>
-            <li>
-                <a href="/General/Province/Index" title="Province" data-filter-tags="general province">
-                    <span class="nav-link-text" data-i18n="nav.general_province">Province</span>
-                </a>
-            </li>
-            <li>
-                <a href="/General/Country/Index" title="Country" data-filter-tags="general country">
-                    <span class="nav-link-text" data-i18n="nav.general_country">Country</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("CITY,"))
+            {
+                <li>
+                    <a href="/General/City/Index" title="City" data-filter-tags="general city">
+                        <span class="nav-link-text" data-i18n="nav.general_city">City</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("PROVINCE,"))
+            {
+                <li>
+                    <a href="/General/Province/Index" title="Province" data-filter-tags="general province">
+                        <span class="nav-link-text" data-i18n="nav.general_province">Province</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("COUNTRY,"))
+            {
+                <li>
+                    <a href="/General/Country/Index" title="Country" data-filter-tags="general country">
+                        <span class="nav-link-text" data-i18n="nav.general_country">Country</span>
+                    </a>
+                </li>
+            }
         </ul>
     </li>
     <li class="@(ViewBag.Breadcrumb == "DataPairList" ? "active" : "")">
@@ -1193,60 +1511,87 @@
         </a>
     </li>
 
-    <li class="@(ViewBag.Breadcrumb == "CustomerType" ? "active" : "")">
-        <a href="/General/CustomerType/Index" title="Country" data-filter-tags="general customer_type">
-            <i class="fal fa-user-tag"></i>
-            <span class="nav-link-text" data-i18n="nav.general_customer_type">Customer Type</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Calendar) ? "active open" : ""))">
-        <a href="/General/Calendar/Index" title="Calendar" data-filter-tags="general calendar">
-            <i class="fal fa-calendar"></i>
-            <span class="nav-link-text" data-i18n="nav.general_calendar">Calendar</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PriceIndex) ? "active open" : ""))">
-        <a href="/General/PriceIndex/Index" title="Price Index" data-filter-tags="general price index">
-            <i class="fal fa-money-bill-wave"></i>
-            <span class="nav-link-text" data-i18n="nav.general_price_index">Price Index</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProcessingCategory) ? "active open" : "")">
-        <a href="/ProcessFlow/ProcessingCategory/Index" title="Processing Category" data-filter-tags="supply chain transaction processing category">
-            <i class="fal fa-user-cog"></i>
-            <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_processing_category">Processing Category</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.MasterListGroup) ? "active open" : ""))">
-        <a href="/General/ItemGroup/Index" title="Master List Group" data-filter-tags="general master list group">
-            <i class="fal fa-th-list"></i>
-            <span class="nav-link-text" data-i18n="nav.general_master_list_group">Master List Group</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.MasterList) ? "active open" : ""))">
-        <a href="/General/MasterList/Index" title="Master List" data-filter-tags="general master list">
-            <i class="fal fa-th-list"></i>
-            <span class="nav-link-text" data-i18n="nav.general_master_list">Master List</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ReferencePriceEditor) ? "active open" : ""))">
-        <a href="/General/ReferencePriceEditor/Index" title="Reference Price Editor" data-filter-tags="general reference price editor">
-            <i class="fal fa-book"></i>
-            <span class="nav-link-text" data-i18n="nav.general_reference_price_editor">Reference Price Editor</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BenchmarkPriceBrand) ? "active open" : ""))">
-        <a href="/General/BenchmarkPriceBrand/Index" title="Benchmark Price Brand" data-filter-tags="general benchmark price brand">
-            <i class="fal fa-clipboard-check"></i>
-            <span class="nav-link-text" data-i18n="nav.general_benchmark_price_brand">Benchmark Price Brand</span>
-        </a>
-    </li>
-    <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BenchmarkPriceEditor) ? "active open" : ""))">
-        <a href="/General/BenchmarkPriceEditor/Index" title="Benchmark Price Editor" data-filter-tags="general benchmark price editor">
-            <i class="fal fa-clipboard-check"></i>
-            <span class="nav-link-text" data-i18n="nav.general_benchmark_price_editor">Benchmark Price Editor</span>
-        </a>
-    </li>
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("CUSTOMERTYPE,"))
+    {
+        <li class="@(ViewBag.Breadcrumb == "CustomerType" ? "active" : "")">
+            <a href="/General/CustomerType/Index" title="Country" data-filter-tags="general customer_type">
+                <i class="fal fa-user-tag"></i>
+                <span class="nav-link-text" data-i18n="nav.general_customer_type">Customer Type</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("CALENDAR,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Calendar) ? "active open" : ""))">
+            <a href="/General/Calendar/Index" title="Calendar" data-filter-tags="general calendar">
+                <i class="fal fa-calendar"></i>
+                <span class="nav-link-text" data-i18n="nav.general_calendar">Calendar</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("PRICEINDEX,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.PriceIndex) ? "active open" : ""))">
+            <a href="/General/PriceIndex/Index" title="Price Index" data-filter-tags="general price index">
+                <i class="fal fa-money-bill-wave"></i>
+                <span class="nav-link-text" data-i18n="nav.general_price_index">Price Index</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("PROCESSINGCATEGORY,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ProcessingCategory) ? "active open" : "")">
+            <a href="/ProcessFlow/ProcessingCategory/Index" title="Processing Category" data-filter-tags="supply chain transaction processing category">
+                <i class="fal fa-user-cog"></i>
+                <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_processing_category">Processing Category</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("ITEMGROUP,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.MasterListGroup) ? "active open" : ""))">
+            <a href="/General/ItemGroup/Index" title="Master List Group" data-filter-tags="general master list group">
+                <i class="fal fa-th-list"></i>
+                <span class="nav-link-text" data-i18n="nav.general_master_list_group">Master List Group</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("MASTERLIST,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.MasterList) ? "active open" : ""))">
+            <a href="/General/MasterList/Index" title="Master List" data-filter-tags="general master list">
+                <i class="fal fa-th-list"></i>
+                <span class="nav-link-text" data-i18n="nav.general_master_list">Master List</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("REFERENCEPRICESERIES,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ReferencePriceEditor) ? "active open" : ""))">
+            <a href="/General/ReferencePriceEditor/Index" title="Reference Price Editor" data-filter-tags="general reference price editor">
+                <i class="fal fa-book"></i>
+                <span class="nav-link-text" data-i18n="nav.general_reference_price_editor">Reference Price Editor</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("BENCHMARKPRICEBRAND,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BenchmarkPriceBrand) ? "active open" : ""))">
+            <a href="/General/BenchmarkPriceBrand/Index" title="Benchmark Price Brand" data-filter-tags="general benchmark price brand">
+                <i class="fal fa-clipboard-check"></i>
+                <span class="nav-link-text" data-i18n="nav.general_benchmark_price_brand">Benchmark Price Brand</span>
+            </a>
+        </li>
+    }
+    @if ((ViewBag.RoleAccessList ?? defStr).Contains("BENCHMARKPRICESERIES,"))
+    {
+        <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.BenchmarkPriceEditor) ? "active open" : ""))">
+            <a href="/General/BenchmarkPriceEditor/Index" title="Benchmark Price Editor" data-filter-tags="general benchmark price editor">
+                <i class="fal fa-clipboard-check"></i>
+                <span class="nav-link-text" data-i18n="nav.general_benchmark_price_editor">Benchmark Price Editor</span>
+            </a>
+        </li>
+    }
 
     <li class="nav-title">USER SECURITY MANAGEMENT</li>
     <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.SystemAdministration) ? "active open" : "")">
@@ -1255,41 +1600,59 @@
             <span class="nav-link-text" data-i18n="nav.pages">System Administration</span>
         </a>
         <ul>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ApplicationUser) ? "active open" : ""))">
-                <a href="/SystemAdministration/ApplicationUser/Index" title="Application User" data-filter-tags="system administration application user">
-                    <span class="nav-link-text" data-i18n="nav.system_administration_application_user">Application User</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Team) ? "active open" : ""))">
-                <a href="/SystemAdministration/Team/Index" title="Team" data-filter-tags="organization team">
-                    <span class="nav-link-text" data-i18n="nav.organization_team">Team</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ApplicationRole) ? "active open" : ""))">
-                <a href="/SystemAdministration/ApplicationRole/Index" title="Application Role" data-filter-tags="system administration application role">
-                    <span class="nav-link-text" data-i18n="nav.system_administration_application_role">Application Role</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Organization) ? "active open" : ""))">
-                <a href="/SystemAdministration/Organization/Index" title="Organization" data-filter-tags="system administration organization">
-                    <span class="nav-link-text" data-i18n="nav.system_administration_organization">Organization</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith("Email Notification") ? "active open" : ""))">
-                <a href="/SystemAdministration/EmailNotification/Index" title="Email Notification" data-filter-tags="system administration email notification">
-                    <span class="nav-link-text" data-i18n="nav.system_administration_email_notification">Email Notification</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith("Ellipse Sync Log") ? "active open" : ""))">
-                <a href="/SystemAdministration/SyncLog/Index" title="SyncLog" data-filter-tags="system administration sync log">
-                    <span class="nav-link-text" data-i18n="nav.system_administration_sync_log">Ellipse Sync Log</span>
-                </a>
-            </li>
-            <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith("Audit Trail") ? "active open" : ""))">
-                <a href="/SystemAdministration/AuditTrail/Index" title="Audit Trail" data-filter-tags="system administration audit trail">
-                    <span class="nav-link-text" data-i18n="nav.system_administration_audit_trail">Audit Trail</span>
-                </a>
-            </li>
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("APPLICATIONUSER,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ApplicationUser) ? "active open" : ""))">
+                    <a href="/SystemAdministration/ApplicationUser/Index" title="Application User" data-filter-tags="system administration application user">
+                        <span class="nav-link-text" data-i18n="nav.system_administration_application_user">Application User</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("TEAM,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Team) ? "active open" : ""))">
+                    <a href="/SystemAdministration/Team/Index" title="Team" data-filter-tags="organization team">
+                        <span class="nav-link-text" data-i18n="nav.organization_team">Team</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("APPLICATIONROLE,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ApplicationRole) ? "active open" : ""))">
+                    <a href="/SystemAdministration/ApplicationRole/Index" title="Application Role" data-filter-tags="system administration application role">
+                        <span class="nav-link-text" data-i18n="nav.system_administration_application_role">Application Role</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("ORGANIZATION,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Organization) ? "active open" : ""))">
+                    <a href="/SystemAdministration/Organization/Index" title="Organization" data-filter-tags="system administration organization">
+                        <span class="nav-link-text" data-i18n="nav.system_administration_organization">Organization</span>
+                    </a>
+                </li>
+            }
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("EMAILNOTIFICATION,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith("Email Notification") ? "active open" : ""))">
+                    <a href="/SystemAdministration/EmailNotification/Index" title="Email Notification" data-filter-tags="system administration email notification">
+                        <span class="nav-link-text" data-i18n="nav.system_administration_email_notification">Email Notification</span>
+                    </a>
+                </li>
+            }
+            @*  <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith("Ellipse Sync Log") ? "active open" : ""))">
+            <a href="/SystemAdministration/SyncLog/Index" title="SyncLog" data-filter-tags="system administration sync log">
+            <span class="nav-link-text" data-i18n="nav.system_administration_sync_log">Ellipse Sync Log</span>
+            </a>
+            </li> *@
+            @if ((ViewBag.RoleAccessList ?? defStr).Contains("AUDITTRAIL,"))
+            {
+                <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith("Audit Trail") ? "active open" : ""))">
+                    <a href="/SystemAdministration/AuditTrail/Index" title="Audit Trail" data-filter-tags="system administration audit trail">
+                        <span class="nav-link-text" data-i18n="nav.system_administration_audit_trail">Audit Trail</span>
+                    </a>
+                </li>
+            }
 
             @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.MasterList) ? "active open" : ""))">
             <a href="/General/ItemList/Index" title="Item Group" data-filter-tags="general item list">

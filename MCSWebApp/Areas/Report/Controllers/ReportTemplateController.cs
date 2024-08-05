@@ -20,6 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Xml;
 using System.Dynamic;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Report.Controllers
 {
@@ -42,6 +43,8 @@ namespace MCSWebApp.Areas.Report.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ReportTemplate];
             ViewBag.BreadcrumbCode = WebAppMenu.ReportTemplate;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -51,6 +54,8 @@ namespace MCSWebApp.Areas.Report.Controllers
             ViewBag.RootBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Reports];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ReportTemplate];
             ViewBag.BreadcrumbCode = WebAppMenu.ReportTemplate;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             try
             {
@@ -157,6 +162,8 @@ namespace MCSWebApp.Areas.Report.Controllers
             ViewBag.RootBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Reports];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ReportTemplate];
             ViewBag.BreadcrumbCode = WebAppMenu.ReportTemplate;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             try
             {

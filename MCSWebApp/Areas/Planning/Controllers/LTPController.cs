@@ -20,6 +20,7 @@ using Npoi.Mapper.Attributes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.SignalR;
 using NPOI.SS.Formula.Functions;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Planning.Controllers
 {
@@ -45,6 +46,8 @@ namespace MCSWebApp.Areas.Planning.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Planning];*/
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.MinePlanLTP];
             ViewBag.BreadcrumbCode = WebAppMenu.MinePlanLTP;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

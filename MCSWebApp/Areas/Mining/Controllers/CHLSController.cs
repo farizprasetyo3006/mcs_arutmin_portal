@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using NLog;
 using Common;
 using DataAccess.EFCore.Repository;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Mining.Controllers
 {
@@ -26,6 +27,8 @@ namespace MCSWebApp.Areas.Mining.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Mining];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.CHLS];
             ViewBag.BreadcrumbCode = WebAppMenu.CHLS;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

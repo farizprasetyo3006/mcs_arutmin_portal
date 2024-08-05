@@ -19,6 +19,7 @@ using Npoi.Mapper;
 using Npoi.Mapper.Attributes;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Planning.Controllers
 {
@@ -42,6 +43,8 @@ namespace MCSWebApp.Areas.Planning.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ShippingProgram];
             ViewBag.BreadcrumbCode = WebAppMenu.ShippingProgram;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -52,6 +55,8 @@ namespace MCSWebApp.Areas.Planning.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Planning];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SalesPlan];
             ViewBag.BreadcrumbCode = WebAppMenu.SalesPlan;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

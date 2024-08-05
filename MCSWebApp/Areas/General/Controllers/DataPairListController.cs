@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.General.Controllers
 {
@@ -25,6 +26,8 @@ namespace MCSWebApp.Areas.General.Controllers
             ViewBag.RootBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.MasterData];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.DataPairList];
             ViewBag.BreadcrumbCode = WebAppMenu.DataPairList;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

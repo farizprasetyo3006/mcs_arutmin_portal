@@ -18,6 +18,7 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.DailyRecord.Controllers
 {
@@ -41,6 +42,8 @@ namespace MCSWebApp.Areas.DailyRecord.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Slippery];
             ViewBag.BreadcrumbCode = WebAppMenu.Slippery;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -51,6 +54,8 @@ namespace MCSWebApp.Areas.DailyRecord.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.DailyRecord];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Slippery];
             ViewBag.BreadcrumbCode = WebAppMenu.Slippery;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

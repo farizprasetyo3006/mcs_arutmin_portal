@@ -41,6 +41,8 @@ namespace MCSWebApp.Areas.Transport
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Barge];
             ViewBag.BreadcrumbCode = WebAppMenu.Barge;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 

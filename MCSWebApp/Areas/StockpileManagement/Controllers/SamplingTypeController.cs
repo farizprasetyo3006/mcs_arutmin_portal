@@ -17,6 +17,7 @@ using Npoi.Mapper.Attributes;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.StockpileManagement.Controllers
 {
@@ -38,6 +39,8 @@ namespace MCSWebApp.Areas.StockpileManagement.Controllers
             ViewBag.RootBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.StockpileManagement];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SamplingType];
             ViewBag.BreadcrumbCode = WebAppMenu.SamplingType;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

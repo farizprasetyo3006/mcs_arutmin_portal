@@ -17,6 +17,7 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using Npoi.Mapper;
 using Npoi.Mapper.Attributes;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Mining.Controllers
 {
@@ -39,6 +40,8 @@ namespace MCSWebApp.Areas.Mining.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Mining];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ExplosiveUsagePlan];
             ViewBag.BreadcrumbCode = WebAppMenu.ExplosiveUsagePlan;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

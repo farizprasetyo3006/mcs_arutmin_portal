@@ -4,6 +4,7 @@ using MCSWebApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NLog;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.DailyRecord.Controllers
 {
@@ -27,6 +28,8 @@ namespace MCSWebApp.Areas.DailyRecord.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.EquipmentGroup];
             ViewBag.BreadcrumbCode = WebAppMenu.EquipmentGroup;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -37,6 +40,8 @@ namespace MCSWebApp.Areas.DailyRecord.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.DailyRecord];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.EquipmentGroup];
             ViewBag.BreadcrumbCode = WebAppMenu.EquipmentGroup;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

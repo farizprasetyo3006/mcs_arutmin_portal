@@ -42,6 +42,8 @@ namespace MCSWebApp.Areas.Port.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.CoalMovement];
             ViewBag.BreadcrumbCode = WebAppMenu.CoalMovement;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 

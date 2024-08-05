@@ -14,6 +14,7 @@ using System.Text;
 using System.IO;
 using Npoi.Mapper;
 using Npoi.Mapper.Attributes;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.ContractManagement.Controllers
 {
@@ -36,6 +37,8 @@ namespace MCSWebApp.Areas.ContractManagement.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ContractManagement];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ProgressClaim];
             ViewBag.BreadcrumbCode = WebAppMenu.ProgressClaim;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

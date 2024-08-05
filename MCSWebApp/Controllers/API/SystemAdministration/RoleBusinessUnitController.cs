@@ -385,6 +385,22 @@ namespace MCSWebApp.Controllers.API.SystemAdministration
                     HttpContext.Session.SetString("BUSINESS_UNIT_ID", BusinessUnitId);
                     CurrentUserContext.BusinessUnitId = BusinessUnitId;
                 }
+
+                string sql = $"SELECT ae.* FROM application_user u INNER JOIN user_role ur ON u.id = ur.application_user_id " +
+                    $"INNER JOIN role_access ra ON ra.application_role_id = ur.application_role_id INNER JOIN application_entity ae " +
+                    $"ON ae.id = ra.application_entity_id WHERE u.id = '{CurrentUserContext.AppUserId}' AND " +
+                    $"ur.application_role_id = '{RoleId}' AND coalesce(ra.access_read, 0) > 0 " +
+                "ORDER BY ae.display_name";
+
+                var AE = dbContext.application_entity.FromSqlRaw(sql).ToArray();
+
+                string sRoleAccess = "";
+                foreach (var x in AE)
+                {
+                    sRoleAccess = string.Concat(sRoleAccess, x.display_name.ToString().ToUpper(), ",");
+                }
+                HttpContext.Session.SetString("RoleAccessList", sRoleAccess);
+
                 return Ok();
             }
             catch (Exception ex)

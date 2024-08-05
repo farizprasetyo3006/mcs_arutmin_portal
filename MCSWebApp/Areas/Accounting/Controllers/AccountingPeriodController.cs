@@ -40,6 +40,8 @@ namespace MCSWebApp.Areas.Accounting.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.AccountingPeriod];
             ViewBag.BreadcrumbCode = WebAppMenu.AccountingPeriod;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -49,6 +51,8 @@ namespace MCSWebApp.Areas.Accounting.Controllers
             ViewBag.RootBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.AccountingManagement];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.AccountingPeriod];
             ViewBag.BreadcrumbCode = WebAppMenu.AccountingPeriod;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             try
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.SystemAdministration.Controllers
 {
@@ -11,6 +12,8 @@ namespace MCSWebApp.Areas.SystemAdministration.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
     }

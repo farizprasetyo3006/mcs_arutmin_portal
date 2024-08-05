@@ -17,6 +17,7 @@ using Npoi.Mapper.Attributes;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.ProcessFlow.Controllers
 {
@@ -40,6 +41,8 @@ namespace MCSWebApp.Areas.ProcessFlow.Controllers
             ViewBag.SubAreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ProcessFlow];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ProcessingCategory];
             ViewBag.BreadcrumbCode = WebAppMenu.ProcessingCategory;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

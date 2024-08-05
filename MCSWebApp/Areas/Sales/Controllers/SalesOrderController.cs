@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NLog;
 using Common;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Sales.Controllers
 {
@@ -28,6 +29,8 @@ namespace MCSWebApp.Areas.Sales.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SalesOrder];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SalesOrder];
             ViewBag.BreadcrumbCode = WebAppMenu.SalesOrder;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

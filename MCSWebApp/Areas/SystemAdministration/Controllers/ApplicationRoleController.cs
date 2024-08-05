@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NLog;
 using Common;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.SystemAdministration.Controllers
 {
@@ -29,6 +30,8 @@ namespace MCSWebApp.Areas.SystemAdministration.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ApplicationRole];
             ViewBag.BreadcrumbCode = WebAppMenu.ApplicationRole;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -41,6 +44,8 @@ namespace MCSWebApp.Areas.SystemAdministration.Controllers
             ViewBag.BreadcrumbCode = WebAppMenu.ApplicationRole;
 
             ViewBag.ApplicationRoleId = Id;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }
