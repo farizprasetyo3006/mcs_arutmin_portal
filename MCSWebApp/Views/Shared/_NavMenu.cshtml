@@ -54,10 +54,11 @@
         </a>
     </li>
 
-    <li class="nav-title">PRODUCTION &amp; LOGISTICS</li>
 
     @if (roleAccessList.Contains("MINEPLANGEOLOGY,") || roleAccessList.Contains("MINEPLANLTP,"))
 	{
+        <li class="nav-title">PRODUCTION &amp; LOGISTICS</li>
+
         <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.MinePlan) ? "active open" : "")">
             <a href="#" title="Mine Plan" data-filter-tags="mine plan">
                 <i class="fal fa-clipboard-list"></i>
