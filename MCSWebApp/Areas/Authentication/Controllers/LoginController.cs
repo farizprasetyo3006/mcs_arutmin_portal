@@ -129,8 +129,11 @@ namespace MCSWebApp.Areas.Authentication.Controllers
                                 //if (!string.IsNullOrEmpty(userCredential.Username))
                                 if (string.IsNullOrEmpty(userCredential.RoleId))
                                 {
-                                    var sql = $"select uro.application_role_id from application_user au join user_role uro on " +
-                                        $"uro.application_user_id = au.id where au.application_username = @0";
+                                    //var sql = $"select uro.application_role_id from application_user au join user_role uro on " +
+                                    //    $"uro.application_user_id = au.id where au.application_username = @0";
+                                    var sql = $"select ur.application_role_id from application_user au join user_role ur " +
+                                        $"on au.id = ur.application_user_id join application_role ar on ar.id = ur.application_role_id " +
+                                        $"where au.application_username = @0 order by ar.role_name";
 
                                     var recRole = db.FirstOrDefault<dynamic>(sql, userCredential.Username);
                                     if (recRole != null)
@@ -205,20 +208,25 @@ namespace MCSWebApp.Areas.Authentication.Controllers
                                             ViewBag.RoleList = RoleList.ToList();
                                         }
 
-                                        sql = $"SELECT distinct ae.display_name FROM application_user u " +
-                                            $"INNER JOIN user_role ur ON u.id = ur.application_user_id " +
-                                            $"INNER JOIN role_access ra ON ra.application_role_id = ur.application_role_id " +
-                                            $"INNER JOIN application_entity ae ON ae.id = ra.application_entity_id " +
-                                            $"WHERE u.id = '{userContext.AppUserId}' AND ur.application_role_id = '{userContext.RoleId}' " +
-                                            "AND coalesce(ra.access_read, 0) > 0 ORDER BY ae.display_name";
-
+                                        //sql = $"SELECT distinct ae.display_name FROM application_user u " +
+                                        //    $"INNER JOIN user_role ur ON u.id = ur.application_user_id " +
+                                        //    $"INNER JOIN role_access ra ON ra.application_role_id = ur.application_role_id " +
+                                        //    $"INNER JOIN application_entity ae ON ae.id = ra.application_entity_id " +
+                                        //    $"WHERE u.id = '{userContext.AppUserId}' AND ur.application_role_id = '{userContext.RoleId}' " +
+                                        //    "AND coalesce(ra.access_read, 0) > 0 ORDER BY ae.display_name";
+                                        sql = $"SELECT distinct replace(upper(ae.display_name), ' ', '') display_name FROM application_user u " +
+                                            $"INNER JOIN user_role ur ON u.id = ur.application_user_id INNER JOIN role_access ra " +
+                                            $"ON ra.application_role_id = ur.application_role_id INNER JOIN application_entity ae " +
+                                            $"ON ae.id = ra.application_entity_id WHERE u.id = '{userContext.AppUserId}' AND " +
+                                            $"ur.application_role_id = '{userContext.RoleId}' AND coalesce(ra.access_read, 0) > 0 " +
+                                            $"ORDER BY display_name";
                                         List<dynamic> RA = db.Fetch<dynamic>(sql);
 
                                         string sRoleAccess = "";
                                         foreach (var x in RA)
                                         {
-                                            //sRoleAccess = string.Concat(sRoleAccess, x.display_name.ToString());
-                                            sRoleAccess = string.Concat(sRoleAccess, x.display_name.ToString().Replace(" ", "").ToUpper(), ",");
+                                            //sRoleAccess = string.Concat(sRoleAccess, x.display_name.ToString().Replace(" ", "").ToUpper(), ",");
+                                            sRoleAccess = string.Concat(sRoleAccess, x.display_name.ToString(), ",");
                                         }
                                         HttpContext.Session.SetString("RoleAccessList", sRoleAccess);
                                     }
