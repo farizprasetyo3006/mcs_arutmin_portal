@@ -17,6 +17,7 @@ using Npoi.Mapper.Attributes;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Accounting.Controllers
 {
@@ -40,6 +41,8 @@ namespace MCSWebApp.Areas.Accounting.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Accounts];
             ViewBag.BreadcrumbCode = WebAppMenu.Accounts;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -50,6 +53,8 @@ namespace MCSWebApp.Areas.Accounting.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ChartofAccount];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SubAccounts];
             ViewBag.BreadcrumbCode = WebAppMenu.SubAccounts;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             try
             {

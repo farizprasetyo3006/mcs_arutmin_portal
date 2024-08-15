@@ -16,6 +16,7 @@ using System.IO;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.DespatchDemurrage.Controllers
 {
@@ -38,6 +39,8 @@ namespace MCSWebApp.Areas.DespatchDemurrage.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.DespatchDemurrageContract];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.DespatchDemurrageContract];
             ViewBag.BreadcrumbCode = WebAppMenu.DespatchDemurrageContract;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }
@@ -188,6 +191,8 @@ namespace MCSWebApp.Areas.DespatchDemurrage.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SalesContract];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SalesContract];
             ViewBag.BreadcrumbCode = WebAppMenu.SalesContract;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             try
             {

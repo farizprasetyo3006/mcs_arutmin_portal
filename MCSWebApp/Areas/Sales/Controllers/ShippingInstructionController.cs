@@ -41,6 +41,8 @@ namespace MCSWebApp.Areas.Sales.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ShippingInstruction];
             ViewBag.BreadcrumbCode = WebAppMenu.ShippingInstruction;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 

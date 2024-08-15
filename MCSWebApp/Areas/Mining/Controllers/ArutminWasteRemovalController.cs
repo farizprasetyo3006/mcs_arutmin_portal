@@ -4,6 +4,7 @@ using MCSWebApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NLog;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Mining.Controllers
 {
@@ -25,6 +26,8 @@ namespace MCSWebApp.Areas.Mining.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Mining];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.WasteRemovalByFleet];
             ViewBag.BreadcrumbCode = WebAppMenu.WasteRemovalByFleet;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

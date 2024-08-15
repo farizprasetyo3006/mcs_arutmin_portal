@@ -44,6 +44,8 @@ namespace MCSWebApp.Areas.Planning.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ProductionPlan];
             ViewBag.BreadcrumbCode = WebAppMenu.ProductionPlan;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -54,6 +56,8 @@ namespace MCSWebApp.Areas.Planning.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Planning];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ProductionPlan];
             ViewBag.BreadcrumbCode = WebAppMenu.ProductionPlan;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

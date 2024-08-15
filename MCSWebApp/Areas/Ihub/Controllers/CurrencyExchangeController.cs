@@ -17,6 +17,7 @@ using Npoi.Mapper.Attributes;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Ihub.Controllers
 {
@@ -40,6 +41,8 @@ namespace MCSWebApp.Areas.Ihub.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.CurrencyExchangeApi];
             ViewBag.BreadcrumbCode = WebAppMenu.CurrencyExchangeApi;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -50,6 +53,8 @@ namespace MCSWebApp.Areas.Ihub.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.IHub];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Weighbridge];
             ViewBag.BreadcrumbCode = WebAppMenu.Weighbridge;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

@@ -12,6 +12,7 @@ using DataAccess.EFCore.Repository;
 using Microsoft.AspNetCore.Hosting;
 using System.Text;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Report.Controllers
 {
@@ -31,6 +32,8 @@ namespace MCSWebApp.Areas.Report.Controllers
             ViewBag.WebAppName = WebAppName;
             ViewBag.RootBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Reports];
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ReportSmartMining];
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             string url = HttpContext.Request.Path;
             string ReportName = url.Substring(url.LastIndexOf('/') + 1);

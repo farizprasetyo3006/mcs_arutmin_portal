@@ -17,16 +17,17 @@ using Npoi.Mapper.Attributes;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Organisation.Controllers
 {
     [Area("Shift")]
-    public class ShiftCategoryController : BaseController
+    public class ShiftController : BaseController
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly mcsContext dbContext;
 
-        public ShiftCategoryController(IConfiguration Configuration)
+        public ShiftController(IConfiguration Configuration)
             : base(Configuration)
         {
             dbContext = new mcsContext(DbOptionBuilder.Options);
@@ -37,15 +38,17 @@ namespace MCSWebApp.Areas.Organisation.Controllers
             ViewBag.WebAppName = WebAppName;
             ViewBag.RootBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.MasterData];
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Shift];
-            ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ShiftCategory];
-            ViewBag.BreadcrumbCode = WebAppMenu.ShiftCategory;
+            ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Shift];
+            ViewBag.BreadcrumbCode = WebAppMenu.Shift;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }
 
         public async Task<IActionResult> ExcelExport()
         {
-            string sFileName = "ShiftCategory.xlsx";
+            string sFileName = "Shift.xlsx";
             sFileName = sFileName.Insert(sFileName.LastIndexOf("."), string.Format("_{0}", DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff")));
 
             string FilePath = configuration.GetSection("Path").GetSection("UploadBasePath").Value + PublicFunctions.ExcelFolder;
@@ -58,31 +61,43 @@ namespace MCSWebApp.Areas.Organisation.Controllers
                 int RowCount = 1;
                 IWorkbook workbook;
                 workbook = new XSSFWorkbook();
-                ISheet excelSheet = workbook.CreateSheet("ShiftCategory");
+                ISheet excelSheet = workbook.CreateSheet("Shift");
                 IRow row = excelSheet.CreateRow(0);
                 // Setting Cell Heading
                 row.CreateCell(0).SetCellValue("Shift Category Code");
-                row.CreateCell(1).SetCellValue("Shift Category Name");
-                row.CreateCell(2).SetCellValue("Is Active");
-                row.CreateCell(3).SetCellValue("Business Unit");
+                row.CreateCell(1).SetCellValue("Shift Name");
+                row.CreateCell(2).SetCellValue("Shift Code");
+                row.CreateCell(3).SetCellValue("Start Time");
+                row.CreateCell(4).SetCellValue("End Time");
+                row.CreateCell(5).SetCellValue("Is Active");
+                row.CreateCell(6).SetCellValue("Business Unit");
 
                 excelSheet.DefaultColumnWidth = PublicFunctions.ExcelDefaultColumnWidth;
 
                 mcsContext dbFind = new mcsContext(DbOptionBuilder.Options);
 
-                var tabledata = dbContext.shift_category.Where(o => o.organization_id == CurrentUserContext.OrganizationId)
+                var tabledata = dbContext.shift.Where(o => o.organization_id == CurrentUserContext.OrganizationId)
                     .OrderByDescending(o => o.created_on);
                 // Inserting values to table
                 foreach (var Value in tabledata)
                 {
-                    var business_unit = "";
-                    var bu = dbFind.business_unit.Where(o => o.id == Value.business_unit_id).FirstOrDefault();
-                    if (bu!= null) { business_unit = bu.business_unit_code.ToString(); }
+                    var shift_category_code = "";
+                    var shift_category = dbFind.shift_category.Where(o => o.organization_id == CurrentUserContext.OrganizationId
+                        && o.id == Value.shift_category_id).FirstOrDefault();
+                    if (shift_category != null) shift_category_code = shift_category.shift_category_code == null ? "" : shift_category.shift_category_code.ToString();
+
+                    var business_unit_name = "";
+                    var business_unit = dbFind.business_unit.Where(o => o.id == Value.business_unit_id).FirstOrDefault();
+                    if (business_unit != null) business_unit_name = business_unit.business_unit_code.ToString();
+
                     row = excelSheet.CreateRow(RowCount);
-                    row.CreateCell(0).SetCellValue(Value.shift_category_code);
-                    row.CreateCell(1).SetCellValue(Value.shift_category_name);
-                    row.CreateCell(2).SetCellValue(Convert.ToBoolean(Value.is_active));
-                    row.CreateCell(3).SetCellValue(business_unit);
+                    row.CreateCell(0).SetCellValue(shift_category_code);
+                    row.CreateCell(1).SetCellValue(Value.shift_name);
+                    row.CreateCell(2).SetCellValue(Value.shift_code);
+                    row.CreateCell(3).SetCellValue(PublicFunctions.Waktu(Value.start_time).ToString("HH:mm"));
+                    row.CreateCell(4).SetCellValue(PublicFunctions.Waktu(Value.end_time).ToString("HH:mm"));
+                    row.CreateCell(5).SetCellValue(Convert.ToBoolean(Value.is_active));
+                    row.CreateCell(6).SetCellValue(business_unit_name);
 
                     RowCount++;
                     if (RowCount > 50) break;

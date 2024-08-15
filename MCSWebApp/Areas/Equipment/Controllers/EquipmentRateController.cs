@@ -14,6 +14,7 @@ using System.Text;
 using System.IO;
 using Npoi.Mapper;
 using Npoi.Mapper.Attributes;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Equipment.Controllers
 {
@@ -36,6 +37,8 @@ namespace MCSWebApp.Areas.Equipment.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Equipment];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.EquipmentRate];
             ViewBag.BreadcrumbCode = WebAppMenu.EquipmentRate;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

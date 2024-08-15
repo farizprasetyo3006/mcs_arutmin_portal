@@ -45,6 +45,8 @@ namespace MCSWebApp.Areas.Mining.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Hauling];
             ViewBag.BreadcrumbCode = WebAppMenu.Hauling;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 

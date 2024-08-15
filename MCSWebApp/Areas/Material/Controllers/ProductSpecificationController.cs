@@ -7,6 +7,7 @@ using MCSWebApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NLog;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Material.Controllers
 {
@@ -26,6 +27,8 @@ namespace MCSWebApp.Areas.Material.Controllers
             ViewBag.AreaBreadcrumb = "Material";
             ViewBag.Breadcrumb = "Product Specification";
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -34,6 +37,8 @@ namespace MCSWebApp.Areas.Material.Controllers
             ViewBag.WebAppName = WebAppName;
             ViewBag.AreaBreadcrumb = "Material";
             ViewBag.Breadcrumb = "Product Specification";
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             try
             {

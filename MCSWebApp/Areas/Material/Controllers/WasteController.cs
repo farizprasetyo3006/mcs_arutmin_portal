@@ -40,6 +40,9 @@ namespace MCSWebApp.Areas.Material.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Material];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Waste];
             ViewBag.BreadcrumbCode = WebAppMenu.Waste;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 

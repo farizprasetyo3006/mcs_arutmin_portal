@@ -15,6 +15,7 @@ using System.IO;
 using Npoi.Mapper;
 using Npoi.Mapper.Attributes;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.ContractManagement.Controllers
 {
@@ -38,6 +39,8 @@ namespace MCSWebApp.Areas.ContractManagement.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContractCharge];
             ViewBag.BreadcrumbCode = WebAppMenu.AdvanceContractCharge;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -48,6 +51,8 @@ namespace MCSWebApp.Areas.ContractManagement.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContractCharge];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.AdvanceContractChargeDetail];
             ViewBag.BreadcrumbCode = WebAppMenu.AdvanceContractChargeDetail;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             try
             {

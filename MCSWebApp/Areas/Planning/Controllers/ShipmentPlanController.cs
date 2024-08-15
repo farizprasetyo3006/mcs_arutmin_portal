@@ -21,6 +21,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using DocumentFormat.OpenXml.InkML;
 using NPOI.HSSF.Record;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Planning.Controllers
 {
@@ -44,6 +45,8 @@ namespace MCSWebApp.Areas.Planning.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ShipmentPlan];
             ViewBag.BreadcrumbCode = WebAppMenu.ShipmentPlan;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -54,6 +57,8 @@ namespace MCSWebApp.Areas.Planning.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Planning];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ShipmentPlan];
             ViewBag.BreadcrumbCode = WebAppMenu.ShipmentPlan;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

@@ -13,6 +13,7 @@ using System.Text;
 using System.IO;
 using Npoi.Mapper;
 using Npoi.Mapper.Attributes;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Transaction.Controllers
 {
@@ -31,6 +32,8 @@ namespace MCSWebApp.Areas.Transaction.Controllers
             ViewBag.WebAppName = WebAppName;
             ViewBag.AreaBreadcrumb = "Transaction";
             ViewBag.Breadcrumb = "Transportation Transaction";
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

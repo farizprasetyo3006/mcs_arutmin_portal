@@ -14,6 +14,7 @@ using System.Text;
 using System.IO;
 using Npoi.Mapper;
 using Npoi.Mapper.Attributes;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.SurveyManagement.Controllers
 {
@@ -36,6 +37,8 @@ namespace MCSWebApp.Areas.SurveyManagement.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SurveyManagement];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.JointSurvey];
             ViewBag.BreadcrumbCode = WebAppMenu.JointSurvey;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

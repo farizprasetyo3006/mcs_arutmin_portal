@@ -9,8 +9,7 @@ using NLog;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.EFCore.Repository;
 using Microsoft.Extensions.Configuration;
-
-
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Data
 {
@@ -30,6 +29,8 @@ namespace MCSWebApp.Areas.Data
             ViewBag.WebAppName = WebAppName;
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.HistoricalRainfall];
             ViewBag.BreadcrumbCode = WebAppMenu.HistoricalRainfall;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

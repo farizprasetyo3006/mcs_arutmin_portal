@@ -13,6 +13,7 @@ using System.Text;
 using System.IO;
 using Npoi.Mapper;
 using Npoi.Mapper.Attributes;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Transport
 {
@@ -31,6 +32,8 @@ namespace MCSWebApp.Areas.Transport
             ViewBag.WebAppName = WebAppName;
             ViewBag.AreaBreadcrumb = "Transport";
             ViewBag.Breadcrumb = "Wagon";
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

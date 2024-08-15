@@ -18,6 +18,7 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Mining.Controllers
 {
@@ -41,6 +42,8 @@ namespace MCSWebApp.Areas.Mining.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.WasteRemovalClosing];
             ViewBag.BreadcrumbCode = WebAppMenu.WasteRemovalClosing;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -51,6 +54,8 @@ namespace MCSWebApp.Areas.Mining.Controllers
             ViewBag.AreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Mining];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ProductionClosing];
             ViewBag.BreadcrumbCode = WebAppMenu.ProductionClosing;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

@@ -5,12 +5,12 @@
                 <div style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 2);">
                     <h2 class="fs-xxl fw-500 mt-4 text-white">AIMS - PORTAL</h2>
                     <h3 class="fs-xxl fw-500 mt-4 text-white">Arutmin Integrated Management System</h3>
-            </div>
-               @* <h2 class="fs-xxl fw-500 mt-4 text-white">
-                    AIMS
-                    <h3 class="fs-xxl fw-500 mt-4 text-white">
-                        Arutmin Integrated Management System
-                    </h3>
+                </div>
+                @* <h2 class="fs-xxl fw-500 mt-4 text-white">
+                AIMS
+                <h3 class="fs-xxl fw-500 mt-4 text-white">
+                Arutmin Integrated Management System
+                </h3>
                 </h2>*@
             </div>
             <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 ml-auto">
@@ -46,6 +46,13 @@
 
                         <div class="help-block">Your user role</div>
                         </div> *@
+
+                        <div class="form-group">
+                            <input type="hidden" id="roleId" name="roleId" />
+                            <label class="form-label" for="ddl-user-role">Role</label>
+                            @Html.DropDownList("ddl-user-role", new SelectList("", "id", "role_name"), "-user role-", new { @class = "form-control" })
+                            <div class="help-block">Your user role</div>
+                        </div>
 
                         <!-- <div class="form-group text-left">
                             <div class="custom-control custom-checkbox">
@@ -108,48 +115,48 @@
 @section ScriptsBlock
 {
     <script>
-        
-        // $("#is_sysadmin").change(function (event) {
-        //     if ($("#is_sysadmin").is(':checked')) {
-        //         $('input[name="SystemAdministration"]').val(true);
-        //     }
-        //     else {
-        //         $('input[name="SystemAdministration"]').val(false);
-        //     }
-        // });
 
-        // $("#username").blur(function () {
-        //     var userLength = $("#username").val().length;
-        //     var userName = $("#username").val();
+        $("#is_sysadmin").change(function (event) {
+            if ($("#is_sysadmin").is(':checked')) {
+                $('input[name="SystemAdministration"]').val(true);
+            }
+            else {
+                $('input[name="SystemAdministration"]').val(false);
+            }
+        });
 
-        //     if (userLength > 0) {
-        //         $.ajax({
-        //             //url: '/Authentication/Login/RoleByUserName',
-        //             url: '/api/Authentication/Login/RoleByUserName/' + encodeURIComponent(userName),
-        //             method: 'GET',
-        //             contentType: 'application/json',
-        //             success: function (response) {
-        //                 $('#ddl-user-role').empty();
-        //                 $.each(response.data, function (i, item) {
-        //                     $('#ddl-user-role').append($('<option>', {
-        //                         value: item.id,
-        //                         text: item.role_name
-        //                     }));
-        //                 });
-        //             },
-        //             error: function (jqXHR) {
-        //                 $('#ddl-user-role').empty();
-        //             }
-        //         });
-        //     }
-        //     else {
-        //         $('#ddl-user-role').empty();
-        //     }
-        // });
+        $("#username").blur(function () {
+            var userLength = $("#username").val().length;
+            var userName = $("#username").val();
 
-        // $("#ddl-user-role").click(function (event) {
-        //     $("#roleId").val($("#ddl-user-role").val());
-        // });
+            if (userLength > 0) {
+                $.ajax({
+                    //url: '/Authentication/Login/RoleByUserName',
+                    url: '/api/Authentication/Login/RoleByUserName/' + encodeURIComponent(userName),
+                    method: 'GET',
+                    contentType: 'application/json',
+                    success: function (response) {
+                        $('#ddl-user-role').empty();
+                        $.each(response.data, function (i, item) {
+                            $('#ddl-user-role').append($('<option>', {
+                                value: item.id,
+                                text: item.role_name
+                            }));
+                        });
+                    },
+                    error: function (jqXHR) {
+                        $('#ddl-user-role').empty();
+                    }
+                });
+            }
+            else {
+                $('#ddl-user-role').empty();
+            }
+        });
+
+        $("#ddl-user-role").click(function (event) {
+            $("#roleId").val($("#ddl-user-role").val());
+        });
 
         $("#btn-login").click(function (event) {
             // Fetch form to apply custom Bootstrap validation

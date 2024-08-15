@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Http;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using MCSWebApp.Controllers.API.Sales;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Sales.Controllers
 {
@@ -42,6 +43,8 @@ namespace MCSWebApp.Areas.Sales.Controllers
             ViewBag.RootBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SalesMarketing];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Customer];
             ViewBag.BreadcrumbCode = WebAppMenu.Customer;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

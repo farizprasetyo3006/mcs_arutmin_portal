@@ -19,6 +19,7 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using DevExtreme.AspNet.Mvc.Builders;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Location.Controllers
 {
@@ -42,6 +43,8 @@ namespace MCSWebApp.Areas.Location.Controllers
             ViewBag.SubAreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.Location];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.WasteLocation];
             ViewBag.BreadcrumbCode = WebAppMenu.WasteLocation;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

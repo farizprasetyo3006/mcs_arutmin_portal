@@ -17,6 +17,7 @@ using Npoi.Mapper.Attributes;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Port.Controllers
 {
@@ -40,6 +41,8 @@ namespace MCSWebApp.Areas.Port.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.PortShipping];
             ViewBag.BreadcrumbCode = WebAppMenu.PortShipping;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -52,6 +55,8 @@ namespace MCSWebApp.Areas.Port.Controllers
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ShipLoading];
             ViewBag.BreadcrumbCode = WebAppMenu.ShipLoading;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+
             return View();
         }
 
@@ -62,6 +67,8 @@ namespace MCSWebApp.Areas.Port.Controllers
             ViewBag.SubAreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.PortShipping];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.ShipUnloading];
             ViewBag.BreadcrumbCode = WebAppMenu.ShipUnloading;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

@@ -11,6 +11,7 @@ using DataAccess.EFCore.Repository;
 using Microsoft.Extensions.Configuration;
 using MCSWebApp.Models;
 using System.Drawing;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Data
 {
@@ -115,6 +116,8 @@ namespace MCSWebApp.Areas.Data
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.AIDashboard];
             ViewBag.BreadcrumbCode = WebAppMenu.AIDashboard;
 
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
+            
             return View();
             //return View(dashboardData);
         }

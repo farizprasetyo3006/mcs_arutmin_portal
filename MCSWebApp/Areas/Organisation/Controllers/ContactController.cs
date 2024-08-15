@@ -7,6 +7,7 @@ using MCSWebApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NLog;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Organisation.Controllers
 {
@@ -25,6 +26,8 @@ namespace MCSWebApp.Areas.Organisation.Controllers
             ViewBag.WebAppName = WebAppName;
             ViewBag.AreaBreadcrumb = "Organisation";
             ViewBag.Breadcrumb = "Contact";
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

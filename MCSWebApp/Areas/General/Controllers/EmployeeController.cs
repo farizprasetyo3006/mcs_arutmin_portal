@@ -17,6 +17,7 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using Npoi.Mapper;
 using Npoi.Mapper.Attributes;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.General.Controllers
 {
@@ -39,6 +40,8 @@ namespace MCSWebApp.Areas.General.Controllers
             ViewBag.AreaBreadcrumb = "General";
             ViewBag.Breadcrumb = "Employee";
             ViewBag.BreadcrumbCode = "Employee";
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }

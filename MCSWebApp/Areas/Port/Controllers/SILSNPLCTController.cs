@@ -18,6 +18,7 @@ using NPOI.XSSF.UserModel;
 using Npoi.Mapper;
 using Npoi.Mapper.Attributes;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace MCSWebApp.Areas.Port.Controllers
 {
@@ -41,6 +42,8 @@ namespace MCSWebApp.Areas.Port.Controllers
             ViewBag.SubAreaBreadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SILS];
             ViewBag.Breadcrumb = WebAppMenu.BreadcrumbText[WebAppMenu.SILSNPLCT];
             ViewBag.BreadcrumbCode = WebAppMenu.SILSNPLCT;
+
+            ViewBag.RoleAccessList = HttpContext.Session.GetString("RoleAccessList");
 
             return View();
         }
