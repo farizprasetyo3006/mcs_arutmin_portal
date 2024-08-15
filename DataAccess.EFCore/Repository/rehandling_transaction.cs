@@ -45,11 +45,8 @@ namespace DataAccess.EFCore.Repository
         public string advance_contract_id1 { get; set; }
         public string chls_id { get; set; }
         public string contractor_id { get; set; }
+        public string integration_status { get; set; }
 
-        public virtual accounting_period accounting_period_ { get; set; }
-        public virtual shift destination_shift_ { get; set; }
         public virtual organization organization_ { get; set; }
-        public virtual advance_contract progress_claim_ { get; set; }
-        public virtual quality_sampling survey_ { get; set; }
     }
 }

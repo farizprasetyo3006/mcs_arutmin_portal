@@ -7,7 +7,6 @@ namespace DataAccess.EFCore.Repository
     {
         public product_category()
         {
-            barging_transaction = new HashSet<barging_transaction>();
             product = new HashSet<product>();
         }
 
@@ -27,7 +26,6 @@ namespace DataAccess.EFCore.Repository
         public string product_category_code { get; set; }
 
         public virtual organization organization_ { get; set; }
-        public virtual ICollection<barging_transaction> barging_transaction { get; set; }
         public virtual ICollection<product> product { get; set; }
     }
 }

@@ -7,7 +7,6 @@ namespace DataAccess.EFCore.Repository
     {
         public contractor()
         {
-            barging_transaction = new HashSet<barging_transaction>();
             contractor_document = new HashSet<contractor_document>();
             drill_blast_plan = new HashSet<drill_blast_plan>();
             shipping_instruction_to_company = new HashSet<shipping_instruction_to_company>();
@@ -53,7 +52,6 @@ namespace DataAccess.EFCore.Repository
         public decimal? barge_trip_plan { get; set; }
 
         public virtual organization organization_ { get; set; }
-        public virtual ICollection<barging_transaction> barging_transaction { get; set; }
         public virtual ICollection<contractor_document> contractor_document { get; set; }
         public virtual ICollection<drill_blast_plan> drill_blast_plan { get; set; }
         public virtual ICollection<shipping_instruction_to_company> shipping_instruction_to_company { get; set; }

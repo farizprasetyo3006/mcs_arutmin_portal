@@ -56,6 +56,11 @@
                             <a class="dropdown-item disabled text-danger" href="#" data-toggle="modal" data-target="#modal-delete-selected" id="dropdown-delete-selected">
                                 <i class="fas fa-trash-alt mr-2"></i> Delete Selected Rows
                             </a>
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item disabled" href="#" data-toggle="modal" data-target="#modal-approve-selected" id="dropdown-approve-selected">
+                                <i class="fas fa-clipboard-list mr-2"></i> Request Approve
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -240,6 +245,42 @@
                 </button>
                 <button type="button" class="btn btn-danger" id="btnDeleteSelectedRow">
                     <i class="fas fa-trash-alt mr-1"></i> Delete Selected
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- approve Selected Row -->
+<div class="modal fade" id="modal-approve-selected" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-approve mr-2"></i>Request Approve Selected Data
+                </h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle mr-2"></i>Are you sure you want to send request to approve all selected data?
+                </div>
+                <p class="text-muted">The time taken to approve the data depends on the amount of selected data.</p>
+                @* <div class="progress mt-3" style="height: 25px;">
+                <div id="approveProgressBar" class="progress-bar progress-bar-striped progress-bar-animated"
+                role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                0%
+                </div>
+                </div> *@
+                <div id="approveStatus" class="mt-2 text-center"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <i class="fas fa-times mr-1"></i>Cancel
+                </button>
+                <button type="button" class="btn btn-primary" id="btnApproveSelectedRow">
+                    <i class="fas fa-paper-plane mr-1"></i>Send Request
                 </button>
             </div>
         </div>

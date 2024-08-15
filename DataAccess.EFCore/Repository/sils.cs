@@ -5,11 +5,6 @@ namespace DataAccess.EFCore.Repository
 {
     public partial class sils
     {
-        public sils()
-        {
-            barging_transaction = new HashSet<barging_transaction>();
-        }
-
         public string id { get; set; }
         public string created_by { get; set; }
         public DateTime? created_on { get; set; }
@@ -49,7 +44,5 @@ namespace DataAccess.EFCore.Repository
         public string approve_by_id { get; set; }
         public string disapprove_by_id { get; set; }
         public string contractor_id { get; set; }
-
-        public virtual ICollection<barging_transaction> barging_transaction { get; set; }
     }
 }

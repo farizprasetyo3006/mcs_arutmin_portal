@@ -5,11 +5,6 @@ namespace DataAccess.EFCore.Repository
 {
     public partial class hauling_transaction
     {
-        public hauling_transaction()
-        {
-            production_transaction = new HashSet<production_transaction>();
-        }
-
         public string id { get; set; }
         public string created_by { get; set; }
         public DateTime? created_on { get; set; }
@@ -54,13 +49,8 @@ namespace DataAccess.EFCore.Repository
         public decimal? netto_rekon { get; set; }
         public bool? approved { get; set; }
         public string approved_by { get; set; }
+        public string integration_status { get; set; }
 
-        public virtual accounting_period accounting_period_ { get; set; }
-        public virtual despatch_order despatch_order_ { get; set; }
-        public virtual shift destination_shift_ { get; set; }
         public virtual organization organization_ { get; set; }
-        public virtual advance_contract progress_claim_ { get; set; }
-        public virtual survey survey_ { get; set; }
-        public virtual ICollection<production_transaction> production_transaction { get; set; }
     }
 }

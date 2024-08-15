@@ -248,6 +248,17 @@
         dateSerializationFormat: "yyyy-MM-ddTHH:mm:ss",
         columns: [
             {
+                dataField: "integration_status",
+                dataType: "string",
+                allowEditing: false,
+                placeholder: "NOT APPROVED",
+                caption: "Integration Status",
+                formItem: {
+                    colSpan: 2,
+                    editorType: "dxTextArea"
+                },
+            }, 
+            {
                 dataField: "transaction_number",
                 dataType: "string",
                 caption: "Transaction Number",
@@ -913,11 +924,13 @@
                 $("#dropdown-item-accounting-period").removeClass("disabled");
                 $("#dropdown-item-quality-sampling").removeClass("disabled");
                 $("#dropdown-delete-selected").removeClass("disabled");
+                $("#dropdown-approve-selected").removeClass("disabled");
                 $("#dropdown-download-selected").removeClass("disabled");
             }
             else {
                 $("#dropdown-item-accounting-period").addClass("disabled");
                 $("#dropdown-item-quality-sampling").addClass("disabled");
+                $("#dropdown-approve-selected").addClass("disabled");
                 $("#dropdown-delete-selected").addClass("disabled");
                 $("#dropdown-download-selected").addClass("disabled");
             }
@@ -1564,6 +1577,43 @@ let approvalPopupOptions = {
             Swal.fire("Failed !", jqXHR.responseText, "error");
         });
     }
+
+    $('#btnApproveSelectedRow').on('click', function () {
+        if (selectedIds != null && selectedIds != '') {
+            let payload = {};
+            payload.selectedIds = selectedIds;
+
+            $('#btnApproveSelectedRow')
+                .html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing ...');
+
+            $.ajax({
+                url: url + "/RequestIntegration",
+                type: 'PUT',
+                cache: false,
+                contentType: "application/json",
+                data: JSON.stringify(payload),
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            }).done(function (result) {
+                if (result) {
+                    if (result.success) {
+                        $("#grid").dxDataGrid("refresh");
+                        toastr["success"](result.message ?? "Approve rows success");
+                        $("#modal-approve-selected").modal('hide');
+                    }
+                    else {
+                        toastr["error"](result.message ?? "Error");
+                    }
+                }
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                toastr["error"]("Action failed.");
+            }).always(function () {
+                $('#btnApproveSelectedRow').html('<i class="fas fa-paper-plane mr-1"></i>Send Request');
+            });
+        }
+    });
+
     $('#btnApplyAccountingPeriod').on('click', function () {
         if (selectedIds != null && selectedIds != '') {
             let payload = {};

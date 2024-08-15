@@ -63,5 +63,6 @@ namespace DataAccess.EFCore.Repository
         public string record_modified_by { get; set; }
         public string record_owning_user { get; set; }
         public string record_owning_team { get; set; }
+        public string integration_status { get; set; }
     }
 }

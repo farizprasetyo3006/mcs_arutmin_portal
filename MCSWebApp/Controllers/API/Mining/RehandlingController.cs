@@ -1145,6 +1145,68 @@ namespace MCSWebApp.Controllers.API.Mining
             return new JsonResult(result);
         }
 
+        [HttpPut("RequestIntegration")]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<IActionResult> RequestIntegration([FromBody] dynamic Data)
+        {
+            var result = new StandardResult();
+            using (var tx = await dbContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    if (Data != null && Data.selectedIds != null)
+                    {
+                        var selectedIds = ((string)Data.selectedIds)
+                            .Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                            .ToList();
+                        var records = await dbContext.rehandling_transaction.Where(o => selectedIds.Contains(o.id)).ToListAsync();
+                        await _semaphore.WaitAsync();
+                        try
+                        {
+                            foreach (var record in records)
+                            {
+                                switch (record.integration_status)
+                                {
+                                    case "NOT APPROVED":
+                                        record.integration_status = "REQUESTED FOR APPROVAL";
+                                        break;
+                                    case "REQUESTED FOR APPROVAL":
+                                        record.integration_status = "NOT APPROVED";
+                                        break;
+                                    case "APPROVED":
+                                        record.integration_status = "REQUESTED FOR UNAPPROVAL";
+                                        break;
+                                    case "REQUESTED FOR UNAPPROVAL":
+                                        record.integration_status = "APPROVED";
+                                        break;
+                                }
+                            }
+                        }
+                        finally
+                        {
+                            _semaphore.Release();
+                        }
+                        await dbContext.SaveChangesAsync();
+                        await tx.CommitAsync();
+
+                        result.Success = true;
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        result.Message = "Invalid data.";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await tx.RollbackAsync();
+                    logger.Error(ex.ToString());
+                    result.Message = ex.Message;
+                }
+            }
+
+            return new JsonResult(result);
+        }
         [HttpPost("ApproveUnapprove")]    //**** tanpa trigger trf_sales_invoice_approval_sync di table sales_invoice_approval
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> ApproveUnapprove([FromForm] string key, [FromForm] string values)

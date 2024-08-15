@@ -70,224 +70,7 @@ namespace MCSWebApp.Controllers.API.Material
                 loadOptions);
         }
 
-        [HttpPost("InsertData")]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<IActionResult> InsertData([FromForm] string values)
-        {
-            logger.Trace($"string values = {values}");
-
-            try
-            {
-				if (await mcsContext.CanCreate(dbContext, nameof(product),
-					CurrentUserContext.AppUserId, HttpContext.Session.GetString("BUSINESS_UNIT_ID")) || CurrentUserContext.IsSysAdmin)
-				{
-                    var record = new product();
-                    JsonConvert.PopulateObject(values, record);
-
-                    var cekdata = dbContext.product
-                        .Where(o => o.organization_id == CurrentUserContext.OrganizationId
-                            && o.product_code.ToLower().Trim() == record.product_code.ToLower().Trim())
-                        .FirstOrDefault();
-                    if (cekdata != null) return BadRequest("Duplicate Code field.");
-
-                    record.id = Guid.NewGuid().ToString("N");
-                    record.created_by = CurrentUserContext.AppUserId;
-                    record.created_on = DateTime.Now;
-                    record.modified_by = null;
-                    record.modified_on = null;
-                    //record.is_active = true;
-                    record.is_default = null;
-                    record.is_locked = null;
-                    record.entity_id = null;
-                    record.owner_id = CurrentUserContext.AppUserId;
-                    record.organization_id = CurrentUserContext.OrganizationId;
-					//record.business_unit_id = HttpContext.Session.GetString("BUSINESS_UNIT_ID");
-
-                    dbContext.product.Add(record);
-                    await dbContext.SaveChangesAsync();
-
-                    return Ok(record);
-				}
-				else
-				{
-					return BadRequest("User is not authorized.");
-				}
-            }
-			catch (Exception ex)
-			{
-				logger.Error(ex.InnerException ?? ex);
-                return BadRequest(ex.InnerException?.Message ?? ex.Message);
-			}
-        }
-
-        [HttpPut("UpdateData")]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<IActionResult> UpdateData([FromForm] string key, [FromForm] string values)
-        {
-            logger.Trace($"string values = {values}");
-
-            try
-            {
-                var record = dbContext.product
-                    .Where(o => o.id == key
-                        && o.organization_id == CurrentUserContext.OrganizationId)
-                    .FirstOrDefault();
-                if (record != null)
-                {
-                    if (await mcsContext.CanUpdate(dbContext, record.id, CurrentUserContext.AppUserId, HttpContext.Session.GetString("BUSINESS_UNIT_ID"))
-                        || CurrentUserContext.IsSysAdmin)
-                    {
-                        /*var e = new entity();
-                        e.InjectFrom(record);*/
-
-                        JsonConvert.PopulateObject(values, record);
-
-                        var cekdata = dbContext.product
-                            .Where(o => o.organization_id == CurrentUserContext.OrganizationId
-                                && o.product_code.ToLower().Trim() == record.product_code.ToLower().Trim()
-                                && o.id != record.id)
-                            .FirstOrDefault();
-                        if (cekdata != null) return BadRequest("Duplicate Code field.");
-
-                        var is_active = record.is_active;
-                        record.InjectFrom(values);
-                        record.modified_by = CurrentUserContext.AppUserId;
-                        record.modified_on = DateTime.Now;
-                        record.is_active = is_active;
-
-                        await dbContext.SaveChangesAsync();
-                        return Ok(record);
-                    }
-                    else
-                    {
-                        return BadRequest("User is not authorized.");
-                    }
-                }
-                else
-                {
-                    return BadRequest("Record does not exist.");
-                }
-            }
-			catch (Exception ex)
-			{
-				logger.Error(ex.InnerException ?? ex);
-                return BadRequest(ex.InnerException?.Message ?? ex.Message);
-			}
-        }
-
-        [HttpDelete("DeleteData")]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<IActionResult> DeleteData([FromForm] string key)
-        {
-            logger.Debug($"string key = {key}");
-
-            try
-            {
-                var timesheet_detail = dbContext.timesheet_detail.Where(o => o.organization_id == CurrentUserContext.OrganizationId
-                    && o.material_id == key).FirstOrDefault();
-                if (timesheet_detail != null) return BadRequest("Can not be deleted since it is already have one or more transactions.");
-
-                var record = dbContext.product
-                    .Where(o => o.id == key
-                        && o.organization_id == CurrentUserContext.OrganizationId)
-                    .FirstOrDefault();
-                if (record != null)
-                {
-                    if (await mcsContext.CanDelete(dbContext, key, CurrentUserContext.AppUserId, HttpContext.Session.GetString("BUSINESS_UNIT_ID"))
-                        || CurrentUserContext.IsSysAdmin)
-                    {
-                        dbContext.product.Remove(record);
-                        await dbContext.SaveChangesAsync();
-                    }
-                    else
-                    {
-                        return BadRequest("User is not authorized.");
-                    }
-                }
-                return Ok();
-            }
-			catch (Exception ex)
-			{
-				logger.Error(ex.InnerException ?? ex);
-                return BadRequest(ex.InnerException?.Message ?? ex.Message);
-			}
-        }
-
-        [HttpPost("SaveData")]
-        public async Task<IActionResult> SaveData([FromBody] product Record)
-        {
-            using (var tx = await dbContext.Database.BeginTransactionAsync())
-            {
-                try
-                {
-                    var record = dbContext.product
-                        .Where(o => o.id == Record.id)
-                        .FirstOrDefault();
-                    if (record != null)
-                    {
-                        if (await mcsContext.CanUpdate(dbContext, record.id, CurrentUserContext.AppUserId)
-                            || CurrentUserContext.IsSysAdmin)
-                        {
-                            var e = new entity();
-                            e.InjectFrom(record);
-                            record.InjectFrom(Record);
-                            record.InjectFrom(e);
-                            record.modified_by = CurrentUserContext.AppUserId;
-                            record.modified_on = DateTime.Now;
-
-                            await dbContext.SaveChangesAsync();
-                            await tx.CommitAsync();
-                            return Ok(record);
-                        }
-                        else
-                        {
-                            return BadRequest("User is not authorized.");
-                        }
-                    }
-                    else if (await mcsContext.CanCreate(dbContext, nameof(product),
-                        CurrentUserContext.AppUserId) || CurrentUserContext.IsSysAdmin)
-                    {
-                        record = new product();
-                        record.InjectFrom(Record);
-
-                        record.id = Guid.NewGuid().ToString("N");
-                        record.created_by = CurrentUserContext.AppUserId;
-                        record.created_on = DateTime.Now;
-                        record.modified_by = null;
-                        record.modified_on = null;
-                        record.is_active = true;
-                        record.is_default = null;
-                        record.is_locked = null;
-                        record.entity_id = null;
-                        record.owner_id = CurrentUserContext.AppUserId;
-                        record.organization_id = CurrentUserContext.OrganizationId;
-					    record.business_unit_id = HttpContext.Session.GetString("BUSINESS_UNIT_ID");
-
-                        dbContext.product.Add(record);
-                        await dbContext.SaveChangesAsync();
-                        await tx.CommitAsync();
-                        return Ok(record);
-                    }
-                    else
-                    {
-                        return BadRequest("User is not authorized.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    if (ex.InnerException != null)
-                    {
-                        logger.Error(ex.InnerException.Message);
-                        return BadRequest(ex.InnerException.Message);
-                    }
-                    else
-                    {
-                        logger.Error(ex.ToString());
-                        return BadRequest(ex.Message);
-                    }
-                }
-            }
-        }
+        
 
         [HttpGet("ProductCategoryIdLookup")]
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -499,7 +282,225 @@ namespace MCSWebApp.Controllers.API.Material
                 return BadRequest(ex.InnerException?.Message ?? ex.Message);
             }
         }
+        #region commented bcs in portal u cant create,update or delete. just read
+        /*[HttpPost("InsertData")]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<IActionResult> InsertData([FromForm] string values)
+        {
+            logger.Trace($"string values = {values}");
 
+            try
+            {
+                if (await mcsContext.CanCreate(dbContext, nameof(product),
+                    CurrentUserContext.AppUserId, HttpContext.Session.GetString("BUSINESS_UNIT_ID")) || CurrentUserContext.IsSysAdmin)
+                {
+                    var record = new product();
+                    JsonConvert.PopulateObject(values, record);
+
+                    var cekdata = dbContext.product
+                        .Where(o => o.organization_id == CurrentUserContext.OrganizationId
+                            && o.product_code.ToLower().Trim() == record.product_code.ToLower().Trim())
+                        .FirstOrDefault();
+                    if (cekdata != null) return BadRequest("Duplicate Code field.");
+
+                    record.id = Guid.NewGuid().ToString("N");
+                    record.created_by = CurrentUserContext.AppUserId;
+                    record.created_on = DateTime.Now;
+                    record.modified_by = null;
+                    record.modified_on = null;
+                    //record.is_active = true;
+                    record.is_default = null;
+                    record.is_locked = null;
+                    record.entity_id = null;
+                    record.owner_id = CurrentUserContext.AppUserId;
+                    record.organization_id = CurrentUserContext.OrganizationId;
+                    //record.business_unit_id = HttpContext.Session.GetString("BUSINESS_UNIT_ID");
+
+                    dbContext.product.Add(record);
+                    await dbContext.SaveChangesAsync();
+
+                    return Ok(record);
+                }
+                else
+                {
+                    return BadRequest("User is not authorized.");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.InnerException ?? ex);
+                return BadRequest(ex.InnerException?.Message ?? ex.Message);
+            }
+        }
+
+        [HttpPut("UpdateData")]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<IActionResult> UpdateData([FromForm] string key, [FromForm] string values)
+        {
+            logger.Trace($"string values = {values}");
+
+            try
+            {
+                var record = dbContext.product
+                    .Where(o => o.id == key
+                        && o.organization_id == CurrentUserContext.OrganizationId)
+                    .FirstOrDefault();
+                if (record != null)
+                {
+                    if (await mcsContext.CanUpdate(dbContext, record.id, CurrentUserContext.AppUserId, HttpContext.Session.GetString("BUSINESS_UNIT_ID"))
+                        || CurrentUserContext.IsSysAdmin)
+                    {
+                        *//*var e = new entity();
+                        e.InjectFrom(record);*//*
+
+                        JsonConvert.PopulateObject(values, record);
+
+                        var cekdata = dbContext.product
+                            .Where(o => o.organization_id == CurrentUserContext.OrganizationId
+                                && o.product_code.ToLower().Trim() == record.product_code.ToLower().Trim()
+                                && o.id != record.id)
+                            .FirstOrDefault();
+                        if (cekdata != null) return BadRequest("Duplicate Code field.");
+
+                        var is_active = record.is_active;
+                        record.InjectFrom(values);
+                        record.modified_by = CurrentUserContext.AppUserId;
+                        record.modified_on = DateTime.Now;
+                        record.is_active = is_active;
+
+                        await dbContext.SaveChangesAsync();
+                        return Ok(record);
+                    }
+                    else
+                    {
+                        return BadRequest("User is not authorized.");
+                    }
+                }
+                else
+                {
+                    return BadRequest("Record does not exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.InnerException ?? ex);
+                return BadRequest(ex.InnerException?.Message ?? ex.Message);
+            }
+        }
+
+        [HttpDelete("DeleteData")]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<IActionResult> DeleteData([FromForm] string key)
+        {
+            logger.Debug($"string key = {key}");
+
+            try
+            {
+                var timesheet_detail = dbContext.timesheet_detail.Where(o => o.organization_id == CurrentUserContext.OrganizationId
+                    && o.material_id == key).FirstOrDefault();
+                if (timesheet_detail != null) return BadRequest("Can not be deleted since it is already have one or more transactions.");
+
+                var record = dbContext.product
+                    .Where(o => o.id == key
+                        && o.organization_id == CurrentUserContext.OrganizationId)
+                    .FirstOrDefault();
+                if (record != null)
+                {
+                    if (await mcsContext.CanDelete(dbContext, key, CurrentUserContext.AppUserId, HttpContext.Session.GetString("BUSINESS_UNIT_ID"))
+                        || CurrentUserContext.IsSysAdmin)
+                    {
+                        dbContext.product.Remove(record);
+                        await dbContext.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        return BadRequest("User is not authorized.");
+                    }
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.InnerException ?? ex);
+                return BadRequest(ex.InnerException?.Message ?? ex.Message);
+            }
+        }
+
+        [HttpPost("SaveData")]
+        public async Task<IActionResult> SaveData([FromBody] product Record)
+        {
+            using (var tx = await dbContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var record = dbContext.product
+                        .Where(o => o.id == Record.id)
+                        .FirstOrDefault();
+                    if (record != null)
+                    {
+                        if (await mcsContext.CanUpdate(dbContext, record.id, CurrentUserContext.AppUserId)
+                            || CurrentUserContext.IsSysAdmin)
+                        {
+                            var e = new entity();
+                            e.InjectFrom(record);
+                            record.InjectFrom(Record);
+                            record.InjectFrom(e);
+                            record.modified_by = CurrentUserContext.AppUserId;
+                            record.modified_on = DateTime.Now;
+
+                            await dbContext.SaveChangesAsync();
+                            await tx.CommitAsync();
+                            return Ok(record);
+                        }
+                        else
+                        {
+                            return BadRequest("User is not authorized.");
+                        }
+                    }
+                    else if (await mcsContext.CanCreate(dbContext, nameof(product),
+                        CurrentUserContext.AppUserId) || CurrentUserContext.IsSysAdmin)
+                    {
+                        record = new product();
+                        record.InjectFrom(Record);
+
+                        record.id = Guid.NewGuid().ToString("N");
+                        record.created_by = CurrentUserContext.AppUserId;
+                        record.created_on = DateTime.Now;
+                        record.modified_by = null;
+                        record.modified_on = null;
+                        record.is_active = true;
+                        record.is_default = null;
+                        record.is_locked = null;
+                        record.entity_id = null;
+                        record.owner_id = CurrentUserContext.AppUserId;
+                        record.organization_id = CurrentUserContext.OrganizationId;
+                        record.business_unit_id = HttpContext.Session.GetString("BUSINESS_UNIT_ID");
+
+                        dbContext.product.Add(record);
+                        await dbContext.SaveChangesAsync();
+                        await tx.CommitAsync();
+                        return Ok(record);
+                    }
+                    else
+                    {
+                        return BadRequest("User is not authorized.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null)
+                    {
+                        logger.Error(ex.InnerException.Message);
+                        return BadRequest(ex.InnerException.Message);
+                    }
+                    else
+                    {
+                        logger.Error(ex.ToString());
+                        return BadRequest(ex.Message);
+                    }
+                }
+            }
+        }
         [HttpPost("UploadDocument")]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<object> UploadDocument([FromBody] dynamic FileDocument)
@@ -734,7 +735,7 @@ namespace MCSWebApp.Controllers.API.Material
                 await transaction.CommitAsync();
                 return "File berhasil di-upload!";
             }
-        }
-
+        }*/
+        #endregion
     }
 }

@@ -68,17 +68,9 @@ namespace DataAccess.EFCore.Repository
         public bool? is_finish { get; set; }
         public string product_category_id { get; set; }
         public string contractor_id { get; set; }
+        public string integration_status { get; set; }
 
-        public virtual accounting_period accounting_period { get; set; }
-        public virtual contractor contractor_ { get; set; }
-        public virtual draft_survey draft_survey { get; set; }
         public virtual organization organization_ { get; set; }
-        public virtual process_flow process_flow_ { get; set; }
-        public virtual product_category product_category_ { get; set; }
-        public virtual quality_sampling quality_sampling_ { get; set; }
-        public virtual sils sils_ { get; set; }
-        public virtual transport transport_ { get; set; }
-        public virtual uom uom_ { get; set; }
         public virtual ICollection<barging_load_unload_document> barging_load_unload_document { get; set; }
     }
 }

@@ -65,6 +65,7 @@ namespace DataAccess.EFCore.Repository
         public string wlcr { get; set; }
         public DateTimeOffset? bill_lading_date { get; set; }
         public string contractor_id { get; set; }
+        public string integration_status { get; set; }
 
         public virtual organization organization_ { get; set; }
         public virtual ICollection<shipping_delay> shipping_delay { get; set; }

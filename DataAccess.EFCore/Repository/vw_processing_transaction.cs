@@ -67,5 +67,6 @@ namespace DataAccess.EFCore.Repository
         public string record_owning_team { get; set; }
         public string contractor_id { get; set; }
         public string business_area_pit_id { get; set; }
+        public string integration_status { get; set; }
     }
 }

@@ -7,10 +7,7 @@ namespace DataAccess.EFCore.Repository
     {
         public survey()
         {
-            hauling_transaction = new HashSet<hauling_transaction>();
-            production_transaction = new HashSet<production_transaction>();
             survey_detail = new HashSet<survey_detail>();
-            waste_removal = new HashSet<waste_removal>();
         }
 
         public string id { get; set; }
@@ -39,9 +36,6 @@ namespace DataAccess.EFCore.Repository
         public string accounting_period_id { get; set; }
 
         public virtual organization organization_ { get; set; }
-        public virtual ICollection<hauling_transaction> hauling_transaction { get; set; }
-        public virtual ICollection<production_transaction> production_transaction { get; set; }
         public virtual ICollection<survey_detail> survey_detail { get; set; }
-        public virtual ICollection<waste_removal> waste_removal { get; set; }
     }
 }

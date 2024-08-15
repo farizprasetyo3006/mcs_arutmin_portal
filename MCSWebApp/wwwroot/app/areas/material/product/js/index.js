@@ -184,10 +184,10 @@
         showBorders: true,
         editing: {
             mode: "form",
-            allowAdding: true,
-            allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
+            allowAdding: false,
+            allowUpdating: false,
+            allowDeleting: false,
+            useIcons: false
         },
         grouping: {
             contextMenuEnabled: true,
@@ -396,10 +396,10 @@
                     showBorders: true,
                     editing: {
                         mode: "form",
-                        allowAdding: true,
-                        allowUpdating: true,
-                        allowDeleting: true,
-                        useIcons: true
+                        allowAdding: false,
+                        allowUpdating: false,
+                        allowDeleting: false,
+                        useIcons: false
                     },
                     grouping: {
                         contextMenuEnabled: true,
@@ -583,10 +583,10 @@
                     showBorders: true,
                     editing: {
                         mode: "form",
-                        allowAdding: true,
-                        allowUpdating: true,
-                        allowDeleting: true,
-                        useIcons: true
+                        allowAdding: false,
+                        allowUpdating: false,
+                        allowDeleting: false,
+                        useIcons: false
                     },
                     grouping: {
                         contextMenuEnabled: true,

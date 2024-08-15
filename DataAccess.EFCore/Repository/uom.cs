@@ -8,14 +8,12 @@ namespace DataAccess.EFCore.Repository
         public uom()
         {
             analyte = new HashSet<analyte>();
-            barging_transaction = new HashSet<barging_transaction>();
             drill_blast_plan = new HashSet<drill_blast_plan>();
             eight_week_forecast = new HashSet<eight_week_forecast>();
             explosive_usage_plan = new HashSet<explosive_usage_plan>();
             explosive_usage_plan_detail = new HashSet<explosive_usage_plan_detail>();
             price_adjustment_product_specification = new HashSet<price_adjustment_product_specification>();
             price_index_product_specification = new HashSet<price_index_product_specification>();
-            processing_transaction = new HashSet<processing_transaction>();
             product_specification = new HashSet<product_specification>();
             sales_contract_despatch_demurrage_termloading_rate_uom_ = new HashSet<sales_contract_despatch_demurrage_term>();
             sales_contract_despatch_demurrage_termturn_time_uom_ = new HashSet<sales_contract_despatch_demurrage_term>();
@@ -58,14 +56,12 @@ namespace DataAccess.EFCore.Repository
         public virtual organization organization_ { get; set; }
         public virtual uom_category uom_category_ { get; set; }
         public virtual ICollection<analyte> analyte { get; set; }
-        public virtual ICollection<barging_transaction> barging_transaction { get; set; }
         public virtual ICollection<drill_blast_plan> drill_blast_plan { get; set; }
         public virtual ICollection<eight_week_forecast> eight_week_forecast { get; set; }
         public virtual ICollection<explosive_usage_plan> explosive_usage_plan { get; set; }
         public virtual ICollection<explosive_usage_plan_detail> explosive_usage_plan_detail { get; set; }
         public virtual ICollection<price_adjustment_product_specification> price_adjustment_product_specification { get; set; }
         public virtual ICollection<price_index_product_specification> price_index_product_specification { get; set; }
-        public virtual ICollection<processing_transaction> processing_transaction { get; set; }
         public virtual ICollection<product_specification> product_specification { get; set; }
         public virtual ICollection<sales_contract_despatch_demurrage_term> sales_contract_despatch_demurrage_termloading_rate_uom_ { get; set; }
         public virtual ICollection<sales_contract_despatch_demurrage_term> sales_contract_despatch_demurrage_termturn_time_uom_ { get; set; }

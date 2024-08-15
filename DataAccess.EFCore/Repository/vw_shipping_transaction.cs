@@ -79,5 +79,6 @@ namespace DataAccess.EFCore.Repository
         public DateTimeOffset? bill_lading_date { get; set; }
         public string contractor_id { get; set; }
         public string view_despatch_order_id { get; set; }
+        public string integration_status { get; set; }
     }
 }

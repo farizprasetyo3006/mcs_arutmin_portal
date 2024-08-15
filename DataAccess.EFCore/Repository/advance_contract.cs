@@ -10,12 +10,7 @@ namespace DataAccess.EFCore.Repository
             advance_contract_charge = new HashSet<advance_contract_charge>();
             advance_contract_detail = new HashSet<advance_contract_detail>();
             advance_contract_item = new HashSet<advance_contract_item>();
-            coal_transfer = new HashSet<coal_transfer>();
-            hauling_transaction = new HashSet<hauling_transaction>();
-            processing_transaction = new HashSet<processing_transaction>();
-            production_transaction = new HashSet<production_transaction>();
             progress_claim = new HashSet<progress_claim>();
-            rehandling_transaction = new HashSet<rehandling_transaction>();
         }
 
         public string id { get; set; }
@@ -48,11 +43,6 @@ namespace DataAccess.EFCore.Repository
         public virtual ICollection<advance_contract_charge> advance_contract_charge { get; set; }
         public virtual ICollection<advance_contract_detail> advance_contract_detail { get; set; }
         public virtual ICollection<advance_contract_item> advance_contract_item { get; set; }
-        public virtual ICollection<coal_transfer> coal_transfer { get; set; }
-        public virtual ICollection<hauling_transaction> hauling_transaction { get; set; }
-        public virtual ICollection<processing_transaction> processing_transaction { get; set; }
-        public virtual ICollection<production_transaction> production_transaction { get; set; }
         public virtual ICollection<progress_claim> progress_claim { get; set; }
-        public virtual ICollection<rehandling_transaction> rehandling_transaction { get; set; }
     }
 }

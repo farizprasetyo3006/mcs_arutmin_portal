@@ -50,13 +50,8 @@ namespace DataAccess.EFCore.Repository
         public TimeSpan? duration { get; set; }
         public decimal? density { get; set; }
         public decimal? ritase { get; set; }
+        public string integration_status { get; set; }
 
-        public virtual accounting_period accounting_period_ { get; set; }
-        public virtual waste_location destination_location_ { get; set; }
-        public virtual shift destination_shift_ { get; set; }
         public virtual organization organization_ { get; set; }
-        public virtual quality_sampling quality_sampling_ { get; set; }
-        public virtual shift source_shift_ { get; set; }
-        public virtual survey survey_ { get; set; }
     }
 }

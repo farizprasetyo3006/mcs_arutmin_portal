@@ -13,10 +13,8 @@ namespace DataAccess.EFCore.Repository
         public string business_area_name { get; set; }
         public string pit { get; set; }
         public string business_partner_name { get; set; }
-        public string pit_contractor { get; set; }
         public string destination { get; set; }
         public DateTime? dates { get; set; }
-        public DateTime? date { get; set; }
         public decimal? qty { get; set; }
     }
 }

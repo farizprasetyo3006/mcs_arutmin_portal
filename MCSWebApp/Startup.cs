@@ -51,7 +51,7 @@ namespace MCSWebApp
             RegisteredObjects.AddConnection(typeof(PostgresDataConnection));
 
             services.AddHttpClient();
-            services.AddHostedService<SchedulerService>();
+            //services.AddHostedService<SchedulerService>();
             services.AddSignalR();
 
             services.AddLogging();

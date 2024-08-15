@@ -7,7 +7,6 @@ namespace DataAccess.EFCore.Repository
     {
         public product()
         {
-            processing_transaction = new HashSet<processing_transaction>();
             product_specification = new HashSet<product_specification>();
             sales_contract_detail = new HashSet<sales_contract_detail>();
             sales_contract_product = new HashSet<sales_contract_product>();
@@ -43,7 +42,6 @@ namespace DataAccess.EFCore.Repository
 
         public virtual organization organization_ { get; set; }
         public virtual product_category product_category_ { get; set; }
-        public virtual ICollection<processing_transaction> processing_transaction { get; set; }
         public virtual ICollection<product_specification> product_specification { get; set; }
         public virtual ICollection<sales_contract_detail> sales_contract_detail { get; set; }
         public virtual ICollection<sales_contract_product> sales_contract_product { get; set; }

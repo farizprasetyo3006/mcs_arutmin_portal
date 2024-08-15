@@ -7,15 +7,11 @@ namespace DataAccess.EFCore.Repository
     {
         public despatch_order()
         {
-            coal_transfer = new HashSet<coal_transfer>();
             despatch_demurrage = new HashSet<despatch_demurrage>();
             despatch_demurrage_delay = new HashSet<despatch_demurrage_delay>();
             despatch_demurrage_invoice = new HashSet<despatch_demurrage_invoice>();
             despatch_order_delay = new HashSet<despatch_order_delay>();
-            hauling_transaction = new HashSet<hauling_transaction>();
             initial_information = new HashSet<initial_information>();
-            processing_transaction = new HashSet<processing_transaction>();
-            production_transaction = new HashSet<production_transaction>();
             sales_invoice = new HashSet<sales_invoice>();
             sales_invoice_transhipment = new HashSet<sales_invoice_transhipment>();
             shipping_instruction = new HashSet<shipping_instruction>();
@@ -97,15 +93,11 @@ namespace DataAccess.EFCore.Repository
         public virtual master_list document_reference_ { get; set; }
         public virtual organization organization_ { get; set; }
         public virtual organization seller_ { get; set; }
-        public virtual ICollection<coal_transfer> coal_transfer { get; set; }
         public virtual ICollection<despatch_demurrage> despatch_demurrage { get; set; }
         public virtual ICollection<despatch_demurrage_delay> despatch_demurrage_delay { get; set; }
         public virtual ICollection<despatch_demurrage_invoice> despatch_demurrage_invoice { get; set; }
         public virtual ICollection<despatch_order_delay> despatch_order_delay { get; set; }
-        public virtual ICollection<hauling_transaction> hauling_transaction { get; set; }
         public virtual ICollection<initial_information> initial_information { get; set; }
-        public virtual ICollection<processing_transaction> processing_transaction { get; set; }
-        public virtual ICollection<production_transaction> production_transaction { get; set; }
         public virtual ICollection<sales_invoice> sales_invoice { get; set; }
         public virtual ICollection<sales_invoice_transhipment> sales_invoice_transhipment { get; set; }
         public virtual ICollection<shipping_instruction> shipping_instruction { get; set; }

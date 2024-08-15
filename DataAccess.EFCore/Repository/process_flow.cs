@@ -5,11 +5,6 @@ namespace DataAccess.EFCore.Repository
 {
     public partial class process_flow
     {
-        public process_flow()
-        {
-            barging_transaction = new HashSet<barging_transaction>();
-        }
-
         public string id { get; set; }
         public string created_by { get; set; }
         public DateTime? created_on { get; set; }
@@ -37,6 +32,5 @@ namespace DataAccess.EFCore.Repository
         public virtual business_area destination_location_ { get; set; }
         public virtual organization organization_ { get; set; }
         public virtual business_area source_location_ { get; set; }
-        public virtual ICollection<barging_transaction> barging_transaction { get; set; }
     }
 }

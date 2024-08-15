@@ -48,7 +48,6 @@ namespace DataAccess.EFCore.Repository
             city = new HashSet<city>();
             coa = new HashSet<coa>();
             coa_subaccount = new HashSet<coa_subaccount>();
-            coal_transfer = new HashSet<coal_transfer>();
             contact = new HashSet<contact>();
             contractor = new HashSet<contractor>();
             contractor_document = new HashSet<contractor_document>();
@@ -331,7 +330,6 @@ namespace DataAccess.EFCore.Repository
         public virtual ICollection<city> city { get; set; }
         public virtual ICollection<coa> coa { get; set; }
         public virtual ICollection<coa_subaccount> coa_subaccount { get; set; }
-        public virtual ICollection<coal_transfer> coal_transfer { get; set; }
         public virtual ICollection<contact> contact { get; set; }
         public virtual ICollection<contractor> contractor { get; set; }
         public virtual ICollection<contractor_document> contractor_document { get; set; }

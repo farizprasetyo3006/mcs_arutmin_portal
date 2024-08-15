@@ -222,7 +222,6 @@ namespace DataAccess.EFCore.Repository
         public virtual DbSet<despatch_order_product_specifications> despatch_order_product_specifications { get; set; }
         public virtual DbSet<direct_nplct_details> direct_nplct_details { get; set; }
         public virtual DbSet<document_type> document_type { get; set; }
-        public virtual DbSet<dpr_coal_mined> dpr_coal_mined { get; set; }
         public virtual DbSet<draft_survey> draft_survey { get; set; }
         public virtual DbSet<draft_survey_detail> draft_survey_detail { get; set; }
         public virtual DbSet<draft_survey_document> draft_survey_document { get; set; }
@@ -261,7 +260,6 @@ namespace DataAccess.EFCore.Repository
         public virtual DbSet<hauling_schema> hauling_schema { get; set; }
         public virtual DbSet<hauling_transaction> hauling_transaction { get; set; }
         public virtual DbSet<haze> haze { get; set; }
-        public virtual DbSet<historical_dpr> historical_dpr { get; set; }
         public virtual DbSet<historical_stock_mutation> historical_stock_mutation { get; set; }
         public virtual DbSet<incident> incident { get; set; }
         public virtual DbSet<incident_category> incident_category { get; set; }
@@ -367,7 +365,6 @@ namespace DataAccess.EFCore.Repository
         public virtual DbSet<rainfall_historical> rainfall_historical { get; set; }
         public virtual DbSet<rainfall_landingpage> rainfall_landingpage { get; set; }
         public virtual DbSet<rainfall_schema> rainfall_schema { get; set; }
-        public virtual DbSet<rainfall_sliperry_schema> rainfall_sliperry_schema { get; set; }
         public virtual DbSet<raw_data_soa_export> raw_data_soa_export { get; set; }
         public virtual DbSet<raw_data_soa_pln> raw_data_soa_pln { get; set; }
         public virtual DbSet<raw_report_stockpile_summary_fp> raw_report_stockpile_summary_fp { get; set; }
@@ -714,7 +711,6 @@ namespace DataAccess.EFCore.Repository
         public virtual DbSet<vw_explosive_usage_plan_detail> vw_explosive_usage_plan_detail { get; set; }
         public virtual DbSet<vw_exposed_coal> vw_exposed_coal { get; set; }
         public virtual DbSet<vw_fuel_inventory> vw_fuel_inventory { get; set; }
-        public virtual DbSet<vw_get_dpr_data> vw_get_dpr_data { get; set; }
         public virtual DbSet<vw_hauling_plan> vw_hauling_plan { get; set; }
         public virtual DbSet<vw_hauling_plan_daily> vw_hauling_plan_daily { get; set; }
         public virtual DbSet<vw_hauling_plan_history> vw_hauling_plan_history { get; set; }
@@ -745,8 +741,6 @@ namespace DataAccess.EFCore.Repository
         public virtual DbSet<vw_mineplan_geology_history> vw_mineplan_geology_history { get; set; }
         public virtual DbSet<vw_mineplan_ltp_history> vw_mineplan_ltp_history { get; set; }
         public virtual DbSet<vw_model_geology> vw_model_geology { get; set; }
-        public virtual DbSet<vw_monitoring_aims> vw_monitoring_aims { get; set; }
-        public virtual DbSet<vw_monitoring_sm> vw_monitoring_sm { get; set; }
         public virtual DbSet<vw_operator> vw_operator { get; set; }
         public virtual DbSet<vw_organization> vw_organization { get; set; }
         public virtual DbSet<vw_parent_despatch_order> vw_parent_despatch_order { get; set; }
@@ -940,7 +934,7 @@ namespace DataAccess.EFCore.Repository
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=10.129.129.195;Port=5432;Database=prod_arutmin;Username=admin;Password=@rutm1n2o23;");
+                optionsBuilder.UseNpgsql("Host=10.129.129.130;Port=5432;Database=portal_arutmin;Username=admin;Password=@rutm1n2o23;");
             }
         }
 
@@ -972,8 +966,6 @@ namespace DataAccess.EFCore.Repository
                 entity.Property(e => e.accounting_period_name).IsRequired();
 
                 entity.Property(e => e.end_date).HasColumnType("date");
-
-                entity.Property(e => e.organization_id).IsRequired();
 
                 entity.Property(e => e.start_date).HasColumnType("date");
 
@@ -1804,6 +1796,8 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.hour_usage).HasColumnType("numeric");
 
+                entity.Property(e => e.integration_status).HasDefaultValueSql("'NOT APPROVED'::text");
+
                 entity.Property(e => e.intermediate_quantity).HasColumnType("numeric");
 
                 entity.Property(e => e.quantity).HasColumnType("numeric");
@@ -1816,59 +1810,11 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.uom_id).IsRequired();
 
-                entity.HasOne(d => d.contractor_)
-                    .WithMany(p => p.barging_transaction)
-                    .HasForeignKey(d => d.contractor_id)
-                    .HasConstraintName("barging_transaction_contractor_fk");
-
                 entity.HasOne(d => d.organization_)
                     .WithMany(p => p.barging_transaction)
                     .HasForeignKey(d => d.organization_id)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("fk_organization_organization_id");
-
-                entity.HasOne(d => d.process_flow_)
-                    .WithMany(p => p.barging_transaction)
-                    .HasForeignKey(d => d.process_flow_id)
-                    .HasConstraintName("barging_transaction_process_flow_fk");
-
-                entity.HasOne(d => d.product_category_)
-                    .WithMany(p => p.barging_transaction)
-                    .HasForeignKey(d => d.product_category_id)
-                    .HasConstraintName("barging_transaction_product_category_fk");
-
-                entity.HasOne(d => d.quality_sampling_)
-                    .WithMany(p => p.barging_transaction)
-                    .HasForeignKey(d => d.quality_sampling_id)
-                    .HasConstraintName("barging_transaction_quality_sampling_fk");
-
-                entity.HasOne(d => d.sils_)
-                    .WithMany(p => p.barging_transaction)
-                    .HasForeignKey(d => d.sils_id)
-                    .HasConstraintName("barging_transaction_sils_fk");
-
-                entity.HasOne(d => d.transport_)
-                    .WithMany(p => p.barging_transaction)
-                    .HasForeignKey(d => d.transport_id)
-                    .HasConstraintName("barging_transaction_transport_fk");
-
-                entity.HasOne(d => d.uom_)
-                    .WithMany(p => p.barging_transaction)
-                    .HasForeignKey(d => d.uom_id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("barging_transaction_uom_fk");
-
-                entity.HasOne(d => d.accounting_period)
-                    .WithMany(p => p.barging_transaction)
-                    .HasPrincipalKey(p => new { p.organization_id, p.accounting_period_name })
-                    .HasForeignKey(d => new { d.organization_id, d.accounting_period_id })
-                    .HasConstraintName("barging_transaction_accounting_period_fk");
-
-                entity.HasOne(d => d.draft_survey)
-                    .WithMany(p => p.barging_transaction)
-                    .HasPrincipalKey(p => new { p.organization_id, p.survey_number })
-                    .HasForeignKey(d => new { d.organization_id, d.draft_survey_id })
-                    .HasConstraintName("barging_transaction_draft_survey_fk");
             });
 
             modelBuilder.Entity<belt_scale>(entity =>
@@ -3532,6 +3478,8 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.hour_usage).HasColumnType("numeric");
 
+                entity.Property(e => e.integration_status).HasDefaultValueSql("'NOT APPROVED'::text");
+
                 entity.Property(e => e.loading_quantity).HasColumnType("numeric");
 
                 entity.Property(e => e.process_flow_id).IsRequired();
@@ -3541,36 +3489,6 @@ namespace DataAccess.EFCore.Repository
                 entity.Property(e => e.transaction_number).IsRequired();
 
                 entity.Property(e => e.unloading_quantity).HasColumnType("numeric");
-
-                entity.HasOne(d => d.accounting_period_)
-                    .WithMany(p => p.coal_transfer)
-                    .HasForeignKey(d => d.accounting_period_id)
-                    .HasConstraintName("coal_transfer_accounting_period_fk");
-
-                entity.HasOne(d => d.despatch_order_)
-                    .WithMany(p => p.coal_transfer)
-                    .HasForeignKey(d => d.despatch_order_id)
-                    .HasConstraintName("coal_transfer_despatch_order_fk");
-
-                entity.HasOne(d => d.destination_shift_)
-                    .WithMany(p => p.coal_transfer)
-                    .HasForeignKey(d => d.destination_shift_id)
-                    .HasConstraintName("coal_transfer_shift_fk");
-
-                entity.HasOne(d => d.organization_)
-                    .WithMany(p => p.coal_transfer)
-                    .HasForeignKey(d => d.organization_id)
-                    .HasConstraintName("coal_transfer_organization_fk");
-
-                entity.HasOne(d => d.progress_claim_)
-                    .WithMany(p => p.coal_transfer)
-                    .HasForeignKey(d => d.progress_claim_id)
-                    .HasConstraintName("coal_transfer_advance_contract_fk");
-
-                entity.HasOne(d => d.survey_)
-                    .WithMany(p => p.coal_transfer)
-                    .HasForeignKey(d => d.survey_id)
-                    .HasConstraintName("coal_transfer_quality_sampling_fk");
             });
 
             modelBuilder.Entity<coal_transfer_allsite_daily_pct>(entity =>
@@ -4634,25 +4552,6 @@ namespace DataAccess.EFCore.Repository
                     .HasConstraintName("fk_organization_organization_id");
             });
 
-            modelBuilder.Entity<dpr_coal_mined>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.daily_actual).HasColumnType("numeric");
-
-                entity.Property(e => e.daily_budgdet).HasColumnType("numeric");
-
-                entity.Property(e => e.mtd_actual).HasColumnType("numeric");
-
-                entity.Property(e => e.mtd_budget).HasColumnType("numeric");
-
-                entity.Property(e => e.mtd_forecast).HasColumnType("numeric");
-
-                entity.Property(e => e.ytd_actual).HasColumnType("numeric");
-
-                entity.Property(e => e.ytd_budget).HasColumnType("numeric");
-            });
-
             modelBuilder.Entity<draft_survey>(entity =>
             {
                 entity.HasIndex(e => new { e.organization_id, e.survey_number })
@@ -4671,8 +4570,6 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.lc_price).HasColumnType("numeric");
 
-                entity.Property(e => e.organization_id).IsRequired();
-
                 entity.Property(e => e.peb_date).HasColumnType("date");
 
                 entity.Property(e => e.quantity).HasColumnType("numeric");
@@ -4681,14 +4578,11 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.survey_date).HasColumnType("date");
 
-                entity.Property(e => e.survey_number).IsRequired();
-
                 entity.Property(e => e.wlcr).HasColumnType("date");
 
                 entity.HasOne(d => d.organization_)
                     .WithMany(p => p.draft_survey)
                     .HasForeignKey(d => d.organization_id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("draft_survey_organization_id_fkey");
             });
 
@@ -5486,6 +5380,8 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.hour_usage).HasColumnType("numeric");
 
+                entity.Property(e => e.integration_status).HasDefaultValueSql("'NOT APPROVED'::text");
+
                 entity.Property(e => e.loading_quantity).HasColumnType("numeric");
 
                 entity.Property(e => e.netto_rekon).HasColumnType("numeric");
@@ -5498,36 +5394,11 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.unloading_quantity).HasColumnType("numeric");
 
-                entity.HasOne(d => d.accounting_period_)
-                    .WithMany(p => p.hauling_transaction)
-                    .HasForeignKey(d => d.accounting_period_id)
-                    .HasConstraintName("hauling_transaction_accounting_period_fk");
-
-                entity.HasOne(d => d.despatch_order_)
-                    .WithMany(p => p.hauling_transaction)
-                    .HasForeignKey(d => d.despatch_order_id)
-                    .HasConstraintName("hauling_transaction_despatch_order_fk");
-
-                entity.HasOne(d => d.destination_shift_)
-                    .WithMany(p => p.hauling_transaction)
-                    .HasForeignKey(d => d.destination_shift_id)
-                    .HasConstraintName("hauling_transaction_shift_fk");
-
                 entity.HasOne(d => d.organization_)
                     .WithMany(p => p.hauling_transaction)
                     .HasForeignKey(d => d.organization_id)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("fk_organization_organization_id");
-
-                entity.HasOne(d => d.progress_claim_)
-                    .WithMany(p => p.hauling_transaction)
-                    .HasForeignKey(d => d.progress_claim_id)
-                    .HasConstraintName("hauling_transaction_advance_contract_fk");
-
-                entity.HasOne(d => d.survey_)
-                    .WithMany(p => p.hauling_transaction)
-                    .HasForeignKey(d => d.survey_id)
-                    .HasConstraintName("hauling_transaction_survey_fk");
             });
 
             modelBuilder.Entity<haze>(entity =>
@@ -5546,31 +5417,6 @@ namespace DataAccess.EFCore.Repository
                     .WithMany(p => p.haze)
                     .HasForeignKey(d => d.organization_id)
                     .HasConstraintName("haze_organization_id_fkey");
-            });
-
-            modelBuilder.Entity<historical_dpr>(entity =>
-            {
-                entity.HasIndex(e => new { e.tanggal, e.entity, e.area_name, e.pit_contractor })
-                    .HasName("uk_historical_dpr")
-                    .IsUnique();
-
-                entity.Property(e => e.daily_actual).HasColumnType("numeric");
-
-                entity.Property(e => e.daily_budget).HasColumnType("numeric");
-
-                entity.Property(e => e.entity).IsRequired();
-
-                entity.Property(e => e.mtd_actual).HasColumnType("numeric");
-
-                entity.Property(e => e.mtd_budget).HasColumnType("numeric");
-
-                entity.Property(e => e.mtd_forecast).HasColumnType("numeric");
-
-                entity.Property(e => e.tanggal).HasColumnType("date");
-
-                entity.Property(e => e.ytd_actual).HasColumnType("numeric");
-
-                entity.Property(e => e.ytd_budget).HasColumnType("numeric");
             });
 
             modelBuilder.Entity<historical_stock_mutation>(entity =>
@@ -6183,8 +6029,6 @@ namespace DataAccess.EFCore.Repository
             modelBuilder.Entity<mine_schema>(entity =>
             {
                 entity.HasNoKey();
-
-                entity.Property(e => e.date).HasColumnType("date");
 
                 entity.Property(e => e.qty).HasColumnType("numeric");
             });
@@ -7015,56 +6859,11 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.unloading_quantity).HasColumnType("numeric");
 
-                entity.HasOne(d => d.accounting_period_)
-                    .WithMany(p => p.processing_transaction)
-                    .HasForeignKey(d => d.accounting_period_id)
-                    .HasConstraintName("processing_transaction_accounting_period_fk");
-
-                entity.HasOne(d => d.despatch_order_)
-                    .WithMany(p => p.processing_transaction)
-                    .HasForeignKey(d => d.despatch_order_id)
-                    .HasConstraintName("processing_transaction_despatch_order_fk");
-
-                entity.HasOne(d => d.destination_product_)
-                    .WithMany(p => p.processing_transaction)
-                    .HasForeignKey(d => d.destination_product_id)
-                    .HasConstraintName("processing_transaction_product_fk");
-
-                entity.HasOne(d => d.destination_shift_)
-                    .WithMany(p => p.processing_transaction)
-                    .HasForeignKey(d => d.destination_shift_id)
-                    .HasConstraintName("processing_transaction_shift_fk");
-
-                entity.HasOne(d => d.destination_uom_)
-                    .WithMany(p => p.processing_transaction)
-                    .HasForeignKey(d => d.destination_uom_id)
-                    .HasConstraintName("processing_transaction_uom_fk");
-
                 entity.HasOne(d => d.organization_)
                     .WithMany(p => p.processing_transaction)
                     .HasForeignKey(d => d.organization_id)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("fk_organization_organization_id");
-
-                entity.HasOne(d => d.processing_category_)
-                    .WithMany(p => p.processing_transaction)
-                    .HasForeignKey(d => d.processing_category_id)
-                    .HasConstraintName("processing_transaction_processing_category_fk");
-
-                entity.HasOne(d => d.progress_claim_)
-                    .WithMany(p => p.processing_transaction)
-                    .HasForeignKey(d => d.progress_claim_id)
-                    .HasConstraintName("processing_transaction_advance_contract_fk");
-
-                entity.HasOne(d => d.survey_)
-                    .WithMany(p => p.processing_transaction)
-                    .HasForeignKey(d => d.survey_id)
-                    .HasConstraintName("processing_transaction_quality_sampling_fk");
-
-                entity.HasOne(d => d.transport_)
-                    .WithMany(p => p.processing_transaction)
-                    .HasForeignKey(d => d.transport_id)
-                    .HasConstraintName("processing_transaction_transport_fk");
             });
 
             modelBuilder.Entity<produce_schema>(entity =>
@@ -7372,6 +7171,8 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.hour_usage).HasColumnType("numeric");
 
+                entity.Property(e => e.integration_status).HasDefaultValueSql("'NOT APPROVED'::text");
+
                 entity.Property(e => e.loading_quantity).HasColumnType("numeric");
 
                 entity.Property(e => e.netto_rekon).HasColumnType("numeric");
@@ -7390,41 +7191,11 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.volume).HasColumnType("numeric");
 
-                entity.HasOne(d => d.accounting_period_)
-                    .WithMany(p => p.production_transaction)
-                    .HasForeignKey(d => d.accounting_period_id)
-                    .HasConstraintName("production_transaction_accounting_period_fk");
-
-                entity.HasOne(d => d.advance_contract_id2Navigation)
-                    .WithMany(p => p.production_transaction)
-                    .HasForeignKey(d => d.advance_contract_id2)
-                    .HasConstraintName("production_transaction_advance_contract_fk");
-
-                entity.HasOne(d => d.despatch_order_)
-                    .WithMany(p => p.production_transaction)
-                    .HasForeignKey(d => d.despatch_order_id)
-                    .HasConstraintName("production_transaction_despatch_order_fk");
-
-                entity.HasOne(d => d.destination_shift_)
-                    .WithMany(p => p.production_transaction)
-                    .HasForeignKey(d => d.destination_shift_id)
-                    .HasConstraintName("production_transaction_shift_fk");
-
-                entity.HasOne(d => d.hauling_)
-                    .WithMany(p => p.production_transaction)
-                    .HasForeignKey(d => d.hauling_id)
-                    .HasConstraintName("production_transaction_hauling_transaction_fk");
-
                 entity.HasOne(d => d.organization_)
                     .WithMany(p => p.production_transaction)
                     .HasForeignKey(d => d.organization_id)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("fk_organization_organization_id");
-
-                entity.HasOne(d => d.survey_)
-                    .WithMany(p => p.production_transaction)
-                    .HasForeignKey(d => d.survey_id)
-                    .HasConstraintName("production_transaction_survey_fk");
             });
 
             modelBuilder.Entity<production_transaction_item>(entity =>
@@ -7778,21 +7549,6 @@ namespace DataAccess.EFCore.Repository
                 entity.Property(e => e.rainfall_value).HasColumnType("numeric");
             });
 
-            modelBuilder.Entity<rainfall_sliperry_schema>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.duration).HasColumnType("numeric");
-
-                entity.Property(e => e.frequency).HasColumnType("numeric");
-
-                entity.Property(e => e.rainfall).HasColumnType("numeric");
-
-                entity.Property(e => e.slippery_duration).HasColumnType("numeric");
-
-                entity.Property(e => e.tanggal).HasColumnType("date");
-            });
-
             modelBuilder.Entity<raw_data_soa_export>(entity =>
             {
                 entity.HasNoKey();
@@ -7973,6 +7729,8 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.hour_usage).HasColumnType("numeric");
 
+                entity.Property(e => e.integration_status).HasDefaultValueSql("'NOT APPROVED'::text");
+
                 entity.Property(e => e.loading_quantity).HasColumnType("numeric");
 
                 entity.Property(e => e.process_flow_id).IsRequired();
@@ -7981,31 +7739,11 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.unloading_quantity).HasColumnType("numeric");
 
-                entity.HasOne(d => d.accounting_period_)
-                    .WithMany(p => p.rehandling_transaction)
-                    .HasForeignKey(d => d.accounting_period_id)
-                    .HasConstraintName("rehandling_transaction_accounting_period_fk");
-
-                entity.HasOne(d => d.destination_shift_)
-                    .WithMany(p => p.rehandling_transaction)
-                    .HasForeignKey(d => d.destination_shift_id)
-                    .HasConstraintName("rehandling_transaction_shift_fk");
-
                 entity.HasOne(d => d.organization_)
                     .WithMany(p => p.rehandling_transaction)
                     .HasForeignKey(d => d.organization_id)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("fk_organization_organization_id");
-
-                entity.HasOne(d => d.progress_claim_)
-                    .WithMany(p => p.rehandling_transaction)
-                    .HasForeignKey(d => d.progress_claim_id)
-                    .HasConstraintName("rehandling_transaction_advance_contract_fk");
-
-                entity.HasOne(d => d.survey_)
-                    .WithMany(p => p.rehandling_transaction)
-                    .HasForeignKey(d => d.survey_id)
-                    .HasConstraintName("rehandling_transaction_quality_sampling_fk");
             });
 
             modelBuilder.Entity<report_template>(entity =>
@@ -10952,6 +10690,8 @@ namespace DataAccess.EFCore.Repository
                 entity.Property(e => e.distance).HasColumnType("numeric");
 
                 entity.Property(e => e.hour_usage).HasColumnType("numeric");
+
+                entity.Property(e => e.integration_status).HasDefaultValueSql("'NOT APPROVED'::text");
 
                 entity.Property(e => e.original_quantity).HasColumnType("numeric");
 
@@ -13943,25 +13683,6 @@ namespace DataAccess.EFCore.Repository
                 entity.HasNoKey();
             });
 
-            modelBuilder.Entity<vw_get_dpr_data>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.daily_actual).HasColumnType("numeric");
-
-                entity.Property(e => e.daily_budget).HasColumnType("numeric");
-
-                entity.Property(e => e.mtd_actual).HasColumnType("numeric");
-
-                entity.Property(e => e.mtd_budget).HasColumnType("numeric");
-
-                entity.Property(e => e.mtd_forecast).HasColumnType("numeric");
-
-                entity.Property(e => e.ytd_actual).HasColumnType("numeric");
-
-                entity.Property(e => e.ytd_budget).HasColumnType("numeric");
-            });
-
             modelBuilder.Entity<vw_hauling_plan>(entity =>
             {
                 entity.HasNoKey();
@@ -14370,16 +14091,6 @@ namespace DataAccess.EFCore.Repository
                 entity.Property(e => e.vm).HasColumnType("numeric");
 
                 entity.Property(e => e.waste_bcm).HasColumnType("numeric");
-            });
-
-            modelBuilder.Entity<vw_monitoring_aims>(entity =>
-            {
-                entity.HasNoKey();
-            });
-
-            modelBuilder.Entity<vw_monitoring_sm>(entity =>
-            {
-                entity.HasNoKey();
             });
 
             modelBuilder.Entity<vw_operator>(entity =>
@@ -17153,42 +16864,11 @@ namespace DataAccess.EFCore.Repository
 
                 entity.Property(e => e.waste_id).IsRequired();
 
-                entity.HasOne(d => d.accounting_period_)
-                    .WithMany(p => p.waste_removal)
-                    .HasForeignKey(d => d.accounting_period_id)
-                    .HasConstraintName("waste_removal_accounting_period_fk");
-
-                entity.HasOne(d => d.destination_location_)
-                    .WithMany(p => p.waste_removal)
-                    .HasForeignKey(d => d.destination_location_id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("waste_removal_waste_location_fk");
-
-                entity.HasOne(d => d.destination_shift_)
-                    .WithMany(p => p.waste_removaldestination_shift_)
-                    .HasForeignKey(d => d.destination_shift_id)
-                    .HasConstraintName("waste_removal_shift_fk");
-
                 entity.HasOne(d => d.organization_)
                     .WithMany(p => p.waste_removal)
                     .HasForeignKey(d => d.organization_id)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("fk_organization_organization_id");
-
-                entity.HasOne(d => d.quality_sampling_)
-                    .WithMany(p => p.waste_removal)
-                    .HasForeignKey(d => d.quality_sampling_id)
-                    .HasConstraintName("waste_removal_quality_sampling_fk");
-
-                entity.HasOne(d => d.source_shift_)
-                    .WithMany(p => p.waste_removalsource_shift_)
-                    .HasForeignKey(d => d.source_shift_id)
-                    .HasConstraintName("waste_removal_source_shift_FK");
-
-                entity.HasOne(d => d.survey_)
-                    .WithMany(p => p.waste_removal)
-                    .HasForeignKey(d => d.survey_id)
-                    .HasConstraintName("waste_removal_survey_fk");
             });
 
             modelBuilder.Entity<waste_removal_closing>(entity =>
@@ -17262,8 +16942,6 @@ namespace DataAccess.EFCore.Repository
             modelBuilder.Entity<waste_schema>(entity =>
             {
                 entity.HasNoKey();
-
-                entity.Property(e => e.date).HasColumnType("date");
 
                 entity.Property(e => e.qty).HasColumnType("numeric");
             });

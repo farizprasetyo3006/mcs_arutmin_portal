@@ -55,13 +55,8 @@ namespace DataAccess.EFCore.Repository
         public decimal? ritase { get; set; }
         public decimal? volume { get; set; }
         public string hauling_id { get; set; }
+        public string integration_status { get; set; }
 
-        public virtual accounting_period accounting_period_ { get; set; }
-        public virtual advance_contract advance_contract_id2Navigation { get; set; }
-        public virtual despatch_order despatch_order_ { get; set; }
-        public virtual shift destination_shift_ { get; set; }
-        public virtual hauling_transaction hauling_ { get; set; }
         public virtual organization organization_ { get; set; }
-        public virtual survey survey_ { get; set; }
     }
 }

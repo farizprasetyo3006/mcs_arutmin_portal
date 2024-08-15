@@ -5,11 +5,6 @@ namespace DataAccess.EFCore.Repository
 {
     public partial class processing_category
     {
-        public processing_category()
-        {
-            processing_transaction = new HashSet<processing_transaction>();
-        }
-
         public string id { get; set; }
         public string created_by { get; set; }
         public DateTime? created_on { get; set; }
@@ -26,6 +21,5 @@ namespace DataAccess.EFCore.Repository
         public string processing_category_code { get; set; }
 
         public virtual organization organization_ { get; set; }
-        public virtual ICollection<processing_transaction> processing_transaction { get; set; }
     }
 }

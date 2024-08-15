@@ -5,11 +5,6 @@ namespace DataAccess.EFCore.Repository
 {
     public partial class waste_location
     {
-        public waste_location()
-        {
-            waste_removal = new HashSet<waste_removal>();
-        }
-
         public string id { get; set; }
         public string created_by { get; set; }
         public DateTime? created_on { get; set; }
@@ -39,6 +34,5 @@ namespace DataAccess.EFCore.Repository
 
         public virtual business_area business_area_ { get; set; }
         public virtual organization organization_ { get; set; }
-        public virtual ICollection<waste_removal> waste_removal { get; set; }
     }
 }
