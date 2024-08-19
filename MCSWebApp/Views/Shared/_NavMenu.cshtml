@@ -54,11 +54,30 @@
         </a>
     </li>
 
+    @if (roleAccessList.Contains("MINEPLANGEOLOGY,") || roleAccessList.Contains("MINEPLANLTP,") || roleAccessList.Contains("BUSINESSAREA,") ||
+    roleAccessList.Contains("MINELOCATION,") || roleAccessList.Contains("STOCKPILELOCATION,") || roleAccessList.Contains("PORTLOCATION,") ||
+    roleAccessList.Contains("WASTELOCATION,") || roleAccessList.Contains("PROCESSFLOW,") || roleAccessList.Contains("WASTEREMOVAL,") ||
+    roleAccessList.Contains("PRODUCTIONTRANSACTION,") || roleAccessList.Contains("HAULINGTRANSACTION,") || roleAccessList.Contains("PROCESSINGTRANSACTION,") ||
+    roleAccessList.Contains("COALTRANSFER,") || roleAccessList.Contains("REHANDLINGTRANSACTION,") || roleAccessList.Contains("CHLS,") ||
+    roleAccessList.Contains("BARGINGTRANSACTION,") || roleAccessList.Contains("SHIPPINGTRANSACTION,") || roleAccessList.Contains("SHIPPINGINSTRUCTION,") ||
+    roleAccessList.Contains("DRAFTSURVEY,") || roleAccessList.Contains("SOF,") || roleAccessList.Contains("COALMOVEMENT,") || roleAccessList.Contains("SILS,") ||
+    roleAccessList.Contains("SILSNPLCT,") || roleAccessList.Contains("SILSUNLOADING,") || roleAccessList.Contains("SAMPLINGTYPE,") ||
+    roleAccessList.Contains("QUALITYSAMPLING,") || roleAccessList.Contains("STOCKLOCATION,") || roleAccessList.Contains("RAINFALL,") ||
+    roleAccessList.Contains("SLIPPERY,") || roleAccessList.Contains("HAZE,") || roleAccessList.Contains("TIDALWAVE,") ||
+    roleAccessList.Contains("PRICEINDEXHISTORY,") || roleAccessList.Contains("TIMESHEET,") || roleAccessList.Contains("DAYWORK,") ||
+    roleAccessList.Contains("DAYWORKCLOSING,") || roleAccessList.Contains("DELAY,") || roleAccessList.Contains("LANDCLEARING,") ||
+    roleAccessList.Contains("FUELINVENTORY,") || roleAccessList.Contains("EQUIPMENTINCIDENT,") || roleAccessList.Contains("EQUIPMENTINCIDENT,") ||
+    roleAccessList.Contains("WEIGHBRIDGE,") || roleAccessList.Contains("BELTSCALE,") || roleAccessList.Contains("CURRENCYEXCHANGE,") ||
+    roleAccessList.Contains("SIPLOGS,") || roleAccessList.Contains("JOINTSURVEY,") || roleAccessList.Contains("SURVEY,") ||
+    roleAccessList.Contains("WASTEREMOVALCLOSING,") || roleAccessList.Contains("PRODUCTIONCLOSING,") || roleAccessList.Contains("HAULINGCLOSING,") ||
+    roleAccessList.Contains("PROCESSINGCLOSING,") || roleAccessList.Contains("COALTRANSFERCLOSING,") || roleAccessList.Contains("REHANDLINGCLOSING,") ||
+    roleAccessList.Contains("BARGINGCLOSING,") || roleAccessList.Contains("SHIPPINGCLOSING,"))
+    {
+        <li class="nav-title">PRODUCTION &amp; LOGISTICS</li>
+	}
 
     @if (roleAccessList.Contains("MINEPLANGEOLOGY,") || roleAccessList.Contains("MINEPLANLTP,"))
 	{
-        <li class="nav-title">PRODUCTION &amp; LOGISTICS</li>
-
         <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.MinePlan) ? "active open" : "")">
             <a href="#" title="Mine Plan" data-filter-tags="mine plan">
                 <i class="fal fa-clipboard-list"></i>
@@ -536,7 +555,7 @@
     @if (roleAccessList.Contains("RAINFALL,") || roleAccessList.Contains("SLIPPERY,") || roleAccessList.Contains("HAZE,") || roleAccessList.Contains("TIDALWAVE,")
         || roleAccessList.Contains("PRICEINDEXHISTORY,") || roleAccessList.Contains("TIMESHEET,") || roleAccessList.Contains("DAYWORK,")
         || roleAccessList.Contains("DAYWORKCLOSING,") || roleAccessList.Contains("DELAY,") || roleAccessList.Contains("LANDCLEARING,")
-        || roleAccessList.Contains("FUELINVENTORY,") || roleAccessList.Contains("EQUIPMENTINCIDENT,") || roleAccessList.Contains("EQUIPMENTINCIDENT,"))
+        || roleAccessList.Contains("FUELINVENTORY,") || roleAccessList.Contains("EQUIPMENTINCIDENT,"))
     {
         <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.DailyRecord) ? "active open" : "")">
             <a href="#" title="DailyRecord" data-filter-tags="supply chain transaction">
@@ -803,7 +822,9 @@
                 }
             </ul>
         </li>
-        @*
+    }
+
+    @*
     <li class="nav-title">SALES &amp; MARKETING</li>
     <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ShippingPlan) ? "active open" : ""))">
     <a href="#" title="Sales Invoice" data-filter-tags="supply chain sales invoice">
@@ -825,13 +846,12 @@
     </li>
     *@
 
-        @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Pricing) ? "active open" : ""))">
+    @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Pricing) ? "active open" : ""))">
     <a href="#" title="Pricing" data-filter-tags="supply chain sales invoice">
     <i class="fal fa-abacus"></i>
     <span class="nav-link-text" data-i18n="nav.supply_chain_transaction_sales_invoice">Pricing</span>
     </a>
     </li>*@
-    }
 
     @if (roleAccessList.Contains("SALESCONTRACT,") || roleAccessList.Contains("DESPATCHORDER,") || roleAccessList.Contains("HAULINGCLOSING,")
     || roleAccessList.Contains("SALESCHARGE,") || roleAccessList.Contains("DESPATCHDEMURRAGE,") || roleAccessList.Contains("ADVANCECONTRACT,")
@@ -1132,7 +1152,10 @@
         }
     }
  
-    <li class="nav-title">ACCOUNTING MANAGEMENT</li>
+    @if (roleAccessList.Contains("COA,") || roleAccessList.Contains("ACCOUNTINGPERIOD,"))
+    {
+        <li class="nav-title">ACCOUNTING MANAGEMENT</li>
+    }
     @*<li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.ChartofAccount) ? "active open" : "")">
     <a href="#" title="Transaction" data-filter-tags="supply chain transaction">
     <i class="fal fa-ballot-check"></i>
@@ -1262,10 +1285,10 @@
     </a>
     </li>*@
 
-    <li class="nav-title">MASTER DATA</li>
     @if (roleAccessList.Contains("PRODUCT,") || roleAccessList.Contains("PRODUCTCATEGORY,") || roleAccessList.Contains("WASTE,")
         || roleAccessList.Contains("WASTECATEGORY,"))
     {
+        <li class="nav-title">MASTER DATA</li>
         <li class="@((ViewBag.BreadcrumbCode ?? "").StartsWith(WebAppMenu.Material) ? "active open" : "")">
             <a href="#" title="Material" data-filter-tags="material">
                 <i class="fal fa-vial"></i>
