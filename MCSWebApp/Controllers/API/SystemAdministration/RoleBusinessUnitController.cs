@@ -16,6 +16,8 @@ using Omu.ValueInjecter;
 using DataAccess.EFCore.Repository;
 using Common;
 using Microsoft.AspNetCore.Http;
+using PetaPoco.Providers;
+using PetaPoco;
 
 namespace MCSWebApp.Controllers.API.SystemAdministration
 {
@@ -386,13 +388,22 @@ namespace MCSWebApp.Controllers.API.SystemAdministration
                     CurrentUserContext.BusinessUnitId = BusinessUnitId;
                 }
 
-                string sql = $"SELECT ae.* FROM application_user u INNER JOIN user_role ur ON u.id = ur.application_user_id " +
-                    $"INNER JOIN role_access ra ON ra.application_role_id = ur.application_role_id INNER JOIN application_entity ae " +
-                    $"ON ae.id = ra.application_entity_id WHERE u.id = '{CurrentUserContext.AppUserId}' AND " +
-                    $"ur.application_role_id = '{RoleId}' AND coalesce(ra.access_read, 0) > 0 " +
-                "ORDER BY ae.display_name";
+                //string sql = $"SELECT ae.* FROM application_user u INNER JOIN user_role ur ON u.id = ur.application_user_id " +
+                //    $"INNER JOIN role_access ra ON ra.application_role_id = ur.application_role_id INNER JOIN application_entity ae " +
+                //    $"ON ae.id = ra.application_entity_id WHERE u.id = '{CurrentUserContext.AppUserId}' AND " +
+                //    $"ur.application_role_id = '{RoleId}' AND coalesce(ra.access_read, 0) > 0 " +
+                //"ORDER BY ae.display_name";
 
-                var AE = dbContext.application_entity.FromSqlRaw(sql).ToArray();
+                //var AE = dbContext.application_entity.FromSqlRaw(sql).ToArray();
+
+                string sql = $"SELECT distinct replace(upper(ae.display_name), ' ', '') display_name FROM application_user u " +
+                    $"INNER JOIN user_role ur ON u.id = ur.application_user_id INNER JOIN role_access ra " +
+                    $"ON ra.application_role_id = ur.application_role_id INNER JOIN application_entity ae " +
+                    $"ON ae.id = ra.application_entity_id WHERE u.id = '{CurrentUserContext.AppUserId}' AND " +
+                    $"ur.application_role_id = '{RoleId}' AND coalesce(ra.access_read, 0) > 0 ORDER BY display_name";
+                var defaultConnectionString = configuration.GetConnectionString("MCS");
+                var db = DatabaseConfiguration.Build().UsingConnectionString(defaultConnectionString).UsingProvider<PostgreSQLDatabaseProvider>().Create();
+                List<dynamic> AE = db.Fetch<dynamic>(sql);
 
                 string sRoleAccess = "";
                 foreach (var x in AE)

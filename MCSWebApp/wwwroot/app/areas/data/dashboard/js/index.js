@@ -1,4 +1,5 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿/*
+document.addEventListener('DOMContentLoaded', function () {
    
     const slider = document.getElementById('dashboardSlider');
     const cards = document.querySelectorAll('.dashboard-card');
@@ -71,4 +72,4 @@
             icon.classList.add('fa-minus');
         }
     });
-}); 
+}); */
